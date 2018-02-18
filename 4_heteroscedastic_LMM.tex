@@ -1,111 +1,155 @@
 \chapter{The Heteroscedastic Linear Mixed Model}
 
 Whereas the previous chapters have dealt with differential relatedness obliquely, either assuming its absence or using a heuristic to correct for it, this chapter addresses it directly.
-The linear mixed model (LMM) [posulates] an observed phenotype, $\by$, as the sum of four unobserved, but estimated quantities: the population mean, $\bmu$, the fixed effect deviation, $\bX\bbeta$, the genomic value, $\ba$, and the residual deviation, $\be$.
+The linear mixed model (LMM) [posulates] an observed phenotype, $\by$, as the sum of five unobserved, but estimated quantities: the population mean, $\mu$, the fixed effect deviation, $\bX\bbeta$, effect of the focal genetic variant(s), $\bG\balpha$, the genomic value, $\ba$, and the residual deviation, $\be$.
 \begin{align}
-	\by	&= \bmu + \bX\bbeta + \ba + \be
-	\shortintertext{with}
-	\ba &\sim \N(0, \bK \tau^2) \label{eq:a},
-	\shortintertext{and}
-	\be &\sim \N(0, \bD \sigma^2) \label{eq:e}
+	\by	&= \mathbf{1}\mu + \bX\bbeta + \bG\balpha + \ba + \be  \label{eq:lmm}
 \end{align}
-where $\bX$ is a matrix of covariates, $\bK$ is a known positive semi-definite genomic similarity matrix, and $\bD$ is a known diagonal residual variance matrix.
-Of the estimated parameters, $\bbeta$ and $\bmu$ are unconstrained, $\tau^2$ and $\sigma^2$ are constrained to be non-negative, and $\ba$ and $\be$ are constrained by their hierarchical specification (\cref{eq:e,eq:a}).
+where $\mathbf{1}$ is a column vector of ones, $\bX$ is a matrix of covariates, $\bG$ is a design matrix of focal genetic effects, and $\mu$, $\bbeta$, and $\balpha$ are unconstrained, estimated quantities.
 
-This model can be useful in genetic mapping because
-In the context of genetic mapping, the goal is to fit this model for many different values of $\bX$... and compare to one with no genetic in $\bX$ to do LRT.
-The default way to do so would be to use Henderson's method each time, but this is very slow.
-A recent development described a matrix math trick to make this process fast when $\bD = \bI$.
-I first summarize that trick and then go on to describe a further trick that allows for fast fitting for any diagonal $\bD$.
-
-
-This model is equivalent to:
+$\ba$ and $\be$ are so-called ``random effects'', estimated in the process of model fitting, but with [constraints].
+Specifically, they are modeled hierarchiccally as
 \begin{align}
-	\by &\sim \N(\bX\bbeta, \bSigma)
-	\shortintertext{where}
-	\bSigma &= \bK \tau^2 + \bD \sigma^2
+    \ba &\sim \N(0, \bK \tau^2) ,   \label{eq:a}\\
+    \be &\sim \N(0, \bD \sigma^2)   \label{eq:e}
 \end{align}
+where $\bK$ is a known, positive semi-definite genomic similarity matrix, and $\bD$ is a known diagonal residual variance matrix.
+The scale parameters, $\tau^2$ and $\sigma^2$, are constrained only in the sense that they must be non-negative.
+
+In the context of genetic mapping, the this model is used to test whether $\balpha = \bm{0}$.
+If $\balpha \neq \bm{0}$, the genetic factor(s) encoded in $\bG$ influences the phenotype.
+
+The two tests used to test whether $\balpha = \bm{0}$, the $t$ test and the likelihood ratio test (LRT), require [computation] of the values of the parameters that maximize the likelihood of the data.
+A suite of procedures for computing these maximum likelihood parameter values in a variety of situations was described by Henderson [cite].
+The main interest of Henderson, and of the animal breeding community in general, is the ``genetic value'', $\ba$ in the model.
+And it's typically fit in the absence of $\bG$, or for very few different values of $\bG$ for marker assissted selection.
+
+
+
+% many different values of $\bX$... and compare to one with no genetic in $\bX$ to do LRT.
+% The default way to do so would be to use Henderson's method each time, but this is very slow.
+% A recent development described a matrix math trick to make this process fast when $\bD = \bI$.
+% I first summarize that trick and then go on to describe a further trick that allows for fast fitting for any diagonal $\bD$.
+
 
 % [define animal model, y, K, Z, D, two variance components]
 % [all diagonal elements of K are 1, off diags can be also]
 
-This model can be reparametrized by $h^2 = \frac{\tau^2}{\tau^2 + \sigma^2}$ and $\lambda = \tau^2 + \sigma^2$, such that, after defining $\bV = \bK h^2 + \bD (1 - h^2)$, it reduces to a generalized least squares (GLS) model.
+\section{Given $h^2$, the LMM Reduces to Mutiple Linear Regression}
+
+The LMM is equivalent to:
+\begin{align}
+    \by &\sim \N(\bX_c\bbeta_c, \bSigma)
+\end{align}
+where fixed effects design matrices are collapsed into $\bX$ and the variance-covariance matrices of the random effects are combined into $\bSigma$.
+Specifically,
+\begin{align}
+    \bX_c     &= \left[1 \enspace \bX \enspace \bG \right]\\
+    \bbeta_c  &= \left[\mu \enspace \bbeta\T \enspace \balpha\T \right]\T\\
+    \bSigma &= \bK \tau^2 + \bD \sigma^2
+\end{align}
+Going forward, we refer to $\bX_c$ and $\bbeta_c$ as simply $\bX$ and $\bbeta$ for simplicity.
+
+This model can be reparametrized to directly use the well-known narrow sense heritability, increasing its interpretability.
+Specifically, $h^2 = \frac{\tau^2}{\tau^2 + \sigma^2}$ and $\lambda = \tau^2 + \sigma^2$.
 \begin{align}
 	\bSigma &= \left(\bK \frac{\tau^2}{\tau^2 + \sigma^2} + \bD \frac{\sigma^2}{\tau^2 + \sigma^2}\right) (\tau^2 + \sigma^2)\\
-			&= \bK h^2 + \bD (1 - h^2) \lambda\\
-			&= \bV \lambda
-	\shortintertext{and thus}
-	\by &\sim \N(\bmu + \bX\bbeta, \bV \lambda)
+			&= \bK h^2 + \bD (1 - h^2) \lambda
 \end{align}
-
-There is a known, closed-form, maximum likelihood estimator of $\bbeta$ for the GLS model.
+Thus, for any given value of $h^2$, we can define $\bV = \bK h^2 + \bD (1 - h^2)$, and the LMM reduces to a standard linear model (SLM):
 \begin{align}
-	\widehat{\bbeta} &= (\bX \T \bV \inv \bX) \inv \bX \T \bV \inv \by
+    \by \sim \N(\bX\bbeta, \bV \lambda)     \label{eq:gls}
 \end{align}
 
-We want to do LRT, so we need to estimate maximum likelihood values for beta, sigma, and tau.
-Many SNPs, so need to fit it fast.
+This SLM has log likelihood:
+\begin{align}
+    \ell(\bbeta, \lambda; \by, \bX, \bV) &= 
+        -\frac{n}{2}\log(2\pi)
+        -\frac{1}{2}\log|\bV\lambda|
+        -           \frac{1}{2\lambda}
+            (\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta) \\
+    &= 
+        -\frac{n}{2}\log(2\pi)
+        -\frac{1}{2}\log|\bV|
+        -\frac{n}{2}\log\lambda
+        - \frac{1}{2\lambda}
+            (\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta)
+\end{align}
 
+And there is a known, closed-form, maximum likelihood estimator for its two parameters:
+\begin{align}
+	\widehat{\bbeta}    &= (\bX \T \bV \inv \bX) \inv \bX \T \bV \inv \by\\
+    \widehat{\lambda}   &= \norm{(\bX\widehat{\bbeta} - \by)\T(\bX\widehat{\bbeta} - \by)}{2}
+\end{align}
+
+In the context of a genome scan, we want to caculate these maximum likelihood estimators for a single phenotype, $\by$, genomic similarity, $\bK$ residual variance, $\bD$, and many different values of $\bX$ --- recall that the genetic variant(s) being investigated are in $\bG$.
+Also recall that, though we have described a parameterization that recapitulates a standard linear regression problem when $h^2$ is known, we do not, in general know the true value of $h^2$, so we will additionally want to optimize over all possible values of $h^2 \in [0, 1]$.
+
+We now describe a matrix algebra trick that increases the up-front computational cost of fitting the linear regression model \cref{eq:gls}, but drastically decreases the computatational cost for each new value of $\bX$.
+
+
+\section{Rotation to Independence}
 
 Imagine we knew of a multiplier matrix, $\bM$ such that
 \begin{align}
 	\bM \T \bM = \bV \inv
 \end{align}
  
-By now considering a new phenotype vector, $\by_m = \bM \by$ and a new covariate matrix, $\bX_m = \bM \bX$, we can make progress toward fast fitting of the real phenotype vector and covariate matrix.
-
-The expectation and variance of $\by_m$ are:
-
+Let us now consider a new, rotated phenotype vector, $\by_r = \bM \by$, a new covariate matrix, $\bX_r = \bM \bX$, and a new SLM.
 \begin{align}
-\E(\by_m)	&= \E(\bM \by) \\
-			&= \bM \E(\by)\\
-\V(\by_m)	&= \V(\bM \by)\\
-			&= \bM \V(\by) \bM\T
+    \by_r &\sim \N(\bX_r \bbeta_r, \, \bI \lambda_r)
 \end{align}
 
-Recalling that We are now considering a model of the form:
+The log likelihood of this SLM is:
+\begin{align}
+    \ell(\bbeta_r, \lambda_r; \bX_r, \by_r) 
+    &=    -\frac{n}{2}\log(2\pi)
+          -\frac{1}{2}\log|\bI|
+          -\frac{n}{2}\log\lambda_r
+          -\frac{1}{2\lambda_r}
+          (\by_r - \bX_r)\T (\by_r - \bX_r\bbeta_r)\\
+    & =
+          -\frac{n}{2}\log(2\pi)
+          -\frac{n}{2}\log\lambda_r
+          -\frac{1}{2\lambda_r}
+          (\bM\by - \bM\bX\bbeta)\T (\bM\by - \bM\bX\bbeta)\\
+    &=    -\frac{n}{2}\log(2\pi)
+          -\frac{n}{2}\log\lambda_r
+          -\frac{1}{2\lambda_r}
+          (\by - \bX\bbeta)\T \bM\T \bM (\by - \bX\bbeta)\\
+    &=    -\frac{n}{2}\log(2\pi)
+          -\frac{n}{2}\log\lambda_r
+          -\frac{1}{2\lambda_r}
+          (\by-\bX\bbeta)\T \bV\inv (\by-\bX\bbeta)
+\end{align}
+
+and its ML estimators are:
+\begin{align}
+    \widehat{\bbeta_r}    &= (\bX_r \T \bX_r) \inv \bX_r \T \by_r\\
+    \widehat{\lambda_r}   &= \norm{(\bX_r \widehat{\bbeta_r} - \by_r)\T(\bX_r \widehat{\bbeta_r} - \by_r)}{2}
+\end{align}
+
+% Recalling that We are now considering a model of the form:
 % \begin{align}
-% 	\mathbf{My} &\sim \Norm(\mathbf{MX}\boldsymbol{\beta}_z, \, \mathbf{I}\sigma^2_\text{z})
+%     \mathbf{My} &\sim \Norm(\mathbf{MX}\boldsymbol{\beta}_z, \, \mathbf{I}\sigma^2_\text{z})
 % \end{align}
 
-Note the similarity of their log likelihoods:
 
-\begin{align}
-	\ell(\bbeta, \sigma^2; \bX, \by, \bV) &= 
-    	-\frac{n}{2}\log(2\pi)
-        -\frac{1}{2}\log|\bV\sigma^2|
-        -         	\frac{1}{2\sigma^2}
-            (\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta) \\
-	&= 
-    	-\frac{n}{2}\log(2\pi)
-        -\frac{1}{2}\log|\bV|
-        -\frac{n}{2}\log\sigma^2
-        - \frac{1}{2\sigma^2}
-        	(\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta)\\
-    \ell(\bbeta_m, \sigma_m^2; \bX_m, \by_m) & =
-    % -\frac{n}{2}\log(2\pi)
-    %    	-\frac{1}{2}\log|\mathbf{I}|
-    %    	-\frac{n}{2}\log\sigma^2
-    %     -\frac{1}{2\sigma^2}
-    %     	(\mathbf{My}-\mathbf{MX}\bbeta)\T
-    %         (\mathbf{My}-\mathbf{MX}\bbeta)\\
-    % &=	-\frac{n}{2}\log(2\pi)
-    % 	- 0
-    %    	-\frac{n}{2}\log\sigma^2
-    %    	-\frac{1}{2\sigma^2}
-    %     	(\mathbf{y}-\mathbf{X}\bbeta)\T
-    %         \mathbf{M}\T\mathbf{M}
-    %         (\mathbf{y}-\mathbf{X}\bbeta)\\
-    % &=	-\frac{n}{2}\log(2\pi)
-    %    	-\frac{n}{2}\log\sigma^2
-    %    	-\frac{1}{2\sigma^2}
-    %     	(\mathbf{y}-\mathbf{X}\bbeta)\T
-    %         \mathbf{V}^{-1}
-    %         (\mathbf{y}-\mathbf{X}\bbeta)
-\end{align}
+% The expectation and variance of $\by_m$ are:
+% \begin{align}
+% \E(\by_m)	&= \E(\bM \by) \\
+% 			&= \bM \E(\by)\\
+% \V(\by_m)	&= \V(\bM \by)\\
+% 			&= \bM \V(\by) \bM\T
+% \end{align}
 
 
-\section{Maximum Likelihood Estimation for the Homoscedastic Model}
+% Note the similarity of their log likelihoods:
+
+Thus we have established that, given $\bM$ we can fit the model
+
+
+\section{Homoscedastic Model}
 
 [D = I]
 Kang proposed the following [cite EMMA].
@@ -115,7 +159,11 @@ Kang proposed the following [cite EMMA].
 
 \section{Maximum Likelihood Estimation for the Heteroscedastic Model}
 
+The above $\bM$ relied on [point out where D=I is required] [in step X].
+Generally, however, some phenotypes are known with more certainty than others.
 Want to have a diagonal D, but not necessarily I.
+
+\subsection{Proposal}
 
 \begin{align}
 	\bM &= (\bLL + \delta \bI)^{-\frac{1}{2}}\bUL\T \bD^{-\frac{1}{2}}\\
