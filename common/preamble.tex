@@ -25,6 +25,8 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
 
 % Typography
 \usepackage{times}
@@ -37,6 +39,14 @@
 % PDF links
 \usepackage[hidelinks]{hyperref} % backref=page
 
+\DeclareRobustCommand{\bt}[1]{\mathbf{#1}}
+\pdfstringdefDisableCommands{%
+  \renewcommand{\bt}[1]{#1}%
+}
+\usepackage[capitalize, noabbrev]{cleveref}
+\creflabelformat{equation}{#2#1#3}
+
+\usepackage{lipsum}
 
 \input{common/layout}
 
