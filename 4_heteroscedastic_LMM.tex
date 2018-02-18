@@ -1,0 +1,208 @@
+\chapter{The Heteroscedastic Linear Mixed Model}
+
+Whereas the previous chapters have dealt with differential relatedness obliquely, either assuming its absence or using a heuristic to correct for it, this chapter addresses it directly.
+The linear mixed model (LMM) [posulates] an observed phenotype, $\by$, as the sum of four unobserved, but estimated quantities: the population mean, $\bmu$, the fixed effect deviation, $\bX\bbeta$, the genomic value, $\ba$, and the residual deviation, $\be$.
+\begin{align}
+	\by	&= \bmu + \bX\bbeta + \ba + \be
+	\shortintertext{with}
+	\ba &\sim \N(0, \bK \tau^2) \label{eq:a},
+	\shortintertext{and}
+	\be &\sim \N(0, \bD \sigma^2) \label{eq:e}
+\end{align}
+where $\bX$ is a matrix of covariates, $\bK$ is a known positive semi-definite genomic similarity matrix, and $\bD$ is a known diagonal residual variance matrix.
+Of the estimated parameters, $\bbeta$ and $\bmu$ are unconstrained, $\tau^2$ and $\sigma^2$ are constrained to be non-negative, and $\ba$ and $\be$ are constrained by their hierarchical specification (\cref{eq:e,eq:a}).
+
+This model can be useful in genetic mapping because
+In the context of genetic mapping, the goal is to fit this model for many different values of $\bX$... and compare to one with no genetic in $\bX$ to do LRT.
+The default way to do so would be to use Henderson's method each time, but this is very slow.
+A recent development described a matrix math trick to make this process fast when $\bD = \bI$.
+I first summarize that trick and then go on to describe a further trick that allows for fast fitting for any diagonal $\bD$.
+
+
+This model is equivalent to:
+\begin{align}
+	\by &\sim \N(\bX\bbeta, \bSigma)
+	\shortintertext{where}
+	\bSigma &= \bK \tau^2 + \bD \sigma^2
+\end{align}
+
+% [define animal model, y, K, Z, D, two variance components]
+% [all diagonal elements of K are 1, off diags can be also]
+
+This model can be reparametrized by $h^2 = \frac{\tau^2}{\tau^2 + \sigma^2}$ and $\lambda = \tau^2 + \sigma^2$, such that, after defining $\bV = \bK h^2 + \bD (1 - h^2)$, it reduces to a generalized least squares (GLS) model.
+\begin{align}
+	\bSigma &= \left(\bK \frac{\tau^2}{\tau^2 + \sigma^2} + \bD \frac{\sigma^2}{\tau^2 + \sigma^2}\right) (\tau^2 + \sigma^2)\\
+			&= \bK h^2 + \bD (1 - h^2) \lambda\\
+			&= \bV \lambda
+	\shortintertext{and thus}
+	\by &\sim \N(\bmu + \bX\bbeta, \bV \lambda)
+\end{align}
+
+There is a known, closed-form, maximum likelihood estimator of $\bbeta$ for the GLS model.
+\begin{align}
+	\widehat{\bbeta} &= (\bX \T \bV \inv \bX) \inv \bX \T \bV \inv \by
+\end{align}
+
+We want to do LRT, so we need to estimate maximum likelihood values for beta, sigma, and tau.
+Many SNPs, so need to fit it fast.
+
+
+Imagine we knew of a multiplier matrix, $\bM$ such that
+\begin{align}
+	\bM \T \bM = \bV \inv
+\end{align}
+ 
+By now considering a new phenotype vector, $\by_m = \bM \by$ and a new covariate matrix, $\bX_m = \bM \bX$, we can make progress toward fast fitting of the real phenotype vector and covariate matrix.
+
+The expectation and variance of $\by_m$ are:
+
+\begin{align}
+\E(\by_m)	&= \E(\bM \by) \\
+			&= \bM \E(\by)\\
+\V(\by_m)	&= \V(\bM \by)\\
+			&= \bM \V(\by) \bM\T
+\end{align}
+
+Recalling that We are now considering a model of the form:
+% \begin{align}
+% 	\mathbf{My} &\sim \Norm(\mathbf{MX}\boldsymbol{\beta}_z, \, \mathbf{I}\sigma^2_\text{z})
+% \end{align}
+
+Note the similarity of their log likelihoods:
+
+\begin{align}
+	\ell(\bbeta, \sigma^2; \bX, \by, \bV) &= 
+    	-\frac{n}{2}\log(2\pi)
+        -\frac{1}{2}\log|\bV\sigma^2|
+        -         	\frac{1}{2\sigma^2}
+            (\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta) \\
+	&= 
+    	-\frac{n}{2}\log(2\pi)
+        -\frac{1}{2}\log|\bV|
+        -\frac{n}{2}\log\sigma^2
+        - \frac{1}{2\sigma^2}
+        	(\by-\bX\bbeta)\T\bV\inv(\by-\bX\bbeta)\\
+    \ell(\bbeta_m, \sigma_m^2; \bX_m, \by_m) & =
+    % -\frac{n}{2}\log(2\pi)
+    %    	-\frac{1}{2}\log|\mathbf{I}|
+    %    	-\frac{n}{2}\log\sigma^2
+    %     -\frac{1}{2\sigma^2}
+    %     	(\mathbf{My}-\mathbf{MX}\bbeta)\T
+    %         (\mathbf{My}-\mathbf{MX}\bbeta)\\
+    % &=	-\frac{n}{2}\log(2\pi)
+    % 	- 0
+    %    	-\frac{n}{2}\log\sigma^2
+    %    	-\frac{1}{2\sigma^2}
+    %     	(\mathbf{y}-\mathbf{X}\bbeta)\T
+    %         \mathbf{M}\T\mathbf{M}
+    %         (\mathbf{y}-\mathbf{X}\bbeta)\\
+    % &=	-\frac{n}{2}\log(2\pi)
+    %    	-\frac{n}{2}\log\sigma^2
+    %    	-\frac{1}{2\sigma^2}
+    %     	(\mathbf{y}-\mathbf{X}\bbeta)\T
+    %         \mathbf{V}^{-1}
+    %         (\mathbf{y}-\mathbf{X}\bbeta)
+\end{align}
+
+
+\section{Maximum Likelihood Estimation for the Homoscedastic Model}
+
+[D = I]
+Kang proposed the following [cite EMMA].
+
+
+
+
+\section{Maximum Likelihood Estimation for the Heteroscedastic Model}
+
+Want to have a diagonal D, but not necessarily I.
+
+\begin{align}
+	\bM &= (\bLL + \delta \bI)^{-\frac{1}{2}}\bUL\T \bD^{-\frac{1}{2}}\\
+\intertext{where}
+	\bL &= \bD^{-\frac{1}{2}}\bK \bD^{-\frac{1}{2}}\\
+\intertext{and}
+	\bL &= \bUL \bLL \bUL^T
+\end{align}
+is its eigen decomposition
+
+
+\subsection{Validity}
+
+To be a valid multiplier matrix, $\bM$ must have the property:
+\[
+	\bM \T \bM = \bV\inv
+\]
+
+% I verify this by showing that
+% \[
+% 	\bV \bM\T \bM = \bM\T \bM \bV = \bI
+% \]
+
+% I verify by direct calculation:
+
+
+
+\begin{proof}
+First, derive a useful form of $\bV$.
+\begin{align}
+\bV &= \bK + \delta \bD   																								\tag*{definition}\\
+    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD)                                                                 	\tag*{pre-multiply by $\bD\halfpow \bD\neghalfpow = \bI$}\\
+    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD) \bD\neghalfpow \bD\halfpow 										\tag*{post-multiply by $\bD\neghalfpow \bD\halfpow = \bI$}\\
+    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bD\neghalfpow \bD \bD\neghalfpow)\bD\halfpow 			\tag*{distribute $\bD\neghalfpow$ in}\\
+    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bI) \bD\halfpow                                  		\tag*{definition of root inverse}\\
+    &= \bD\halfpow(\bL + \delta \bI) \bD\halfpow                                                                 		\tag*{define: $\bL = \bD\neghalfpow\bK \bD\neghalfpow$}\\
+    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bI) \bD\halfpow                                                			\tag*{eigen decomposition of $\bL$}\\
+    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bUL \bUL \T)\bD\halfpow                                         			\tag*{property of eigen vectors}\\
+    &= \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow                                                			\tag*{distributive property}
+\end{align}
+and invert it
+\begin{align}
+\bV\inv &= \left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow \right)\inv  											\tag*{definition}\\
+    	&= \left( \bD\halfpow \right)\inv \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \left( \bD\halfpow \right)\inv     \tag*{inverse of product}\\
+    	&= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow    									\tag*{inverse of diagonal matrix}\\
+    	&= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T  \bD\neghalfpow               									\tag*{inverse of eigen decomposition}
+\end{align}
+and compare to $\bM\T \bM$
+\begin{align}
+\bM \T \bM 	&= \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)\T   \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow	\right) 	\tag*{definition}\\
+			&= \left(\bD\neghalfpow \bUL (\bLL + \delta \bI)\neghalfpow 	\right)  \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow		\right)		\tag*{transpose of product}\\
+			&= \bD\neghalfpow \bUL \left( (\bLL + \delta \bI)\neghalfpow 	(\bLL + \delta \bI)\neghalfpow \right)	\bUL\T \bD\neghalfpow						\tag*{associative property}\\
+			&= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T \bD\neghalfpow																				\tag*{definition of root inverse}
+			% &= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow 																\tag*{inverse of eigen decomposition}\\
+\end{align}
+\end{proof}
+
+% Now we have
+% \begin{align}
+% \bM\T \bM 	&= 	\left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow 		\right)		
+% 					\left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)\T
+% 					\left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right) 				\tag*{definitions}\\
+% 				&= 	\left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL\T \bD\halfpow 		\right)
+% 					\left(\bD\neghalfpow \bUL (\bLL + \delta \bI)\neghalfpow 	\right)
+% 					\left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)					\tag*{transpose of product}\\
+% 				&= 	\bD\halfpow\bUL (\bLL + \delta \bI) \bUL\T \left(\bD\halfpow 		
+% 					\bD\neghalfpow \right) \bUL \left((\bLL + \delta \bI)\neghalfpow
+% 					(\bLL + \delta \bI)\neghalfpow \right) \bUL\T \bD\neghalfpow						\tag*{associative property of matrix multiplication}\\
+% 				&= 	\bD\halfpow\bUL (\bLL + \delta \bI) \bUL\T
+% 					 \bUL \left(\bLL + \delta \bI \right)\inv  \bUL\T \bD\neghalfpow					\tag*{definition of root and root inverse}\\
+% 				&= 	\bD\halfpow\bUL (\bLL + \delta \bI) \left(\bLL + \delta \bI \right)\inv  \bUL\T \bD\neghalfpow					\tag*{property of eigenvector matrix}\\
+% 				&= 	\bD\halfpow\bUL  \bUL\T \bD\neghalfpow					\tag*{definition of inverse}\\
+% 				&= 	\bD\halfpow \bD\neghalfpow					\tag*{property of eigenvector matrix}\\
+% 				&= \bI 													\tag*{definition of inverse}
+% \end{align}
+
+% 	&= [D^{\frac{1}{2}}U_L (\Lambda_L + \delta I) U_L^T D^{\frac{1}{2}}] [D^{-\frac{1}{2}}U_L(\Lambda_L+\delta I)^{-\frac{1}{2}}][(D^{-\frac{1}{2}}U_L(\Lambda_L+\delta I)^{-\frac{1}{2}})^T]\\
+%     		&= D^{\frac{1}{2}}U_L (\Lambda_L + \delta I) U_L^T D^{\frac{1}{2}}D^{-\frac{1}{2}}U_L(\Lambda_L+\delta I)^{-\frac{1}{2}}(\Lambda_L+\delta I)^{-\frac{1}{2}T} U_L^T D^{-\frac{1}{2}T} \\
+%     		&= D^{\frac{1}{2}}U_L (\Lambda_L + \delta I) U_L^T D^{\frac{1}{2}}D^{-\frac{1}{2}}U_L(\Lambda_L+\delta I)^{-1} U_L^T D^{-\frac{1}{2}T} \\
+%     		&= D^{\frac{1}{2}}U_L (\Lambda_L + \delta I) U_L^T U_L(\Lambda_L+\delta I)^{-1} U_L^T D^{-\frac{1}{2}T} \\
+%     		&= D^{\frac{1}{2}}U_L (\Lambda_L + \delta I) (\Lambda_L+\delta I)^{-1} U_L^T D^{-\frac{1}{2}T} \\
+%     		&= D^{\frac{1}{2}}U_L U_L^T D^{-\frac{1}{2}T} \\
+%     		&= D^{\frac{1}{2}} D^{-\frac{1}{2}T} \\
+%     		&= I
+% \end{align}
+
+
+\section{Simulation Results}
+
+\section{Software}
