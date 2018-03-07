@@ -3,39 +3,16 @@
 	{
 		"selected_items":
 		[
+			[
+				"fold",
+				"folder_exclude_patterns"
+			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "4_generalized_populations.tex",
-			"settings":
-			{
-				"buffer_size": 3917,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "common/preamble.tex",
-			"settings":
-			{
-				"buffer_size": 860,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "frontmatter/abbreviations.tex",
-			"settings":
-			{
-				"buffer_size": 579,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
-	"build_system": "",
+	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -85,6 +62,58 @@
 				"Packages/LaTeXTools/LaTeX.sublime-build",
 				"PdfLaTeX"
 			]
+		],
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"PdfLaTeX"
+			]
 		]
 	],
 	"build_varint": "",
@@ -97,6 +126,18 @@
 			[
 				"dele",
 				"LaTeXTools: Delete temporary files"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wideb",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sideb",
+				"View: Toggle Side Bar"
 			],
 			[
 				"package",
@@ -151,11 +192,11 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 476.0
+		"width": 412.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 186.0,
 		"history":
 		[
 		]
@@ -171,29 +212,32 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common"
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation"
 	],
 	"file_history":
 	[
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/macros.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/5_conclusion.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.sublime-project",
 		"/Users/rcorty/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/2_dglm_in_experimental_crosses.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/preamble.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/4_heteroscedastic_LMM.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/dedication.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/macros.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/3_dglm_in_human_populations.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abbreviations.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/pages.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/1_introduction.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/copyright.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/titlepage.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abstract.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abbreviations.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/conclusion.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/introduction.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/diss.pdf",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/generalized_populations.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/inbred_strains.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/experimental_crosses.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.sublime-project",
 		"/Users/rcorty/Dropbox (ValdarLab)/BVH_manuscript/Introduction.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/BVH_manuscript/BVH_manuscript.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/BVH_manuscript/supplement.tex",
@@ -218,7 +262,7 @@
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 32.0
 	},
 	"find_in_files":
 	{
@@ -233,6 +277,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"equiv",
 			"\\N",
 			"title",
 			"usepackage"
@@ -253,460 +298,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "4_generalized_populations.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3917,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								298,
-								298
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										2211,
-										2216
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/tag.png",
-										"region.orangish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										589,
-										594
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										401,
-										402
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/square_bracket.png",
-										"region.bluish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										281,
-										282
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"git_gutter_is_enabled": false,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "common/preamble.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 860,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								510,
-								510
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										510,
-										511
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										500,
-										501
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"git_gutter_is_enabled": false,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "frontmatter/abbreviations.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 579,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								503,
-								503
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										502,
-										503
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										483,
-										484
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"git_gutter_is_enabled": false,
-							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 32.0
 	},
 	"input":
 	{
@@ -751,7 +350,7 @@
 	"project": "Corty_dissertation.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 60.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -761,12 +360,48 @@
 		"selected_items":
 		[
 			[
-				"prea",
+				"2",
+				"2_dglm_in_experimental_crosses.tex"
+			],
+			[
+				"corty",
+				"Corty_dissertation.tex"
+			],
+			[
+				"pre",
 				"common/preamble.tex"
+			],
+			[
+				"con",
+				"5_conclusion.tex"
+			],
+			[
+				"dedi",
+				"frontmatter/dedication.tex"
 			],
 			[
 				"macr",
 				"common/macros.tex"
+			],
+			[
+				"",
+				"2_dglm_in_experimental_crosses.tex"
+			],
+			[
+				"3",
+				"3_dglm_in_human_populations.tex"
+			],
+			[
+				"4",
+				"4_heteroscedastic_LMM.tex"
+			],
+			[
+				"diss",
+				"Corty_dissertation.tex"
+			],
+			[
+				"prea",
+				"common/preamble.tex"
 			],
 			[
 				"abbe",
@@ -802,15 +437,15 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "bvh",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"bvh",
+				"",
 				"~/Dropbox (ValdarLab)/Aim1/BVH_manuscript/BVH.sublime-project"
 			],
 			[
-				"",
+				"bvh",
 				"~/Dropbox (ValdarLab)/Aim1/BVH_manuscript/BVH.sublime-project"
 			]
 		],

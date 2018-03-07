@@ -2,8 +2,10 @@
 	"folders":
 	[
 		{
-			"path": "."
-		}
+            "path": ".",
+            "folder_exclude_patterns": [".Rproj.user"],
+            "file_exclude_patterns": [".*", "*.Rproj", "*.docx"]
+        }
 	],
 	"settings": {
         "TEXroot": "Corty_dissertation.tex"
