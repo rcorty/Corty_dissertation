@@ -1,29 +1,40 @@
 \chapter{The Heteroscedastic Linear Mixed Model}
 \label{chap:het_LMM}
 
-Whereas the previous chapters have dealt with differential relatedness obliquely, either assuming its absence or using a heuristic to correct for it, this chapter addresses it directly.
-The linear mixed model (LMM) [posulates] an observed phenotype, $\by$, as the sum of five unobserved, but estimated quantities: the population mean, $\mu$, the fixed effect deviation, $\bX\bbeta$, effect of the focal genetic variant(s), $\bG\balpha$, the genomic value, $\ba$, and the residual deviation, $\be$.
+\cref{chap:exp_crosses} described a statistical approach that stands on the assumption that all individuals in the mapping population are equally related.
+This assumption is appropriate in the analysis of experimental crosses because it is nearly true.
+It has been shown that a more general approach that accounts for the slight differential relatedness in an F2 intercross delivers little or no additional benefit in terms of mapping power or precision \citep{Parker2014b}.
+\cref{chap:dglm_human} described a statistical approach to QTL mapping that accounts for differential relatedness in the mapping population by including principle components of the genetic variation as regressors.
+This approach is heuristic, correcting for large-scale relationships, but not finer grained ones.
+% Previous chapters dealt with differential relatedness obliquely, either assuming its absence or using a heuristic to correct for it, this chapter addresses it directly.
+This chapter describes the linear mixed model (LMM), which can accommodate any pattern of differential relatedness a mapping population may have, at both large and fine scales.
+
+The LMM models an observed phenotype, $\by$, as,
 \begin{align}
 	\by	&= \mathbf{1}\mu + \bX\bbeta + \bG\balpha + \ba + \be  \label{eq:lmm}
 \end{align}
-where $\mathbf{1}$ is a column vector of ones, $\bX$ is a matrix of covariates, $\bG$ is a design matrix of focal genetic effects, and $\mu$, $\bbeta$, and $\balpha$ are unconstrained, estimated quantities.
 
-$\ba$ and $\be$ are so-called ``random effects'', estimated in the process of model fitting, but with [constraints].
-Specifically, they are modeled hierarchiccally as
+where $\mathbf{1}$ is a column vector of ones, $\bX$ is the design matrix of covariates, $\bG$ is the design matrix of focal genetic effects, and $\mu$, $\bbeta$, and $\balpha$ are unconstrained parameters that can be referred to as the population mean, the effect(s) of the covariate(s), and the effect(s) of the focal genetic factor(s), respectively.
+
+$\ba$ and $\be$ are so-called ``random effects'', estimated in the process of model fitting, but with constraints.
+Specifically, they are modeled hierarchically as
 \begin{align}
     \ba &\sim \N(0, \bK \tau^2) ,   \label{eq:a}\\
     \be &\sim \N(0, \bD \sigma^2)   \label{eq:e}
 \end{align}
 where $\bK$ is a known, positive semi-definite genomic similarity matrix, and $\bD$ is a known diagonal residual variance matrix.
-The scale parameters, $\tau^2$ and $\sigma^2$, are constrained only in the sense that they must be non-negative.
+The scale parameters, $\tau^2$ and $\sigma^2$, are constrained only to be non-negative.
 
-In the context of genetic mapping, the this model is used to test whether $\balpha = \bm{0}$.
-If $\balpha \neq \bm{0}$, the genetic factor(s) encoded in $\bG$ influences the phenotype.
+In the context of genetic mapping, the this model is fit to each putative QTL, using $\bG$ to encode the locus design matrix and testing whether $\balpha = \bm{0}$.
+If $\balpha \neq \bm{0}$, the locus is a QTL.
 
-The two tests used to test whether $\balpha = \bm{0}$, the $t$ test and the likelihood ratio test (LRT), require [computation] of the values of the parameters that maximize the likelihood of the data.
-A suite of procedures for computing these maximum likelihood parameter values in a variety of situations was described by Henderson [cite].
-The main interest of Henderson, and of the animal breeding community in general, is the ``genetic value'', $\ba$ in the model.
-And it's typically fit in the absence of $\bG$, or for very few different values of $\bG$ for marker assissted selection.
+Two statistical tests used to determine whether $\balpha = \bm{0}$, the $t$ test and the likelihood ratio test (LRT), require computation of the values of the parameters that maximize the likelihood of the data.
+\citet{Henderson1984} described a suite of procedures for computing these maximum likelihood parameter values in a variety of situations.
+
+However, Henderson's methods are of limited use in QTL mapping.
+His focus was on estimation of breeding values ($\ba$ in \cref{eq:lmm}) and therefore the model only needed to be fit once, to one design matrix, and therefore speed was not a primary concern.
+Therefore, Henderson's methods are not of great use in the context of QTL mapping, where each putative QTL demands its own maximum likelihood model fit.
+
 
 
 
@@ -36,9 +47,9 @@ And it's typically fit in the absence of $\bG$, or for very few different values
 % [define animal model, y, K, Z, D, two variance components]
 % [all diagonal elements of K are 1, off diags can be also]
 
-\section{Given $h^2$, the LMM Reduces to Mutiple Linear Regression}
+\section{A simpler, but equivalent, parametrization}
 
-The LMM is equivalent to:
+The LMM as specified in \cref{eq:lmm} is equivalent to:
 \begin{align}
     \by &\sim \N(\bX_c\bbeta_c, \bSigma)
 \end{align}
@@ -46,23 +57,28 @@ where fixed effects design matrices are collapsed into $\bX$ and the variance-co
 Specifically,
 \begin{align}
     \bX_c     &= \left[1 \enspace \bX \enspace \bG \right]\\
-    \bbeta_c  &= \left[\mu \enspace \bbeta\T \enspace \balpha\T \right]\T\\
+    \bbeta_c  &= \left[\mu \enspace \bbeta\T \balpha\T \right]\T\\
     \bSigma &= \bK \tau^2 + \bD \sigma^2
 \end{align}
 Going forward, we refer to $\bX_c$ and $\bbeta_c$ as simply $\bX$ and $\bbeta$ for simplicity.
 
-This model can be reparametrized to directly use the well-known narrow sense heritability, increasing its interpretability.
+This model can be re-parametrized to directly use the well-known narrow sense heritability, increasing its interpretability.
 Specifically, $h^2 = \frac{\tau^2}{\tau^2 + \sigma^2}$ and $\lambda = \tau^2 + \sigma^2$.
 \begin{align}
-	\bSigma &= \left(\bK \frac{\tau^2}{\tau^2 + \sigma^2} + \bD \frac{\sigma^2}{\tau^2 + \sigma^2}\right) (\tau^2 + \sigma^2)\\
-			&= \bK h^2 + \bD (1 - h^2) \lambda
+  \bSigma &= \left(\bK \frac{\tau^2}{\tau^2 + \sigma^2} + \bD \frac{\sigma^2}{\tau^2 + \sigma^2}\right) (\tau^2 + \sigma^2)\\
+      &= \bK h^2 + \bD (1 - h^2) \lambda
 \end{align}
+
+
+\section{Given \texorpdfstring{$h^2$}{h-squared}, the LMM Reduces to Multiple Linear Regression}
+
+[transition]
 Thus, for any given value of $h^2$, we can define $\bV = \bK h^2 + \bD (1 - h^2)$, and the LMM reduces to a standard linear model (SLM):
 \begin{align}
     \by \sim \N(\bX\bbeta, \bV \lambda)     \label{eq:gls}
 \end{align}
 
-This SLM has log likelihood:
+with log likelihood:
 \begin{align}
     \ell(\bbeta, \lambda; \by, \bX, \bV) &= 
         -\frac{n}{2}\log(2\pi)
@@ -83,10 +99,10 @@ And there is a known, closed-form, maximum likelihood estimator for its two para
     \widehat{\lambda}   &= \norm{(\bX\widehat{\bbeta} - \by)\T(\bX\widehat{\bbeta} - \by)}{2}
 \end{align}
 
-In the context of a genome scan, we want to caculate these maximum likelihood estimators for a single phenotype, $\by$, genomic similarity, $\bK$ residual variance, $\bD$, and many different values of $\bX$ --- recall that the genetic variant(s) being investigated are in $\bG$.
+In the context of a genome scan, we want to calculate these maximum likelihood estimators for a single phenotype, $\by$, genomic similarity, $\bK$ residual variance, $\bD$, and many different values of $\bX$ --- recall that the genetic variant(s) being investigated are in $\bG$.
 Also recall that, though we have described a parameterization that recapitulates a standard linear regression problem when $h^2$ is known, we do not, in general know the true value of $h^2$, so we will additionally want to optimize over all possible values of $h^2 \in [0, 1]$.
 
-We now describe a matrix algebra trick that increases the up-front computational cost of fitting the linear regression model \cref{eq:gls}, but drastically decreases the computatational cost for each new value of $\bX$.
+We now describe a matrix algebra trick that allows us to increases the up-front computational cost of fitting the linear regression model \cref{eq:gls}, but drastically decreases the computational cost for each new value of $\bX$.
 
 
 \section{Rotation to Independence}
@@ -150,7 +166,7 @@ and its ML estimators are:
 Thus we have established that, given $\bM$ we can fit the model
 
 
-\section{Homoscedastic Model}
+\section{Rotation for the Homoscedastic Model}
 
 [D = I]
 Kang proposed the following [cite EMMA].
@@ -158,7 +174,7 @@ Kang proposed the following [cite EMMA].
 
 
 
-\section{Maximum Likelihood Estimation for the Heteroscedastic Model}
+\section{Rotation for the Heteroscedastic Model}
 
 The above $\bM$ relied on [point out where D=I is required] [in step X].
 Generally, however, some phenotypes are known with more certainty than others.
@@ -179,9 +195,11 @@ is its eigen decomposition
 \subsection{Validity}
 
 To be a valid multiplier matrix, $\bM$ must have the property:
-\[
-	\bM \T \bM = \bV\inv
-\]
+\begin{equation}
+  \bM \T \bM = \bV\inv
+\end{equation}
+	
+
 
 % I verify this by showing that
 % \[
@@ -195,32 +213,43 @@ To be a valid multiplier matrix, $\bM$ must have the property:
 \begin{proof}
 First, derive a useful form of $\bV$.
 \begin{align}
-\bV &= \bK + \delta \bD   																								\tag*{definition}\\
-    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD)                                                                 	\tag*{pre-multiply by $\bD\halfpow \bD\neghalfpow = \bI$}\\
-    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD) \bD\neghalfpow \bD\halfpow 										\tag*{post-multiply by $\bD\neghalfpow \bD\halfpow = \bI$}\\
-    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bD\neghalfpow \bD \bD\neghalfpow)\bD\halfpow 			\tag*{distribute $\bD\neghalfpow$ in}\\
-    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bI) \bD\halfpow                                  		\tag*{definition of root inverse}\\
-    &= \bD\halfpow(\bL + \delta \bI) \bD\halfpow                                                                 		\tag*{define: $\bL = \bD\neghalfpow\bK \bD\neghalfpow$}\\
-    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bI) \bD\halfpow                                                			\tag*{eigen decomposition of $\bL$}\\
-    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bUL \bUL \T)\bD\halfpow                                         			\tag*{property of eigen vectors}\\
-    &= \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow                                                			\tag*{distributive property}
+\bV &= \bK + \delta \bD                                                                                             \tageq{definition}\\
+    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD)                                                                \tageq{pre-multiply by $\bD\halfpow \bD\neghalfpow = \bI$}\\
+    &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD) \bD\neghalfpow \bD\halfpow 										                \tageq{post-multiply by $\bD\neghalfpow \bD\halfpow = \bI$}\\
+    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bD\neghalfpow \bD \bD\neghalfpow)\bD\halfpow         \tageq{distribute $\bD\neghalfpow$ in}\\
+    &= \bD\halfpow(\bD\neghalfpow \bK \bD\neghalfpow + \delta \bI) \bD\halfpow                                  		\tageq{definition of root inverse}\\
+    &= \bD\halfpow(\bL + \delta \bI) \bD\halfpow                                                                 		\tageq{define: $\bL = \bD\neghalfpow\bK \bD\neghalfpow$}\\
+    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bI) \bD\halfpow                                                			\tageq{eigen decomposition of $\bL$}\\
+    &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bUL \bUL \T)\bD\halfpow                                         			\tageq{property of eigen vectors}\\
+    &= \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow                                                			\tageq{distributive property}
 \end{align}
 and invert it
 \begin{align}
-\bV\inv &= \left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow \right)\inv  											\tag*{definition}\\
-    	&= \left( \bD\halfpow \right)\inv \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \left( \bD\halfpow \right)\inv     \tag*{inverse of product}\\
-    	&= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow    									\tag*{inverse of diagonal matrix}\\
-    	&= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T  \bD\neghalfpow               									\tag*{inverse of eigen decomposition}
+\bV\inv &= \left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow \right)\inv                                         \tageq{definition}\\
+        &= \left( \bD\halfpow \right)\inv \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \left( \bD\halfpow \right)\inv   \tageq{inverse of product}\\
+        &= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow                                   \tageq{inverse of diagonal matrix}\\
+        &= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T  \bD\neghalfpow                                                 \tageq{inverse of eigen decomposition}
 \end{align}
 and compare to $\bM\T \bM$
 \begin{align}
-\bM \T \bM 	&= \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)\T   \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow	\right) 	\tag*{definition}\\
-			&= \left(\bD\neghalfpow \bUL (\bLL + \delta \bI)\neghalfpow 	\right)  \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow		\right)		\tag*{transpose of product}\\
-			&= \bD\neghalfpow \bUL \left( (\bLL + \delta \bI)\neghalfpow 	(\bLL + \delta \bI)\neghalfpow \right)	\bUL\T \bD\neghalfpow						\tag*{associative property}\\
-			&= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T \bD\neghalfpow																				\tag*{definition of root inverse}
+\bM \T \bM 	&= \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)\T   \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow \right) \tageq{definition}\\
+			&= \left(\bD\neghalfpow \bUL (\bLL + \delta \bI)\neghalfpow 	\right)  \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow		\right)          \tageq{transpose of product}\\
+			&= \bD\neghalfpow \bUL \left( (\bLL + \delta \bI)\neghalfpow 	(\bLL + \delta \bI)\neghalfpow \right)	\bUL\T \bD\neghalfpow                          \tageq{associative property}\\
+			&= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T \bD\neghalfpow                                                                                 \tageq{definition of root inverse}
 			% &= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow 																\tag*{inverse of eigen decomposition}\\
 \end{align}
 \end{proof}
+
+
+\subsection{Calculation of Necessary Quantities}
+
+\subsubsection{M itself}
+
+
+\subsubsection{something else}
+
+
+\subsubsection{Its determinant}
 
 % Now we have
 % \begin{align}
