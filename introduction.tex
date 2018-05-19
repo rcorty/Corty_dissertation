@@ -1,5 +1,51 @@
 \chapter{Introduction}
 
+\section{Genetic Mapping}
+
+Genetic mapping is a scientific endeavour that involves the collection of phenotype and genotype information on a population of interest and statistical analysis to detect associations between the phenotype and specific parts of the genome.
+One underlying assumption is that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype.
+Thus, the goal of genetic mapping can be restated partitioning the genome into a large part that is irrelevant to the trait of interest, and a small part that is relevant to it.
+
+There are fundamentally two types of genetic mapping: linkage mapping and association mapping. Each can be applied in humans as well as in model organisms and comercially-important organisms.
+There are principally two types of linkage analysis:
+\begin{enumerate}
+	\item \textbf{Human linkage mapping} is most useful for traits where one or a few genetic factors are expected to exert a large effect.
+	Examples are Mendelian disease phenotypes like Duchenne muscular dystrophy \citep{Brown1985,Murray1982} and cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985}.
+	This process uses sparse panels of genetic markers and large collections of families with a few individuals per family, where each family must have at least one affected and one unaffected individual.
+	\item \textbf{Model organism linkage mapping} can be thought of as an ``idealization'' of human linkage mapping.
+	Because scientists can control the breeding patterns of model organisms, they create a single family with hundreds of siblings.
+	The most classic designs are the F2 intercross and the backcross.
+	As compared to human linkage mapping, these design explores a much smaller genetic space --- only two parental strains are present as compared to the large number of haplotypes represented by any collection of outbred families.
+	This limitation of genetic heterogeneity allows for the mapping of loci with smaller effects, as compared to human linkage mapping.
+\end{enumerate}
+Similarly, there are three types of association mapping:
+\begin{enumerate}
+	\item \textbf{Human association mapping} is based on a large population of not-closely-related individuals.
+	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh}and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
+	\item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same process as human association mapping.
+	Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made.
+	\item \textbf{Inbred strain association mapping} capitalizes on another possibility that is unavailable in human association mapping --- that of a diverse panel of genetically-replicable individuals.
+	Such a collection of inbred strains allows for very precise measurement of the average phenotype that results from a given genotype, because that genotype can be observed arbitrarily-many times.
+	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals.
+	Inbred strain association mapping has been applied productively in model organisms of human physiology and disease \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in comercially-important crops \citep{McMullen2009,Bandillo2013}.
+\end{enumerate}
+
+\section{Variance}
+
+QTL mapping Statistical modeling deals 
+
+Definition of variance -- sample and random variable.
+
+Variance is the stuff of analysis.
+If we observe only people with height of 172 centimeters (assume our measurements are precise to the nearest centimeter) we can never learn anything about the process that results in human height.
+No matter what genomes or environments these people have, on some very fundamental level, there can be no insight into how their heights came to be.
+
+Scientists speak of the difference between ``variance'', ``variation'', and ``variability'', but these concepts are best considered as variance at different levels.
+
+\section{Variance Heterogeneity}
+
+Two populations have different phenotype variance.
+Two individuals have different phenotype variance -- continuous version of the above.
 
 Describe exchangeable and non-exchangeable populations
 
@@ -17,3 +63,164 @@ In an exchangeable pop, knowing
 		\bottomrule
 	\end{tabular}
 \end{table}
+
+\section{Introduction 1}
+
+% Quantitative trait locus (QTL) mapping in experimental crosses involves applying a statistical test for genotype-phenotype association to each locus in the genome.
+% Traditionally, tests are used that quantify the association between the genotype and the phenotype mean \citep{Lander1989-sd,Haley1992-xg,Martinez1992-qd,Kruglyak1995-tz}, which we term “mQTL” tests.
+% mQTL tests are a natural fit for QTL mapping because of 
+% 	the robust theory describing genetic effects on phenotype mean \citep{Falconer1995-od,Lynch1998-mx}, 
+% 	the historical importance of genotype effects on phenotype mean in the field of agricultural and livestock genetics, where the sum of additive effects on the mean (the breeding value) is the focal quantity \citep{Henderson1975-fe,Meuwissen2001-ms}, 
+% 	and the fact that many genetic factors truly do influence the expected value of important traits \citep{Bloom2013-iq,Wood2014-fh,Schizophrenia_Working_Group_of_the_Psychiatric_Genomics_Consortium2014-mt}.
+% As the workhorse of genetic mapping for the last 20 years, mQTL tests have thoroughly-described statistical properties and there are widely-accepted procedures and software for their use \citep{Broman2003-pp,Broman2010-nr}.
+
+% Recently, an additional type of test has become entered the mainstream of genetic mapping efforts, those that quantify the association between genotype and phenotype variance, termed ``vQTL tests'' \citep{Pare2010-wz}.
+% Just as mQTL mapping is a natural extension of breeding value estimation, vQTL testing can be understood as the natural extension of estimation of breeding value for uniformity.
+% In both cases, whole-genome insight that were commercially valuable led to the development of tests that can localize these effects to specific regions of the genome and therefore yield biological insights into the mechanisms that influence the trait of interest.
+% % {Hulse2013-vu,Wang2014-la,Wang2017-og}.
+% vQTL tests have been used to map GxG \citep{Wei2016-lt}, GxE \citep{Wei2017-tt}, and other more exotic genetic architectures that are often missed by mQTL tests (LD correlation?) (relQTL).
+% Other vQTL have been identified as such, but not yet 
+% Owing to its relative novelty in comparison to mQTL mapping, there are fewer established guidelines on how to test for vQTL and therefore great heterogeneity in recent approaches.
+% For example, [long list, including Hulse and Cai, Payseur, etc…see vqtl lit table] 
+
+Quantitative trait locus (QTL) mapping in both model organisms and humans has traditionally focused on finding regions of the genome whose allelic variation influences the phenotypic mean.
+In the past decade, a number of studies and proposed methods have broadened the scope of QTL mapping to consider effects on the phenotypic variance \citep{Pare2010,Ronnegard2011a,Hulse2013}. 
+These studies and their findings have raised interesting questions and possibilities about underlying biology, evolutionary trajectory, and potential utility in agriculture \citep{Wagner1997,Dworkin2005,Mulder2015}.
+Nonetheless, consideration of variance effects --- whether as the target of inference or as a feature of the data to be accommodated ---
+has thus far remained outside of routine genetic analysis.
+This may be in part because QTL effects on the variance are sometimes considered of esoteric secondary interest, intrinsically controversial in their interpretation \citep{Sun2013a,Shen2013}, or a priori too hard to detect \citep{Visscher2010a}.
+But it is also likely to be in part because familiar software and procedures are currently lacking, and because the advantages of modeling heterogeneous variance, even when targeting QTL effects on the phenotypic mean, remain under-appreciated and largely undemonstrated.
+
+The predominant approach to QTL mapping in model organisms, the focus here, considers each genetic locus in turn, using a standard linear model (SLM) to regress the phenotypes of the mapping population on their genotypes or their inferred genotype probabilities \citep{Lander1989a,Haley1992}.
+This SLM-based approach is primarily able to detect genomic regions containing a subset of genetic factors of interest --- those that drive heterogeneity of phenotype mean.
+Despite this limited scope, however, its use is widespread due to its ease of use, the straightforward interpretation of its detected QTL, its historical importance in the fields of agricultural and livestock genetics, and the fact that many genetic factors truly do influence the expected value of phenotypes.
+Indeed, SLM-based interval mapping has yielded important insights on commercially- and medically-important traits across many organisms for many years.
+
+%Quantitative trait locus (QTL) mapping in model organisms aims to identify genomic regions where allelic variation influences a continuous-valued trait of interest for follow-up bioinformatic and mechanistic studies.The predominant approach considers each genetic locus in turn, using a standard linear model (SLM) to regress the phenotypes of the mapping population on their genotypes or their inferred genotype probabilities \citep{Lander1989a,Haley1992,Klein2005}. This SLM-based approach is primarily able to detect genomic regions containing a subset of genetic factors of interest --- those that drive heterogeneity of phenotype mean. Despite this limited scope, however, its use is widespread due to its ease of use, the straightforward interpretation of its detected QTL, its historical importance in the fields of agricultural and livestock genetics, and the fact that many genetic factors truly do influence the expected value of phenotypes.
+%Indeed, SLM-based interval mapping has yielded important insights on commerically- and medically-important traits across many organisms for many years \citep{Brem2002,Thornsberry2001,Huang2010}.
+
+The goal of QTL mapping, however, is much broader --- to identify genetic factors that influence the phenotype in any way.
+For example, a genetic factor that influences the sensitivity of the phenotype to micro-environmental variation is of interest, but unless it also affects the mean it is undetectable by the SLM.
+Similarly, a genetic factor that influences the phenotype through many epistatic interactions but has an average effect near zero is unlikely to be detected by the SLM.
+These examples motivate the use of statistical tests that can detect genetic effects on other aspects of the phenotypic distribution, most notably the phenotype variance \citep{Pare2010}.
+
+A number of statistical models and methods have been developed or adapted to identify associations between genotype and phenotypic variance. 
+These include: 
+    Levene's test \citep{Struchalin2010},
+    the Fligner-Killeen test \citep{Fraser2010},
+    Bartlett's test \citep{Freund2013b},
+    as well as the double generalized linear model (DGLM) and similar \citep{Ronnegard2011a, Cao2014} [see also references in \citep{Ronnegard2012}].
+Tests have also been developed to detect genotype associations with arbitrary functions of the phenotype, for example higher moments.
+These include a variant of the Komolgorov-Smirnov test \citep{Aschard2013} and a semi-parametric exponential tilt model \citep{Hong2016}.
+The additional flexibility of these latter models makes them promising --- a genetic factor that influences, e.g., the kurtosis of a phenotype should be of interest --- but at present neither can accommodate covariates and the flexibility that affords them the ability to detect higher order effects brings with it a decreased power to detect mean and variance effects. 
+
+
+The existence of a genetic factor affecting the variance, sometimes termed a ``vQTL'', or indeed any factor affecting the variance has implications regarding statistical genetic analyses, both those targeting variance effects and those targeted mean-affecting QTL (hereafter, ``mQTL''), and these implications have been relatively unexamined. 
+
+In particular, if a genetic (or other) factor influences phenotype variance then it follows that examination and testing of any other QTL effect --- for example, that of a QTL elsewhere in the genome --- must occur against a backdrop of systematically heterogeneous residual variance.
+The presence of this ``background variance heterogeneity'' (BVH) when testing for a (foreground) effect simultaneously presents analytic challenges and opportunities, not only for mapping vQTL but also the validity of studies detecting mQTL. 
+
+The impact of BVH on mapping mQTL can be thought of as a disruption of the natural observation weights: The SLM assumes the phenotype of every individual is subject to equal noise variance and therefore equal weight; but if it is known that some individuals' phenotypes are inherently less noisy --- due to BVH induced by either a vQTL or other factors such as sex, housing, strain or experimenter --- then those data should be upweighted, and this would lead to a more powerful test for mQTL detection.
+Conversely, giving equal weight to subgroups of the data that are inherently noisier than average has the potential to leave outliers with overmuch much influence on the regression, increasing the potential for false positive mQTL detections
+A case in point is when an mQTL also has variance effects: here the effects on the variance are a type of proximal BVH, and modeling them explicitly improves ability to detect effects on the mean \CortyReanalysisPaper.
+Knowledge and appropriate modeling of variance heterogeneity therefore has important implications for making mean-controlling QTL studies sensitive, robust and reproducible.
+
+The impact of BVH on detection of foreground vQTL is more subtle. Parametric methods to identify vQTL typically pit heterogeneous variance alternative models against a homoskedastic, normally distributed null.
+However, under BVH the null model is not homoskedastic --- it is a scale mixture --- and this risks the null being rejected too readily.
+BVH could therefore lead to an inflated vQTL false positive rate.
+
+If BVH is disruptive to QTL mapping generally, it makes sense to incorporate it into the QTL mapping model when its source is known, and to use robustifying techniques to protect against it when its source is unknown.
+Accommodating BVH of known source is most naturally achieved through modeling covariate effects on the variance, something that is straightforward with the DGLM of \cite{Ronnegard2011a} but not currently with other proposed methods. 
+Protecting BVH when its source is unknown is less obvious, but since the threat manifests through sensitivity to distributional assumptions, natural contenders include side-stepping such assumptions via non-parametric approaches, \eg, permutation testing, or reshaping the distribution prior to analysis through variable transformation.
+Both have been considered in the vQTL context, with permutation used in \cite{Hulse2013} and \cite{Yang2012} and transformation in \cite{Ronnegard2011a}, \cite{Yang2012}, \cite{Sun2013a}, and \cite{Shen2013a}, but not specifically for controlling vQTL false positives in the presence of BVH.
+
+Here we examine the effect of modeled and unmodeled BVH on power and false positive rate when mapping QTL affecting the mean, the variance or both.
+In doing so we:
+\begin{enumerate}
+\item Develop a robust, straightforward procedure and software based on the DGLM that can be used for routine mQTL and vQTL analysis;
+\item Compare alternative proposed methods for mQTL and vQTL analysis;
+\item Show how incorporating BVH can improve power for detecting mQTL and vQTL;
+\item Show how sensitivity to model assumptions can be rescued by variable transformation and/or permutation. 
+\item Illustrate the effect of modeling BVH in existing dataset, an F2 cross from Leamy et al, and discover a new QTL for bodyweight.
+\end{enumerate}
+In two companion papers, we describe an R package \texttt{vqtl} implementing our procedure (\CortyRPaper), and in \CortyReanalysisPaper apply it to two published QTL mapping experiments detecting a novel mQTL in one and a novel vQTL in the other.
+
+% END OF INTRODUCTION
+
+% Here we describe a framework for ``mean-variance QTL mapping'' based on the DGLM approach of \AddRefs{RonnegardValdar11} that accommodate and even take advance of BVH, and can be used to detect and distinguish three types of QTL:
+% \begin{enumerate}
+%     \item mQTL: a locus containing a genetic factor that causes heterogenity of phenotype mean,
+%     \item vQTL: a locus containing a genetic factor that causes heterogenity of phenotype variance, and
+%     \item mvQTL: a locus containing a genetic factor that causes heterogenity of either phenotype mean, variance, or both -- a generalization that includes the other two classes.
+% \end{enumerate}
+% We show that this framework is more powerful than competitor methods in the presence of BVH, and introduce a permutation procedure for discriminating between mQTL, vQTL and mvQTL regardless of whether BVH is present. 
+
+%It brings the statistical model into greater accord with the data-generating process and thus allow for the detection of smaller effects at a given false positive rate and population size \citep{Smyth1989}.}
+
+%The use of the DGLM in QTL mapping was introduced by \cite{Ronnegard2011a}, and has been further described by \cite{Hulse2013} and \cite{Lenz2015}.
+% The value of detecting vQTL and mvQTL has been debated \citep{Sun2013a} and affirmed \citep{Shen2013}[more cites].
+% But still, efforts to detect them are seen as a separate endeavour from traditional, SLM-based QTL mapping.
+% This artificial division is likely due in part to a lack of awareness of the utility of vQTL and mvQTL, but more pressingly to the lack of an established framework for their detection and interpretation.
+
+% Here, we describe mean-variance QTL mapping, a framework for QTL mapping with the DGLM that can detect mQTL, vQTL, and mvQTL and has additional power to do so relative to other tests in the face of BVH.
+% Additionally, we describe a permutation procedure for significance testing that accurately controls false positive rate in the presence of BVH.
+
+%We assess the performance of the DGLM in a variety of relevant scenarios through simulation and characterize its trade-offs as compared to other approaches, and illustrate one real data example where an mQTL was detected by the DGLM-based method but not by any other QTL mapping methods.
+
+
+
+\section{Introduction 2}
+Over the last 25 years, interval mapping based on the assumption of homogeneous residual variance and its associated statistical methods \citep{Lander1989a,Martinez1992,Haley1992,Churchill1994} have successfully identified many QTL that influence the epected value of important complex traits.
+    It is well-appreciated, however, that this approach fails to capture all the complexities of the relationship between genotype and phenotype \citep{GeilerSamerotte2013,Nelson2013,Shen2012,Forsberg2015,Pare2010}.
+
+    One way that scientists have sought to address these complexities is to reweight observations based on their inferred reliability \citep{Xu1998} or the inferred reliability of their genotype \citep{Feenstra2006}.
+    A similar approach has recently been enacted in human studies as well \citep{Ma2015}.
+
+    Another approach has been to attempt to identify specific genetic loci that cause heterogeneity of residual variance, while simultaneously controlling for possible effects on the mean.
+    Two, closely related efforts on this front were the application of the double generalized linear model (DGLM; \citealt{Smyth1989}) to QTL mapping \citep{Ronnegard2011a} and the omnibus test of \citet{Cao2014} for genetic heterogeneity.
+    Both of these approaches can detect standard QTL influencing phenotype mean (mQTL), QTL influencing phenotype variance (vQTL) and QTL influencing some combination of phenotype mean and variance (mvQTL) (see \CortyMethodsPaper).
+    Despite the demonstrated potential of these methods to detect QTL that current standard methods overlook, they remain underutilized.
+
+    Barriers to widespread adoption include a lack of proven potential in real data applications and the absence of software that is interoperable with existing infrastructure.
+    Apart from those barriers, one reasonable concern is that a novel approach might fail to identify known QTL, adding needless complexity to the interpretation of already-reported QTL.
+    This concern should be largely allayed by the nature of the DGLM as an extension of the linear model, simplifying to the latter when variance heterogeneity is absent.
+    In fact, rather than add complexity, the DGLM automatically classifies QTL into mQTL, vQTL, or mvQTL, clarifying the genotype-phenotype relationship.
+
+    Here we demonstrate, with two real data examples available from the Mouse Phenome Database \citep{Bogue2015}, that QTL mapping using the DGLM, which we term ``mean-variance QTL mapping'' largely replicates the results of standard QTL mapping and detects additional QTL that the traditional analysis does not.
+    In two companion articles, we demonstrate typical usage of \texttt{R} package \texttt{vqtl}, which implements mean-variance QTL mapping  (\CortyRPaper) and 
+    % provides a flexible and comprehensive suite of tools to conduct genome scans using the double generalized linear model, assess the statistical significant of results, and interpret findings.
+    describe the unique ability of mean-variance QTL mapping and its associated permutation procedure to reliably detect QTL in the face of variance heterogeneity that arises from non-genetic factors (\CortyMethodsPaper).
+
+
+\section{Introduction 3}
+
+QTL mapping studies in experimental crosses have provided important insights on nearly every trait of interest in human health, as well as livestock and crop improvement programs.
+Advances in model organism genotyping \citep{Williams1990} and phenotyping \citep{Yang2014a} as well as in statistical methods \citep{Lander1989a,Martinez1992} and software tools (\eg, \citealt{Broman2003,Mulligan2017}) have supported these discoveries.
+
+It has long been recognized that the extent of residual variation is itself a heritable trait \citep{Falconer1965,Lynch1998}.
+This phenomenon has been described theoretically \citep{Hill2004-uo,Hill2010} and demonstrated in inbred model organisms \citep{Sorensen2015,Ayroles2015} and crops \citep{Yang2012-aw,Forsberg2015} and exploited in livestock improvement efforts \citep{Mulder2008,Ibanez-Escriche2008-ie}.
+
+However, traditional QTL mappinng analyses have focused on discovering ``mean QTL'', regions of the genome where allelic variation drives heterogeneity of phenotype mean, while assuming that the residual variance, that is, the intrinsic stability or noisiness of the phenotype, is identical for each every individual in the mapping population.
+Recent work, however, has challenged the assumption of homogeneous variance and sought to identify an additional type of QTL --- those that
+%, by driving heterogeneity of epistatic or environmental variance, 
+influence the extent of residual variance, sometimes termed ``variance QTL'' (vQTL) \citep{Pare2010,Ronnegard2011a,Ronnegard2012,Cao2014}.
+
+Although detection of vQTL has started to enter the mainstream of genetic analysis \citep{Yang2012,Hulse2013,Ayroles2015,Wei2016-lt,Wang2017,Wei2017-tt}, the statistical methods used for this purpose remain heterogeneous.
+% and sometimes idiosyncratic, with connections to methods for mapping mean QTL often lacking or unclear.
+% a clear or intuitive connection to methods used for detecting mean QTL.
+%there remains great heterogeneity among the statistical methods used to conduct these analyses.
+We developed a standardized method for QTL mapping that can detect mQTL, vQTL, and a generalization of the two that we term ``mvQTL''.
+This approach, which we term ``mean-variance QTL mapping'', can be applied to intercross and backcross designs.
+In two companion articles, we characterize this method and competitors in the setting where a background factor drives variance heterogeneity (\CortyMethodsPaper), and use it to discover new QTL from two existing data resources (\CortyReanalysisPaper)
+
+Here, we provide a practical guide to using the \texttt{R} package \texttt{vqtl}, which implements mean-variance QTL mapping.
+First, to generate illustrative data, we simulate an F2 intercross and four phenotypes: one phenotype determined entirely by random noise, and one with each of the three kinds of QTL.
+On each phenotype we then conduct a genome scan using standard approximations to interval mapping \citep{Lander1989a,Martinez1992}, and mean-variance QTL mapping, which includes a test for mQTL, a test for vQTL, and a test for mvQTL.
+The association statistics of all four tests are then initially plotted in LOD score units, with drawbacks of this plotting unit discussed.
+Permutation scans are used to determine empirically adjusted $p$-values, and plotting in these units is shown to to make the results of the four tests more comparable.
+Last, we describe plots to communicate the effects that led to the detection of a QTL, and use the bootstrap to estimate its confidence interval.
+
+In two companion articles, we apply mean-variance QTL mapping with package \texttt{vqtl} to discover new QTL.
+In the first, we describe a novel vQTL for exploratory behavior and a novel mQTL for a circadian behavior trait, both in mouse F2 intercrosses retrieved from the Mouse Phenome Database (\CortyReanalysisPaper) \citep{Bogue2015}.
+The dataset from one of these intercrosses is used to benchmark the performance of package \texttt{vqtl}, as is described in the ``Performance Benchmarks'' section.
+In the second, we describe a unique strength of mean-variance QTL mapping, its ability to accommodate variance heterogeneity arising from background factors, such as sex, batch, and housing, and demonstrate the value of such accommodation with both simulation studies and a report of a novel QTL (\CortyMethodsPaper).

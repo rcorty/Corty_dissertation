@@ -120,11 +120,27 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "dele",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
 				"dele",
+				"LaTeXTools: Delete temporary files"
+			],
+			[
+				"cache",
+				"LaTeXTools: Clear cache"
+			],
+			[
+				"clear",
+				"LaTeXTools: Clear cache"
+			],
+			[
+				"latextools",
+				"LaTeXTools: Show toggles"
+			],
+			[
+				"deel",
 				"LaTeXTools: Delete temporary files"
 			],
 			[
@@ -154,10 +170,6 @@
 			[
 				"build",
 				"Build With: LaTeX"
-			],
-			[
-				"cache",
-				"LaTeXTools: Clear cache"
 			],
 			[
 				"latex build",
@@ -192,7 +204,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 412.0
+		"width": 516.0
 	},
 	"console":
 	{
@@ -216,24 +228,39 @@
 	],
 	"file_history":
 	[
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/introduction.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/macros.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/mvqtl_mapping_with_bvh.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/mvqtl_mapping_identifies_novel_qtl.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/vqtl_package.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/references.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/dglm_in_human_populations.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/paperpile.bib",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/10_Aim1.bib",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.log",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/preamble.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/contents.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/heteroscedastic_LMM.tex",
+		"/Users/rcorty/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/pages.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/figures.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/tables.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/titlepage.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/preface.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/chapters.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abbreviations.tex",
+		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/mvqtl_mapping.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/5_conclusion.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.sublime-project",
-		"/Users/rcorty/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/2_dglm_in_experimental_crosses.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/Corty_dissertation.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/preamble.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/4_heteroscedastic_LMM.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/dedication.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/common/macros.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/3_dglm_in_human_populations.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abbreviations.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/pages.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/1_introduction.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/copyright.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/titlepage.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/frontmatter/abstract.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/conclusion.tex",
-		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/introduction.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/diss.pdf",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/generalized_populations.tex",
 		"/Users/rcorty/Dropbox (ValdarLab)/Corty_dissertation/inbred_strains.tex",
@@ -262,11 +289,11 @@
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 45.0
 	},
 	"find_in_files":
 	{
-		"height": 111.0,
+		"height": 117.0,
 		"where_history":
 		[
 			""
@@ -274,9 +301,30 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"table",
+			"newpage",
+			"time taken",
+			"Cox",
+			"Float",
+			"\\FloatBarrier",
+			"section*",
+			"full maxi",
+			"section*",
+			"dglm_full",
+			"caption",
+			"line",
+			"header",
+			"vert",
+			"{hom",
+			"lvert",
+			"log",
+			"var",
+			"compact",
+			"exp_crosses",
+			"addcontentsline",
 			"equiv",
 			"\\N",
 			"title",
@@ -288,6 +336,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"%\\FloatBarrier"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -334,6 +383,14 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 169.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -360,6 +417,102 @@
 		"selected_items":
 		[
 			[
+				"intro",
+				"introduction.tex"
+			],
+			[
+				"macro",
+				"common/macros.tex"
+			],
+			[
+				"mvqtl",
+				"mvqtl_mapping_identifies_novel_qtl.tex"
+			],
+			[
+				"bvh",
+				"mvqtl_mapping_with_bvh.tex"
+			],
+			[
+				"vqtl",
+				"vqtl_package.tex"
+			],
+			[
+				"mvv",
+				"mvqtl_mapping_identifies_novel_qtl.tex"
+			],
+			[
+				"refer",
+				"common/references.tex"
+			],
+			[
+				"dglm_",
+				"dglm_in_human_populations.tex"
+			],
+			[
+				"ref",
+				"common/references.tex"
+			],
+			[
+				"10",
+				"10_Aim1.bib"
+			],
+			[
+				"10_",
+				"10_Aim1.bib"
+			],
+			[
+				"mac",
+				"common/macros.tex"
+			],
+			[
+				"pream",
+				"common/preamble.tex"
+			],
+			[
+				"refe",
+				"common/references.tex"
+			],
+			[
+				"mapping",
+				"mvqtl_mapping_identifies_novel_qtl.tex"
+			],
+			[
+				"conte",
+				"frontmatter/contents.tex"
+			],
+			[
+				"macros",
+				"common/macros.tex"
+			],
+			[
+				"prea",
+				"common/preamble.tex"
+			],
+			[
+				"macr",
+				"common/macros.tex"
+			],
+			[
+				"dglm",
+				"dglm_in_human_populations.tex"
+			],
+			[
+				"hetero",
+				"heteroscedastic_LMM.tex"
+			],
+			[
+				"prefa",
+				"frontmatter/preface.tex"
+			],
+			[
+				"pre",
+				"common/preamble.tex"
+			],
+			[
+				"packa",
+				"vqtl_package.tex"
+			],
+			[
 				"2",
 				"2_dglm_in_experimental_crosses.tex"
 			],
@@ -368,20 +521,12 @@
 				"Corty_dissertation.tex"
 			],
 			[
-				"pre",
-				"common/preamble.tex"
-			],
-			[
 				"con",
 				"5_conclusion.tex"
 			],
 			[
 				"dedi",
 				"frontmatter/dedication.tex"
-			],
-			[
-				"macr",
-				"common/macros.tex"
 			],
 			[
 				"",
@@ -400,20 +545,12 @@
 				"Corty_dissertation.tex"
 			],
 			[
-				"prea",
-				"common/preamble.tex"
-			],
-			[
 				"abbe",
 				"frontmatter/abbreviations.tex"
 			],
 			[
 				"supp",
 				"supplement.tex"
-			],
-			[
-				"intro",
-				"Introduction.tex"
 			],
 			[
 				"leamy",
@@ -437,12 +574,20 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "lit",
 		"selected_items":
 		[
 			[
+				"lit",
+				"~/Dropbox (ValdarLab)/Aim1/vqtl_lit_review_2/vqtl_lit_review_2.sublime-project"
+			],
+			[
+				"rea",
+				"~/Dropbox (ValdarLab)/Aim1/mvqtl_reanalysis_manuscript/mvQTL_reanalysis.sublime-project"
+			],
+			[
 				"",
-				"~/Dropbox (ValdarLab)/Aim1/BVH_manuscript/BVH.sublime-project"
+				"~/Dropbox (ValdarLab)/Aim1/mvqtl_reanalysis_manuscript/mvQTL_reanalysis.sublime-project"
 			],
 			[
 				"bvh",

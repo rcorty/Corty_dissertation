@@ -1,0 +1,187 @@
+Dan Oreper [11:54]
+Hey Paul-- per Greg, this will center your table of contents:
+\renewcommand{\contentsname}{\hfill\bfseries\Large TABLE OF CONTENTS\hfill}
+\renewcommand{\cftaftertoctitle}{\hfill}
+(the one you sent is still a bit off)
+Paul Maurizio [12:06]
+Thanks!
+Dan Oreper [12:06]
+I've emailed APM
+maybe he can help
+Paul Maurizio [12:08]
+Which changes, specifically?
+Dan Oreper [12:09]
+just generally
+asking if he has a better latex template
+see the email
+Paul Maurizio [12:13]
+Hi Dan, I see it now.
+Dan Oreper [12:16]
+Fixed another one! To ensure page numbers on the bottom of chapter pages, edit your layout.tex, at line 9:
+% Center chapter titles, omit page numbers.
+\titleformat{\chapter}[display]{\fillast\bfseries}{\Large\MakeUppercase{\chaptertitlename} \thechapter}{-11pt}{\huge\singlespacing}
+(thats the new, better format)
+Dan Oreper [12:23]
+and also, for their sizing reqs, get rid of the large and huge
+in that same line
+Dan Oreper [12:35]
+To ensure indentation after section/subsection headers put: \usepackage{indentfirst} into preamble.tex
+Paul Maurizio [12:40]
+added and commented on this LaTeX/sTeX snippet: Untitled 
+% set size of sections to be normal
+\titleformat*{\section}{\normalfont\bfseries}
+\titleformat*{\subsection}{\normalfont\bfseries}
+\titleformat*{\subsubsection}{\normalfont\bfseries}
+\titleformat*{\paragraph}{\normalfont\bfseries}
+\titleformat*{\subparagraph}{\normalfont\bfseries}
+Include this in layout.tex to make sure section headers / subsection headers, etc. are the same size.
+Dan Oreper [12:40]
+excellent
+any ideas on how to get section numbers to appear in the document?
+to make up for the uniformity of font size?
+it looks like the "report" arg to documentclass should work
+but it doesnt
+Paul Maurizio [12:43]
+I have section numbers in mine. I fiddled with this a bit before, I have to remember what I did.
+Paul Maurizio [12:43]
+added and commented on this LaTeX/sTeX snippet: Untitled 
+% We want numbered subsections %subsubsections
+% \setcounter{secnumdepth}{2}
+% %\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+Here’s one thing. This goes along with some other changes I made.
+Dan Oreper [12:45]
+hmm, not working
+toc has numbers, but not the body
+
+Paul Maurizio [12:48]
+are you using `\section{}` or `\section*{}`?
+Dan Oreper [12:53]
+\section{}
+it looks like its a bug in titlesec package
+if you have 2016-3-15 version of titlesec, it gives this incorrect behavior
+Paul Maurizio [12:54]
+I am not seeing it. Not sure what version of titlesec I have.
+Dan Oreper [12:54]
+https://tex.stackexchange.com/questions/299969/titlesec-loss-of-section-numbering-with-the-new-update-2016-03-15
+tex.stackexchange.com
+titlesec: loss of section numbering with the new update (2016/03/15)
+After reinstalling TeXLive distribution (install-tl-20160318, Ubuntu 14.04), a issue occurs with the updated version of the titlesec package: the section numbering is lost. What could it be missin...
+thats good!
+Dan Oreper [13:05]
+in abstract.tex, assuming you are using 11pt font, change \Large to \large
+to get an abstract heading that is 12pt
+Paul Maurizio [13:05]
+ok.
+Dan Oreper [13:07]
+similarly for acknowledgement.tex
+Dan Oreper [13:12]
+for reasons that are mysterious, tables.tex requires explicitly:
+\renewcommand{\cftlottitlefont}{\hfill\normalsize \bfseries}
+(normalsize)
+figures.tex on the other hand:
+\renewcommand{\cftloftitlefont}{\hfill\bfseries}
+(no need for the explicit normal size)
+Dan Oreper [13:19]
+for talbe of contents, an amended command:
+\renewcommand{\contentsname}{\hfill\bfseries\large TABLE OF CONTENTS\hfill}
+(large instead of Large)
+abbreviations.tex: replace \Large with \large
+titlepage.tex:
+get rid of all the larges except for the title
+for the title, make it \large, and add an uppercase{} call (the uppercase is expected in the grad school format)
+references.tex: large instead of Large
+Dan Oreper [13:36]
+preface.tex: large instead of Large
+Our title page has further problems; \vspace{1in} should be there rather than vspace{50pt}. also replace  \vspace{1in} for \vfill
+Dan Oreper [13:38]
+added this LaTeX/sTeX snippet: titlepage.tex 
+\begin{titlepage}
+\begin{center}
+
+% 1. The title of the thesis/dissertation, centered 2Ó below the top of the page
+
+\vspace{2in}
+\begin{singlespace}
+\large %\bf
+\uppercase{Computational methods for studying parent-of-origin effects via reciprocal mouse crosses}
+\end{singlespace}
+
+
+% 2. Your name, centered 1Ó below the title.
+\vspace{1in} % 1 in = 72pt, 11pt for the line with text
+Daniel G. Oreper
+\end{center}
+
+
+%3. The following statement, within the full mar- gins, 1Ó below your name:
+%ÒA dissertation [or thesis] submitted to the faculty of the University of North Carolina at Chapel Hill in partial fulfillment of the requirements for the degree of	in the Department [or School or Curriculum] of      .Ó
+
+\vspace{1in}
+\begin{singlespace}
+\noindent 
+A dissertation submitted to the faculty of the University of North Carolina at Chapel Hill
+in partial fulfillment of the requirements for the degree of Doctor of Philosophy in
+the Curriculum of Bioinformatics and Computational Biology
+\end{singlespace}
+
+
+%4. On the lower half of the page, centered, the words ÒChapel HillÓ
+%and one line below that, the year in which your committee approves
+%the completed thesis/dissertation.
+\vspace{1in}
+\begin{center}
+\begin{singlespace} 
+Chapel Hill\\
+2018
+\end{singlespace}
+\end{center}
+
+%5. On the right-hand side of the page, ÒApproved by,Ó followed by lines for the
+%signatures of the adviser and four (two for thesis) readers. List
+
+\vspace{1in}
+\begin{flushright}
+\begin{minipage}[t]{2.5in} 
+Approved by:\\
+%To be approved by: \\
+Daniel Pomp \\
+Leonard McMillan \\
+Michael Love \\
+William Valdar \\
+Fernando Pardo-Manuel de Villena
+\end{minipage}
+\end{flushright}
+
+\end{titlepage}
+Dan Oreper [14:01]
+this seems to have handled appendices properly, including all figures, toc, etc:
+\addcontentsline{toc}{part}{Appendices}%
+\begin{appendices}
+\chapter{Supplemental materials for ``Reciprocal F1 Hybrids of two inbred mouse strains reveal parent-of-origin and perinatal diet effects on behavior and expression''}
+\input{appendix}
+\end{appendices}
+\input{appendix} refers to an appendix.tex file i wrote, not relevant to yours
+Paul Maurizio [14:16]
+Thanks. I did something similar.
+Dan Oreper [14:24]
+For referring to published/submitted work, the following example seems to fulfill formatting reqs
+\chapter[Reciprocal F1 hybrids of two inbred mouse strains reveal parent-of-origin and perinatal diet effects on behavior and expression]{Reciprocal F1 hybrids of two inbred mouse strains reveal parent-of-origin and perinatal diet effects on behavior and expression.
+\footnote{This chapter has been adapted from a manuscript submitted to G3. The citation will be as follows: Oreper D., Schoenrock S., McMullan R. C., Ervin R., Farrington J., et al., 2018 Reciprocal F1 hybrids of two inbred mouse strains reveal parent-of-origin and perinatal diet effects on behavior and expression. G3: Genes, Genomes, Genetics.}
+material within [] shows in the TOC.
+Paul Maurizio [14:32]
+Yep. That's what I opted to do.
+William Valdar [15:21]
+joined dissertation_format by invitation from Dan Oreper, along with 4 others.
+Paul Maurizio [10:02]
+added and commented on this LaTeX/sTeX snippet: Untitled 
+Please make these changes and resubmit the document within 72 hours of this notification: 
+
+1) Abstract: Your name should not appear in all capital letters. Please adjust. 
+
+2) Acknowledgements should not be found within the chapters of the body of work and should be removed. Acknowledgements may be included within the beginning of your dissertation/thesis. You will find their placement order within the Order and Components section of our Thesis and Dissertation Guide. 
+
+3) Appendices pages require a 1” top margin. 
+
+
+1 CommentCollapse 

@@ -14,3 +14,5 @@
 /old_Corty_dissertation.tex
 /old_supporting_files
 /outline.docx
+*.bbl
+*.blg
