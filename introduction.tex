@@ -2,35 +2,41 @@
 
 \section{Genetic Mapping}
 
-Genetic mapping is a scientific endeavour that involves the collection of phenotype and genotype information on a population of interest and statistical analysis to detect associations between the phenotype and specific parts of the genome.
+Genetic mapping is a scientific endeavor that involves the collection of phenotype and genotype information on a population of organisms and statistical analysis to test for associations between the phenotype and each locus of the genome.
 One underlying assumption is that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype.
-Thus, the goal of genetic mapping can be restated partitioning the genome into a large part that is irrelevant to the trait of interest, and a small part that is relevant to it.
+Thus, the goal of genetic mapping can be restated as partitioning the genome into a large part that is irrelevant to the trait of interest, and a small part that is relevant to it.
 
-There are fundamentally two types of genetic mapping: linkage mapping and association mapping. Each can be applied in humans as well as in model organisms and comercially-important organisms.
+There are fundamentally two types of genetic mapping: linkage mapping, in which pedigree information informs the statistical analysis, and association mapping, which is conducted in the absence of pedigree information.
+Each can be applied in humans as well as in model organisms and commercially-important organisms.
 There are principally two types of linkage analysis:
 \begin{enumerate}
-	\item \textbf{Human linkage mapping} is most useful for traits where one or a few genetic factors are expected to exert a large effect.
+	\item \textbf{Human linkage mapping} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Botstein1980}.
 	Examples are Mendelian disease phenotypes like Duchenne muscular dystrophy \citep{Brown1985,Murray1982} and cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985}.
-	This process uses sparse panels of genetic markers and large collections of families with a few individuals per family, where each family must have at least one affected and one unaffected individual.
+	This process uses a sparse panel of genetic markers and a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual.
 	\item \textbf{Model organism linkage mapping} can be thought of as an ``idealization'' of human linkage mapping.
 	Because scientists can control the breeding patterns of model organisms, they create a single family with hundreds of siblings.
-	The most classic designs are the F2 intercross and the backcross.
+	The most classic designs are the F2 intercross and the backcross \citep{Lynch1998,Lander1987,Lander1989a}.
 	As compared to human linkage mapping, these design explores a much smaller genetic space --- only two parental strains are present as compared to the large number of haplotypes represented by any collection of outbred families.
 	This limitation of genetic heterogeneity allows for the mapping of loci with smaller effects, as compared to human linkage mapping.
 \end{enumerate}
 Similarly, there are three types of association mapping:
 \begin{enumerate}
 	\item \textbf{Human association mapping} is based on a large population of not-closely-related individuals.
-	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh}and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
+	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh} and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
+	Each genetic locus is tested for association with the phenotype and a correction is made for global genetic similarity between individuals \citep{Lippert2011,Zhou2012}.
 	\item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same process as human association mapping.
-	Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made.
+	Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made \citep{Falconer1965,Lynch1998}.
+	The genetics community has developed genetic reference populations in which association mapping can be conducted \citep{Ghazalpour2012b,Svenson2012a,Bogue2015}.
 	\item \textbf{Inbred strain association mapping} capitalizes on another possibility that is unavailable in human association mapping --- that of a diverse panel of genetically-replicable individuals.
 	Such a collection of inbred strains allows for very precise measurement of the average phenotype that results from a given genotype, because that genotype can be observed arbitrarily-many times.
-	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals.
-	Inbred strain association mapping has been applied productively in model organisms of human physiology and disease \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in comercially-important crops \citep{McMullen2009,Bandillo2013}.
+	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals \citep{Falconer1965,Lynch1998}.
+	Inbred strain association mapping has been applied productively in model organisms of human physiology and disease \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
 \end{enumerate}
 
+Across all these approaches to genetic mapping, the goal remains the same --- to identify genetic loci where allelic variation correlates with phenotype variation.
+
 \section{Variance}
+
 
 QTL mapping Statistical modeling deals 
 

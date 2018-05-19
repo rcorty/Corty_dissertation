@@ -252,6 +252,7 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
 
 
     \begin{table}
+        \centering
         \begin{tabular}{rllll}
             \hline  
             \textbf{location}       & \textbf{indel}     & \textbf{SNP}   & \textbf{SV}    & \textbf{Total} \\
@@ -367,11 +368,14 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
     In a companion article, we describe how accommodating such background factors can deliver additional power to detect mQTL, vQTL, and mvQTL (\CortyMethodsPaper).
 
 
+\FloatBarrier
+\clearpage
 \section{Additional Information}
+    
     
     \subsection{Additional Information on Kumar Reanalysis}
 
-        \begin{figure*}
+        \begin{figure*}[h]
             \begin{subfigure}{\textwidth}
                 \includegraphics[width=\textwidth]{images/Kumar_cocaine30_scan.pdf}
             \end{subfigure}
@@ -382,7 +386,7 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
           \label{fig:replicate_kumar}
         \end{figure*}
 
-        \begin{figure*}
+        \begin{figure*}[h]
             \centering
             \includegraphics[width=0.6\textwidth]{images/actograms_cropped.pdf}
             \caption{
@@ -392,7 +396,7 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
             \label{fig:actogram_supp}
         \end{figure*}
 
-        \begin{table}
+        \begin{table}[h]
             \centering
             \caption{The characteristics of the mice plotted in \autoref{fig:actograms}}
             \begin{tabular}{p{2.5cm}lp{3cm}}
@@ -417,7 +421,8 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
         \label{tab:acto_mice}
     \end{table}
 
-    \newpage
+    \FloatBarrier
+    \clearpage
 
     % \includepdf[pages={-}]{kumar_alignment_supplement}
     \begin{figure}
@@ -426,7 +431,8 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
         \label{fig:mkrn1_alignment}
     \end{figure}
 
-    \newpage
+    \FloatBarrier
+    \clearpage
     \begin{figure}
         \includegraphics[width=0.8\linewidth]{images/kumar_alignment_supplement_p2.pdf}
         \caption{Page two of \textit{Mkrn1} alignment.}
@@ -435,30 +441,30 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
 
 
 
-    \newpage
+    \FloatBarrier
+    \clearpage
     \subsection{Additional Information on Bailey Reanalysis}
-        \begin{figure*}
+        \begin{figure*}[h!]
             \includegraphics[width=\textwidth]{images/bailey_replication_scanones.pdf}
             \caption{Replication of genome scans from original Bailey analysis. LOD curves are visually identical to originally-published LOD curves, but thresholds, estimated based on the described methods, are meaningfully higher.}
             \label{fig:Bailey_replicate}
         \end{figure*}
 
-        \newpage
-        \begin{figure*}
+        \begin{figure*}[h]
             \includegraphics[height=0.9\textheight]{images/bailey_scans_rint.pdf}
             \caption{DGLM-based reanalysis of all traits measured in Bailey et al., all transformed by the rank-based inverse normal transform.}
             \label{fig:Bailey_rint_scans}
         \end{figure*}
 
-        \newpage
-        \begin{figure*}
+        \begin{figure*}[h]
             \includegraphics[height=0.9\textheight]{images/bailey_scans_bc.pdf}
             \caption{DGLM-based reanalysis of all traits measured in Bailey et al., all transformed by the Box-Cox transform.  Box-Cox exponents were 1, 1, 0, 0.75, 0, 0.25, respectively.}
             \label{fig:Bailey_bc_scans}
         \end{figure*}
 
-        \newpage
-        \begin{figure*}
+        \FloatBarrier
+        \clearpage
+        \begin{figure*}[h]
             \centering
             \begin{subfigure}{0.9\textwidth}
                 \includegraphics[width=\textwidth]{images/TOTREAR_no_transform.pdf}

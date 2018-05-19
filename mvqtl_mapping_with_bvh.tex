@@ -323,15 +323,16 @@ Tests are distinguished by their ability to accommodate and target foreground va
 
 \begin{table}
     % \renewcommand{\familydefault}{\sfdefault}\normalfont
-    \begin{tabular}{l|l|p{8cm}}
+    \centering
+    \begin{tabular}{l|l|p{7cm}}
     \hline
      \textbf{Category} & \textbf{Test} & \textbf{Description} \\
     \hline
-    mQTL        & SLM       & Conventional test of mean differences; allows neither FVH nor BVH \\
+    mQTL        & SLM       & Conventional test of mean differences;\newline allows neither FVH nor BVH \\
     mQTL        & \Caom{}   & Allows FVH, but not BVH \\
     mQTL        & \DGLMm{}  & Allows FVH and BVH \\
     \hline
-    vQTL        & \Lev{}    & Conventional test of variance differences; detects FVH, does not allow BVH \\
+    vQTL        & \Lev{}    & Conventional test of variance differences;\newline detects FVH, does not allow BVH \\
     vQTL        & \Caov{}   & Detects FVH, does not allow BVH \\
     vQTL        & \DGLMv{}  & Detects FVH, allows BVH \\
     \hline
@@ -457,12 +458,13 @@ The most relevant prior study to this reanalysis, \cite{Yi2006}, used standard m
 
 Analyses were conducted in the \texttt{R} statistical programming language \citep{RCoreTeam2017}.
 The simulation studies used the implementation of the standard linear model from package \texttt{stats}, \Lev from \texttt{car}, Cao's tests as published in \cite{Cao2014} and the DGLM tests in package \texttt{dglm}.
+The reanalyzed dataset is available on the Mouse Phenome Database \citep{Grubb2014a} with persistent identifier \mpdidentifier.
+
+The entire project, including data and all analysis scripts, is available as a Zenodo repository at \zenodourl.
+There are six files stored in this repository.
 Files S1, S2, and S3 contain the R scripts necessary to replicate the simulation studies and their analysis, relying on the \texttt{plotROC} package to make ROC plots \citep{sachs2017plotroc}.
 File S4 contains the data from \cite{Leamy2000} that was reanalyzed.
 File S5 contains the attempted replication of the original analysis \citep{Yi2006} and file S6 contains the new analysis, using package \texttt{vqtl}.
-
-The reanalyzed dataset is available on the Mouse Phenome Database \citep{Grubb2014a} with persistent identifier \mpdidentifier.
-The entire project, including data and all analysis scripts, is available as a Zenodo repository at \zenodourl.
 
 
 
@@ -1014,6 +1016,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
     The following values were used in the simulation.
 
     \begin{table}[ht]
+        \centering
         \begin{tabular}{rcc}
             \hline
                     & no BVH                                & yes BVH                        \\
@@ -1106,7 +1109,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
       ]
       {
         ROC Curves for mQTL tests in the detection of mQTL.
-        The same 28 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
+        The same 32 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
       }
       \label{fig:mqtl_rocs_supp}
   \end{figure}
@@ -1144,7 +1147,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
       ]
       {
         ROC Curves for vQTL tests in the detection of vQTL.
-        The same 28 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
+        The same 32 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
       }
       \label{fig:vqtl_rocs_supp}
   \end{figure}
@@ -1185,7 +1188,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
       ]
       {
         ROC Curves for mvQTL tests in the detection of mvQTL.
-        The same 28 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
+        The same 24 ROC curves are plotted three times, organized by (a) test, (b) BVH scenario, and (c) version to allow for comparisons across all dimensions.
       }
       \label{fig:mvqtl_rocs_supp}
   \end{figure}
