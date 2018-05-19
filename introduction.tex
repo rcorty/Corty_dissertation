@@ -35,8 +35,15 @@ Similarly, there are three types of association mapping:
 
 Across all these approaches to genetic mapping, the goal remains the same --- to identify genetic loci where allelic variation correlates with phenotype variation.
 
-\section{Variance}
+\section{Variation and Variance}
 
+We can say that we have observed ``Variation'' in some quantity when we have observed at least two different values for that quantity.
+Without phenotype variation, no analysis of any kind is possible, genetic or otherwise.
+Imagine a QTL mapping study where a tremendous amount of genotypic variation was measured, but, by chance, all individuals in the mapping population have the same phenotype value to measured precision.
+Realistically, the problem in this study is that we did not measure the phenotype to sufficient precision --- maybe the scale we used to meausure mouse bodyweight was only accurate to the nearest pound, or maybe the phenotype is a molecular phenotype for which the state-of-the-art measurement procedure cannot differentiate between the highest and lowest values in our population.
+It should be obvious that we cannot study this phenotype in any way; 
+
+And, for any locus where no genetic variation was observed, we certainly cannot 
 
 QTL mapping Statistical modeling deals 
 
@@ -50,27 +57,32 @@ Scientists speak of the difference between ``variance'', ``variation'', and ``va
 
 \section{Variance Heterogeneity}
 
-Two populations have different phenotype variance.
-Two individuals have different phenotype variance -- continuous version of the above.
+Review some of the lit that's not directly relevant to QTL mapping,
+ie robustness, pop gen of het var, systems bio stuff about hub  nodes, hsp90
 
-Describe exchangeable and non-exchangeable populations
 
-In an exchangeable pop, knowing 
 
-\begin{table}[ht]
-	\begin{tabular}{lp{1in}p{1in}p{1in}}
-		\toprule
-				& accommodate variance heterogeneity & detect variance heterogeneity & handle differential relatedness\\
-		\midrule
-		LM 		& no	& no	& no\\
-		DGLM 	& yes 	& yes 	& no\\
-		LMM  	& no 	& no	& yes\\
-		wLMM	& yes	& no	& yes\\
-		\bottomrule
-	\end{tabular}
-\end{table}
+% Two populations have different phenotype variance.
+% Two individuals have different phenotype variance -- continuous version of the above.
 
-\section{Introduction 1}
+% Describe exchangeable and non-exchangeable populations
+
+% In an exchangeable pop, knowing 
+
+% \begin{table}[ht]
+% 	\begin{tabular}{lp{1in}p{1in}p{1in}}
+% 		\toprule
+% 				& accommodate variance heterogeneity & detect variance heterogeneity & handle differential relatedness\\
+% 		\midrule
+% 		LM 		& no	& no	& no\\
+% 		DGLM 	& yes 	& yes 	& no\\
+% 		LMM  	& no 	& no	& yes\\
+% 		wLMM	& yes	& no	& yes\\
+% 		\bottomrule
+% 	\end{tabular}
+% \end{table}
+
+\section{QTL Mapping in the Presence of Variance Heterogeneity}
 
 % Quantitative trait locus (QTL) mapping in experimental crosses involves applying a statistical test for genotype-phenotype association to each locus in the genome.
 % Traditionally, tests are used that quantify the association between the genotype and the phenotype mean \citep{Lander1989-sd,Haley1992-xg,Martinez1992-qd,Kruglyak1995-tz}, which we term “mQTL” tests.
@@ -175,7 +187,7 @@ In two companion papers, we describe an R package \texttt{vqtl} implementing our
 
 
 
-\section{Introduction 2}
+\section{Extra Prose 1}
 Over the last 25 years, interval mapping based on the assumption of homogeneous residual variance and its associated statistical methods \citep{Lander1989a,Martinez1992,Haley1992,Churchill1994} have successfully identified many QTL that influence the epected value of important complex traits.
     It is well-appreciated, however, that this approach fails to capture all the complexities of the relationship between genotype and phenotype \citep{GeilerSamerotte2013,Nelson2013,Shen2012,Forsberg2015,Pare2010}.
 
@@ -198,7 +210,7 @@ Over the last 25 years, interval mapping based on the assumption of homogeneous 
     describe the unique ability of mean-variance QTL mapping and its associated permutation procedure to reliably detect QTL in the face of variance heterogeneity that arises from non-genetic factors (\CortyMethodsPaper).
 
 
-\section{Introduction 3}
+\section{Extra Prose 2}
 
 QTL mapping studies in experimental crosses have provided important insights on nearly every trait of interest in human health, as well as livestock and crop improvement programs.
 Advances in model organism genotyping \citep{Williams1990} and phenotyping \citep{Yang2014a} as well as in statistical methods \citep{Lander1989a,Martinez1992} and software tools (\eg, \citealt{Broman2003,Mulligan2017}) have supported these discoveries.

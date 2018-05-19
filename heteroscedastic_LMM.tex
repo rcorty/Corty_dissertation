@@ -7,7 +7,7 @@ This approach is heuristic, correcting for the large-scale relationships capture
 
 This chapter deals with the linear mixed model (LMM), a more elaborate statistical model for QTL mapping.
 By estimating so called ``random effects'' with arbitrary covariance structure, the LMM can accommodate any pattern of differential relatedness in the mapping population.
-The additional complexity of the LMM relative to the LM presents a computational challenge in applying it in large scale analyes, \eg on a dense set of genome wide markers.
+The additional complexity of the LMM relative to the LM presents a computational challenge in applying it in large scale analyses, \eg on a dense set of genome wide markers.
 
 This chapter proceeds as follows.
 In section 1, we describe a verbose form of the LMM that emphasizes the meaning of each term in the model and describe how this model can be used to conduct a GWAS.
@@ -15,8 +15,8 @@ In section 2, we demonstrate a compact, but mathematically equivalent, form of t
 In section 3, we illustrate how, given one parameter, $h^2$, the LMM can be fit by GLS.
 In section 4, we illustrate how, given another parameter, $\bM$, the GLS problem can be simplified to the OLS problem, though we do not describe how to calculate $\bM$.
 In section 5, we describe how these simplifications can be used to rapidly fit the LMM genomewide.
-In section 6, we summarize a previously published result that demonstrates how to calculate $\bM$ for phenotypes with homoscedastic environmental residuals.
-In section 7, we demonstrate a novel way to calculate $\bM$, that is valid whether the environmental residuals are homoscedastic or not.
+In section 6, we summarize a previously published result that demonstrates how to calculate $\bM$ for phenotypes with homoskedastic environmental residuals.
+In section 7, we demonstrate a novel way to calculate $\bM$, that is valid whether the environmental residuals are homoskedastic or not.
 In section 8, we show, through simulation, that for phenotypes with heteroscedastic environmental residuals, the novel value of $\bM$ leads to a more powerful test and better controls false positive rate.
 
 % two mathematical tricks that allow for efficient 
@@ -91,7 +91,7 @@ Specifically, the covariate matrices and their effect vectors are compacted as
     \bbeta_c   &= \left[\mu \enspace \bbeta\T \balpha\T \right]\T
 \end{align}
 Going forward, only the compact notation is used, so $\bX_c$ and $\bbeta_c$ will be referred to simply as $\bX$ and $\bbeta$.
-The covariance matrices is compacted by use the reparametrization,
+The covariance matrices is compacted by use the re-parametrization,
 \begin{align}
   h^2 &= \frac{\tau^2}{\tau^2 + \sigma^2}\\
   \lambda &= \tau^2 + \sigma^2
@@ -186,7 +186,7 @@ Take as given a matrix, $\bM$, that has the property
 	\bM \T \bM = \bV \inv
 \end{align}
 where $\bV$ is the covariance of $\by$, as defined in \cref{eq:lmm_covar}.
-We can use $\bM$ to define a ``rotated'' phenotype vector, $\by_r = \bM \by$, which can be shown to have identity covariariance.
+We can use $\bM$ to define a ``rotated'' phenotype vector, $\by_r = \bM \by$, which can be shown to have identity covariance.
 \begin{align}
 \var(\by_r) &= \var(\bM \by) \\
             &= \bM \var(\by) \bM \T\\
@@ -271,10 +271,10 @@ In the following sections we address the calculation of $\bM$.
 % The former is typically computed with the QR decomposition method.
 % Thus we have established that, given $\by$ and $\bM$, we can rapidly compute the ML values of $\beta$ and $\lambda$.
 
-\newpage
+
 \section{\texorpdfstring{$\bM$}{M} for the Homoscedastic LMM}
 
-\citet{Kang2008} proposed the strategy for GWAS described above and proposed a valuue of $\bM$ that is computationally efficient and is valid when $\bD = \bI$.
+\citet{Kang2008} proposed the strategy for GWAS described above and proposed a value of $\bM$ that is computationally efficient and is valid when $\bD = \bI$.
 Their approach used a slightly different, but mathematically equivalent, parameterization of the variance components, but we convert it into the $h^2, \lambda$ parameterization here for consistency with the rest of this chapter.
 The differences in parameterization do not change the likelihood of the model and do not influence any results.
 % and analytical derivatives of the likelihood with respect to...
@@ -320,7 +320,6 @@ The determinant of any matrix is equal to the product of its eigen values, so th
 \end{align}
 
 
-\newpage
 \section{\texorpdfstring{$\bM$}{M} for the Heteroscedastic LMM}
 
 The above $\bM$ relied on [point out where D=I is required] [in step X].
@@ -403,8 +402,8 @@ As with $\bM_\text{hom}$, the calculation of $\log \left| \bV \right|$ comes alm
 \end{align}
 
 At this point, the problem is reduced to two terms.
-The first is log of the determinant of a diagon matrix, which is simply the sum of its elements.
-The second is the log of the determinant of a covariance matrix expressed in the same form as was present in the homoscedastic setting, simply with $\bL$ in place of $\bK$ and can be solved in the same way.
+The first is log of the determinant of a diagonal matrix, which is simply the sum of its elements.
+The second is the log of the determinant of a covariance matrix expressed in the same form as was present in the homoskedastic setting, simply with $\bL$ in place of $\bK$ and can be solved in the same way.
 Specifically,
 
 \begin{align}
@@ -452,6 +451,25 @@ And second, it should better discriminate between real and spurious signals.
 
 \subsection{FPR Control}
 
+wISAM has better FPR control.  Explain the example in detail and then refer to some of the panels in the megafigs.
+
+\begin{figure}
+  \includegraphics[width = \textwidth]{images/exampleQQ.pdf}
+  \caption{explain this}
+  \label{fig:exampleQQ}
+\end{figure}
+
+\begin{sidewaysfigure}
+  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=50_nsnps=100_nsims=10000.pdf}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=100_nsnps=100_nsims=10000.pdf}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=200_nsnps=100_nsims=10000.pdf}
+\end{sidewaysfigure}
 
 
 \subsection{Discrimination between real and spurious signals}
