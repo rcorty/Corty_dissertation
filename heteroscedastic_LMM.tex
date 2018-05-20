@@ -322,9 +322,11 @@ The determinant of any matrix is equal to the product of its eigen values, so th
 
 \section{\texorpdfstring{$\bM$}{M} for the Heteroscedastic LMM}
 
-The above $\bM$ relied on [point out where D=I is required] [in step X].
-Generally, however, some phenotypes are known with more certainty than others.
-Want to have a diagonal D, but not necessarily I.
+The above $\bM$ is valid only when $\bD = \bI$ because the transition from Equation 5.43 to 5.44 in the validity proof required that the product of $\bUK \bI \bUK\T$ be a diagonal matrix.
+If $\bI$ were replaced by any other diagonal matrix, this product would not be diagonal.
+
+In the more general situation, where the phenotype associated with some genotypes is known with more certainty than the phenotype associated with other genotypes, it would be preferable to use a covariance matrix for the residual variance that reflects this reality.
+Here, I propose a multiplier matrix that yields all the speed up of the above trick, but remains valid for any diagonal residual covariance matrix.
 
 \subsection{Proposal}
 
@@ -454,7 +456,8 @@ And second, it should better discriminate between real and spurious signals.
 wISAM has better FPR control.  Explain the example in detail and then refer to some of the panels in the megafigs.
 
 \begin{figure}
-  \includegraphics[width = \textwidth]{images/exampleQQ.pdf}
+  \centering
+  \includegraphics[width = 0.5\textwidth]{images/exampleQQ.pdf}
   \caption{explain this}
   \label{fig:exampleQQ}
 \end{figure}
@@ -473,6 +476,13 @@ wISAM has better FPR control.  Explain the example in detail and then refer to s
 
 
 \subsection{Discrimination between real and spurious signals}
+
+\begin{figure}
+  \centering
+  \includegraphics[width = 0.5\textwidth]{images/roc_hetsked_100snps_1ksims_05h2_100strains.pdf}
+  \caption{explain this}
+  \label{fig:exampleROC}
+\end{figure}
 
 
 \section{Software}
