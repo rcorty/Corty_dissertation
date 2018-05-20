@@ -702,7 +702,7 @@ But, in the context of vQTL testing with BVH from an unknown source, it has one 
              \cmidrule[1pt]{1-10}
         \end{tabular}
         \caption[
-          Positive rates of all tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions at a nominal false positive rate (FPR) of 0.05.
+          Positive rates of mQTL, vQTL, and mvQTL tests.
         ]
         {
             Positive rates of all tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a nominal false positive rate (FPR) of $\alpha = 0.05$.
@@ -1246,10 +1246,6 @@ Nonetheless, where normality approximately holds, whether as given or after a si
 
   \begin{table}[ht]
       \centering
-      \caption{
-        Positive rates of all four mQTL tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
-        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
-      }
       \begin{tabular}{p{2cm}ll llll lll}
       \cmidrule[1pt]{1-10}
          &  & \multicolumn{4}{c}{BVH absent} & \multicolumn{4}{c}{BVH present}\\
@@ -1277,6 +1273,13 @@ Nonetheless, where normality approximately holds, whether as given or after a si
            & locusperm & 0.051 & 0.680 & 0.045 & 0.485 & 0.046 & 0.821 & 0.049 & 0.630 \\ 
         \hline
       \end{tabular}
+      \caption[
+        Positive rates of mQTL tests in extended scenarios.
+      ]
+      {
+        Positive rates of all four mQTL tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
+        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
+      }
       \label{tab:mqtl_fpr}
   \end{table}
 
@@ -1289,10 +1292,6 @@ Nonetheless, where normality approximately holds, whether as given or after a si
 
   \begin{table}[ht]
       \centering
-      \caption{
-        Positive rates of all four vQTL tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
-        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
-      }
       \begin{tabular}{lll llll lll}
       \cmidrule[1pt]{1-10}
          &  & \multicolumn{4}{c}{BVH absent} & \multicolumn{4}{c}{BVH present}\\
@@ -1320,6 +1319,13 @@ Nonetheless, where normality approximately holds, whether as given or after a si
            & locusperm & 0.049 & 0.048 & 0.698 & 0.501 & 0.049 & 0.050 & 0.700 & 0.498 \\ 
         \hline
       \end{tabular}
+      \caption[
+        Positive rates of vQTL tests in extended scenarios.
+      ]
+      {
+        Positive rates of all four vQTL tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
+        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
+      }
       \label{tab:vqtl_fpr}
   \end{table}
 
@@ -1333,10 +1339,6 @@ Nonetheless, where normality approximately holds, whether as given or after a si
 
   \begin{table}[ht]
       \centering
-      \caption{
-        Positive rates of all three tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
-        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
-      }
       \begin{tabular}{p{2cm}ll llll lll}
       \cmidrule[1pt]{1-10}
          &  & \multicolumn{4}{c}{BVH absent} & \multicolumn{4}{c}{BVH present}\\
@@ -1359,6 +1361,13 @@ Nonetheless, where normality approximately holds, whether as given or after a si
            & locusperm & 0.051 & 0.577 & 0.582 & 0.712 & 0.049 & 0.731 & 0.591 & 0.790 \\ 
         \hline
       \end{tabular}
+      \caption[
+        Positive rates of mvQTL tests in extended scenarios.
+      ]
+      {
+        Positive rates of all three tests in all scenarios based on 10,000 simulations, 1,000 permutations each to estimate empirical null distributions (residperm and locusperm), and a cutoff of $p = 0.05$.
+        Note that in all cases the DGLM test without the covariate had identical or very nearly identical FPR to the Cao test that tests for the same kind of QTL.
+      }
       \label{tab:mvqtl_fpr}
   \end{table}
 
