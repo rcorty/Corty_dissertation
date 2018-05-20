@@ -3,34 +3,34 @@
 \section{Genetic Mapping}
 
 Genetic mapping is a scientific endeavor that involves the collection of phenotype and genotype information on a population of organisms and statistical analysis to test for associations between the phenotype and each locus of the genome.
-One underlying assumption is that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype.
+\WV{One underlying assumption is that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype.}{Nope, this is not a necessary assumption at all.}
 Thus, the goal of genetic mapping can be restated as partitioning the genome into a large part that is irrelevant to the trait of interest, and a small part that is relevant to it.
 
 There are fundamentally two types of genetic mapping: linkage mapping, in which pedigree information informs the statistical analysis, and association mapping, which is conducted in the absence of pedigree information.
 Each can be applied in humans as well as in model organisms and commercially-important organisms.
-There are principally two types of linkage analysis:
+There are principally \WV{two types of linkage analysis:}{You are stating this as if it were an contested fact when really you are choosing to distinguish types in this way. You could be less definitive by saying ``linkage analysis can be divided into...'' etc. However, see later comments first.}
 \begin{enumerate}
 	\item \textbf{Human linkage mapping} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Botstein1980}.
 	Examples are Mendelian disease phenotypes like Duchenne muscular dystrophy \citep{Brown1985,Murray1982} and cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985}.
 	This process uses a sparse panel of genetic markers and a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual.
-	\item \textbf{Model organism linkage mapping} can be thought of as an ``idealization'' of human linkage mapping.
+	\item \textbf{Model organism linkage mapping} can be thought of as an ``idealization'' of human linkage mapping.\WV{}{Use of haplotype information as done for F2s, etc, is linkage mapping only sort of -- its better termed ``linkage disequilibrium mapping'' or ``LD mapping''. Other examples of LD mapping include the type of haplotype association done for CC, DO, etc.}
 	Because scientists can control the breeding patterns of model organisms, they create a single family with hundreds of siblings.
 	The most classic designs are the F2 intercross and the backcross \citep{Lynch1998,Lander1987,Lander1989a}.
 	As compared to human linkage mapping, these design explores a much smaller genetic space --- only two parental strains are present as compared to the large number of haplotypes represented by any collection of outbred families.
 	This limitation of genetic heterogeneity allows for the mapping of loci with smaller effects, as compared to human linkage mapping.
 \end{enumerate}
-Similarly, there are three types of association mapping:
+Similarly, \WV{there are three types of association mapping:}{See earlier comment regarding definitive categorizations.}
 \begin{enumerate}
-	\item \textbf{Human association mapping} is based on a large population of not-closely-related individuals.
+	\item \WV{\textbf{Human association mapping}}{This is really GWAS. You should use that term. Note also that accounting for relatedness in GWAS is not uncommon.} is based on a large population of not-closely-related individuals.
 	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh} and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
 	Each genetic locus is tested for association with the phenotype and a correction is made for global genetic similarity between individuals \citep{Lippert2011,Zhou2012}.
-	\item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same process as human association mapping.
+	\item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same \WV{process as human association mapping.}{Not quite. There are at least two approaches: LD mapping, whereby we reconstruct haplotypes and use those for the association (see earlier comment); and GWAS, where, as with human GWAS we used observed genotypes. This distinction used to more often be described as between mapping using identity by descent (IBD) and using identity by state (IBS); in the case of mapping in HS or DO, note that IBS information is converted to IBD information via an HMM. A third method used is actual linkage mapping, which is a type of IBD based more explicitly on the pedigree --- Marco Bink's FlexQTL does this, for example.}
 	Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made \citep{Falconer1965,Lynch1998}.
 	The genetics community has developed genetic reference populations in which association mapping can be conducted \citep{Ghazalpour2012b,Svenson2012a,Bogue2015}.
 	\item \textbf{Inbred strain association mapping} capitalizes on another possibility that is unavailable in human association mapping --- that of a diverse panel of genetically-replicable individuals.
 	Such a collection of inbred strains allows for very precise measurement of the average phenotype that results from a given genotype, because that genotype can be observed arbitrarily-many times.
 	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals \citep{Falconer1965,Lynch1998}.
-	Inbred strain association mapping has been applied productively in model organisms of human physiology and disease \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
+	Inbred strain association mapping has been applied productively in model organisms of human physiology and disease \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}. \WV{}{No. ISAM is GWAS (ie, SNP-based) using inbred strains. The CC, DSPR, and other MPP mapping panels typically (though not exclusively) use LD mapping. In this list, you are confusing distinctions between types of populations with types of methods}
 \end{enumerate}
 
 Across all these approaches to genetic mapping, the goal remains the same --- to identify genetic loci where allelic variation correlates with phenotype variation.
@@ -40,7 +40,7 @@ Across all these approaches to genetic mapping, the goal remains the same --- to
 We can say that we have observed ``Variation'' in some quantity when we have observed at least two different values for that quantity.
 Without phenotype variation, no analysis of any kind is possible, genetic or otherwise.
 Imagine a QTL mapping study where a tremendous amount of genotypic variation was measured, but, by chance, all individuals in the mapping population have the same phenotype value to measured precision.
-Realistically, the problem in this study is that we did not measure the phenotype to sufficient precision --- maybe the scale we used to measure mouse bodyweight was only accurate to the nearest pound, or maybe the phenotype is a molecular phenotype for which the state-of-the-art measurement procedure cannot differentiate between the highest and lowest values in our population.
+Realistically, the problem in \WV{this study}{Which study?} is that we did not measure the phenotype to sufficient precision --- maybe the scale we used to measure mouse bodyweight was only accurate to the nearest pound, or maybe the phenotype is a molecular phenotype for which the state-of-the-art measurement procedure cannot differentiate between the highest and lowest values in our population.
 But more theoretically, given a set of observations without any variation, there can be no attempt to correlate it with variation in any other quantity, be they other phenotypes, environmental exposures, or genetic factors.
 
 Analogously, for any genetic locus where all individuals in the mapping population have the same allele, no genetic mapping study can hope to identify an association.
@@ -59,10 +59,10 @@ The standard deviation has the property that it is on the same scale as the phen
 
 \section{Variance Heterogeneity}
 
-
+\WV{
 Review some of the lit that's not directly relevant to QTL mapping,
 ie robustness, pop gen of het var, systems bio stuff about hub  nodes, hsp90
-
+}{You could summarize stuff out of Ronnegard and Valdar 2011, plus other vQTL paper intros}
 
 
 % Two populations have different phenotype variance.
