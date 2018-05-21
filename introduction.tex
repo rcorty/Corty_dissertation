@@ -69,12 +69,120 @@ For a large sample of numbers, this quantity accurately estimates the variance o
 At times, this dissertation also considers the standard deviation, which is simply the square root of the variance.
 The standard deviation has the property that it is on the same scale as the phenotype itself, and is therefore straightforwardly interpretable.
 
+\section{Sources of Variance}
+
+It is important to recognize all potential sources of variance in a QTL mapping population.
+Understanding genetic parameters such as broad sense and narrow sense heritability, the percentage of variance explained by aggregate additive, dominance, and epistatic effects yields valuable insights into the ``genetic architecture'' of the trait.
+Understanding the effect of sex, bodyweight, and nuisance covariates such as housing, diet, and experimenter can help scientists design more efficient experiments \citep{Nettleton2006,Datta2014}.
+I'll begin by reviewing sources of variance in measurements made on a single organism.
+As discussed previously, in the absence of any genetic variation, there can be no prospect for genetic insight.
+I continue with a review of sources of variance in measurements of multiple organisms, keeping in mind that the single-organism sources of variance are still present.
+
+
+\subsection{Measurements on a Single Organism}
+
+There are surprisingly many sources of variance when multiple measurements are made, even on a single organism (\autoref{tab:sources_of_variance_single_org}).
+
+When multiple measurements of a given trait are made on a single individual at the same time, the only source of variance is technical variance \citep{Ronnegard2011a}.
+An example of this type of measurement is the collection of a single blood sample from a mouse, which is split it into three aliquots and the mRNA content of each aliquot is analyzed independently \citep{Marioni2008}.
+
+When the a phenotype is measured on one individual at multiple times, temporal fluctuation is a potential source of variance.
+This temporal fluctuation comes in two ``flavors''.
+First, the value of the phenotype of the individual may change over time.
+Second, the measurement device may change over time.
+Effects of this type are often called ``batch effects''.
+An example of this type of measurement is the weighing of each experimental mouse each day of a multi-day experiment \citep{Gray2015}.
+
+When the same organism is observed in multiple different ``macro-environments'', that variation in macro-environment can contribute variance to the phenotype.
+The term ``macro-environment'' is used here to signify that the researcher has intentionally introduced an environmental effect.
+It is used in contrast to the ``micro-environment'', which is discussed below.
+The same individual could be exposed to multiple different macro-environments at different times in its life, in which case temporal variation would potentially be in play, or samples of the organism can be extracted and treated with different environmental factors at a single time point.
+
+When multiple, theoretically-identical structures are measured on a single individual at a single time, ``fluctuating asymmetry'' is a potential source of variance \citep{Palmer1986}.
+An example of this type of experiment is be measurement of the left and right kidney weight of mice \citep{Leamy2000,Leamy2002}.
+There are valid criticisms to be made about many specific measurements that are said to reflect fluctuating asymmetry.
+For example, in the case of the left and right kidney in a mouse, some difference in size might be expected due to the right kidney being crowded by the liver during development.
+But the general concept, that of assessing the extent to which multiple theoretically-identical phenotypes are expressed identically in a given organism, is an important contribution to understanding the totality of sources of variance in a phenotype, for phenotypes where it is applicable.
+
+\begin{sidewaystable}
+	\begin{tabular}{p{6cm}ccccc}
+		& \multicolumn{5}{c}{sources of variance}\\
+	\cmidrule[0.1pt]{2-6}
+		& \multirow{1}{2.5cm}{\centering measurement error} 
+		& \multirow{1}{2.5cm}{\centering organismal fluctuation}
+		& \multirow{1}{2.5cm}{\centering device fluctuation}
+		& \multirow{1}{3.5cm}{\centering macro-environmental variance}
+		& \multirow{1}{3cm}{\centering fluctuating asymmetry}\\\\
+	\cmidrule[1pt]{2-6}
+		different times & \textbullet & \textbullet & \textbullet \\
+	\cmidrule[0.1pt]{1-6}
+		different macro-environments & \textbullet & & & \textbullet\\
+	\cmidrule[0.1pt]{1-6}
+		different instances of \newline theoretically-identical structure & \textbullet & & & & \textbullet\\
+	\cmidrule[0.1pt]{1-6}
+	\end{tabular}
+	\caption[
+		Sources of variance in measurements of a single organism.
+	]
+	{
+		Sources of variance that contribute to total phenotype variance in measurements of a single organism.
+		Note that measurement error is present in all measurements.
+		Although it appears here that organismal fluctuation and device fluctuation are confounded, designs that cross individuals and devices can deconfound these sources of variance.
+	}
+	\label{tab:sources_of_variance_single_org}
+	\vspace{1in}
+	\begin{tabular}{p{6cm}cccc}
+		& \multicolumn{4}{c}{sources of variance}\\
+	\cmidrule[0.1pt]{2-5}
+				& \multirow{1}{2.5cm}{\centering single organism variance} 
+				& \multirow{1}{2.5cm}{\centering developmental stochasticity}
+				& \multirow{1}{2.5cm}{\centering locus-by-G and locus-by-E}
+				& \multirow{1}{3.5cm}{\centering marginal effects of all polymorphic loci}\\\\
+	\cmidrule[1pt]{2-5}
+		one organism 	& \textbullet & \\
+		genetically-identical organisms & \textbullet & \textbullet\\
+		organisms with same allele at a locus & \textbullet & \textbullet & \textbullet\\
+		genetically-distinct organisms & \textbullet & \textbullet & \textbullet & \textbullet\\
+	\cmidrule[0.1pt]{1-5}
+	\end{tabular}
+	\caption[
+		Sources of variance in measurements of multiple organisms.
+	]
+	{
+		Sources of variance that contribute to total phenotype variance in measurements of multiple organisms.
+		The first column represents all the sources of variance that can be present in a measurement of a single organism (\autoref{tab:sources_of_variance_single_org}).
+		Note the hierarchical nature of the sources of variance as we progress down the table from more-closely related individuals to less-closely related individuals; new sources of variance are added, but never removed.
+	}
+	\label{tab:sources_of_variance_multi_org}
+\end{sidewaystable}
+
+
+\subsection{Measurements on Multiple Organisms}
+
+When multiple organisms are observed, additional layers of variance are possible, depending on the genetics of the organisms (\autoref{tab:sources_of_variance_multi_org}).
+
+The experimental design that most limits the variance amongst multiple organisms is when all the organisms are genetically identical.
+In the observation of multiple genetically-identical organisms, developmental stochasticity, is a potential source of variation \citep{Fraser2010}.
+This same source of variance can also be referred to as ``micro-environmental variance'' \citep{Hill2010}.
+This type of variance captures all the myriad, subtle exposures that each organism experiences, but which no researcher can hope to standardize.
+For example, the precise living temperature a mouse experiences depends slightly on where its cage is relative to the air vents, the amount of bedding depends on exactly how much the technician happened to grab when filling the cage, and uncountably many more such small effects could be imagined.
+Outside of experimental designs that make use of inbred organisms, it is impossible to directly estimate the contribution of micro-environmental variance to phenotype variance.
+
+Consider a population of organisms that is not genetically identical in a global sense, but is genetically identical at one specific locus.
+A potential source of phenotype variance in such a population is interactions between the locus and factors in which the organisms do vary, such as other genetic loci and micro-environmental exposures.
+The fact that all the organisms have the same allele at the focal locus precludes any direct contribution from that locus to the phenotype variance.
+But, the locus may interact with polymorphisms elsewhere in the genome to make a contribution to the phenotype variance through GxG or may interact with micro-environmental factors to make a contribution through GxE \citep{Falconer1995-od,Struchalin2010,Ronnegard2011a}.
+
+Consider next a population of organisms where there are multiple alleles present at the focal locus --- one could imagine the same population as the above paragraph but simply focus on a different locus.
+Here, all the same effects described above could be present, and additionally a marginal effect of the locus could contribute to phenotype variance.
+In fact, this is the reasoning that underlies the vast majority of QTL mapping efforts.
+Any genetic locus where researchers conclude with high statistical certainty that the proportion of phenotype variance explained by the locus is not zero constitutes a QTL \citep{Broman2009,Broman2010}.
+
+
 \section{Variance Heterogeneity}
 
-\WV{
 Review some of the lit that's not directly relevant to QTL mapping,
-ie robustness, pop gen of het var, systems bio stuff about hub  nodes, hsp90
-}{You could summarize stuff out of Ronnegard and Valdar 2011, plus other vQTL paper intros}
+ie robustness, pop gen of het var, systems bio stuff about hub  nodes, hsp90, summarize stuff out of Ronnegard and Valdar 2011, pulling some stuff from paper intros....
 
 
 % Two populations have different phenotype variance.
