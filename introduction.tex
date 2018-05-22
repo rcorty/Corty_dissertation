@@ -2,48 +2,64 @@
 
 \section{Genetic Mapping}
 
-Genetic mapping is a scientific endeavor that involves the collection of phenotype and genotype information on a population of organisms and statistical analysis to test for associations between the phenotype and each locus of the genome.
+Genetic mapping is a scientific endeavor that has elucidated the genetic underpinnings of hundreds of conditions relevant to human health and disease, both directly in humans \citep{MacArthur2017} and in model organisms \citep{Grubb2014a}, as well as many commercially-important traits in crops and livestock.
+There are, broadly speaking, three approaches to genetic mapping, which I will discuss below.
+They are united in their goal and the general process by which they seek to achieve it.
+
+All approaches to genetic mapping involve the collection of phenotype and genotype information on a population of organisms and a statistical analysis to test for associations between the phenotype and each measured, polymorphic locus of the genome.
 This endeavor is motivated by the belief that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype, so a successful genetic mapping experiment allows researchers interested in the phenotype to focus their efforts on the small section of the genome that does have an effect.
-Thus, the goal of genetic mapping can be restated as partitioning the genome into a large part that is irrelevant to the trait of interest, and a small part that is relevant to it.
+Thus, a successful genetic mapping effort results in a partition the genome into a large part with no appreciable effect on the trait of interest, and a small part believed with a high degree of certainty to influence the phenotype.
 
-There are fundamentally two types of genetic mapping: linkage disequilibrium (LS) mapping, in which pedigree information informs the statistical analysis, and association mapping, which is conducted in the absence of pedigree information.
-Each can be applied in humans as well as in model organisms and commercially-important organisms.
-LD mapping can be divided into two categories:
+The three general approaches to genetic mapping are:
+\begin{enumerate*}
+	\item linkage analysis, 
+	\item linkage disequilibrium mapping, and
+	\item association mapping.
+\end{enumerate*}
+I'll briefly review these approaches and some examples of how each has been productively applied.
 \begin{enumerate}
-	\item \textbf{Human LD mapping} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Botstein1980}.
-	Examples are Mendelian disease phenotypes like Duchenne muscular dystrophy \citep{Brown1985,Murray1982} and cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985}.
-	This process uses a sparse panel of genetic markers and a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual.
+	\item \textbf{Linkage analysis} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Elston1971,Haseman1972}.
+	It is based on a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual and everyone has been genotyped across a sparse panel of markers.
+	Examples of successful applications of linkage analysis are Mendelian disease phenotypes like Duchenne muscular dystrophy, \citep{Brown1985,Murray1982} cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985} and ataxia-telangiectasia \citep{Gatti1988}.
+	In the last decade, as denser marker panels have become available and many of the high-prevalence, near-Mendelian traits have been mapped, linkage analysis has receded in prominence.
 	
-	\item \textbf{Model organism LD mapping} can be thought of as an ``idealization'' of human LD mapping.
-	Scientists can control the breeding of model organisms to create ideal experimental designs for genetic inference, as well as tightly control their environmental exposures and conduct invasive measurements.
-
-	% \WV{}{Use of haplotype information as done for F2s, etc, is linkage mapping only sort of -- its better termed ``linkage disequilibrium mapping'' or ``LD mapping''. Other examples of LD mapping include the type of haplotype association done for CC, DO, etc.}
-	Two of the most classic designs, the F2 intercross and backcross, mimic the pedigrees of human LD mapping, but rather than using many families with a few individuals per family, they create a single family with hundreds of siblings \citep{Lynch1998,Lander1987,Lander1989a}.
+	\item \textbf{Linkage disequilibrium mapping} involves an experimental population of model organisms where the pattern of descent from a reference population can be inferred.
+	For that reason, it is only possible in model organisms, livestock, and some crops --- but never in humans.
+	Strengths this approach include the tight control their environmental exposures and the opportunity to deeply and invasively measure phenotypes.
+	Two of the most classic designs, the F2 intercross and backcross, mimic the pedigrees of human linkage mapping, but rather than using many families with a few individuals per family, they create a single family with hundreds of siblings \citep{Lynch1998,Lander1987,Lander1989a}.
 	Because these designs restrict the total genetic variation to only two parental haplotypes, rather than the vast number of haplotypes represented in a collection of human families, they are able to detect smaller effects.
 
-	Modern efforts toward model organism LD mapping have made prominent use of more elaborate breeding designs, most prominently multi-parental outbred populations \citep{Ghazalpour2012b,Svenson2012a} and multi-parental genetic reference populations \citep{TheComplexTraitConsortium2004,MacKay2012,King2012}.
-	% as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
-\end{enumerate}
-Similarly, association mapping can be divided into two categories:
-\begin{enumerate}
-	\item \textbf{GWAS (Human association mapping)} is based on a large population of not-closely-related individuals.
+	Modern efforts toward model organism LD mapping have made prominent use of more elaborate breeding designs, most prominently multi-parental outbred populations \citep{Ghazalpour2012b,Svenson2012a} and multi-parental genetic reference populations \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
+
+
+	\item \textbf{Association mapping (GWAS)} is based on a large population of individuals with no particular genetic relationship.
+	Because no breeding is required, it can be conducted in human populations.
 	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh} and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
 	Each genetic locus is tested for association with the phenotype after a correction is made for global genetic similarity between individuals \citep{Lippert2011,Zhou2012}.
-	% \item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same \WV{process as human association mapping.}{Not quite. There are at least two approaches: LD mapping, whereby we reconstruct haplotypes and use those for the association (see earlier comment); and GWAS, where, as with human GWAS we used observed genotypes. This distinction used to more often be described as between mapping using identity by descent (IBD) and using identity by state (IBS); in the case of mapping in HS or DO, note that IBS information is converted to IBD information via an HMM. A third method used is actual linkage mapping, which is a type of IBD based more explicitly on the pedigree --- Marco Bink's FlexQTL does this, for example.}
-	% Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made \citep{Falconer1965,Lynch1998}.
-	\item \textbf{Inbred strain association mapping} uses a genetic reference population with unknown pedigree to conduct a study similar to a human GWAS in a model organism.
+
+	% Because of the complex relationships within a large population of humans, a dense marker map [is required to 
+
+	\textbf{Association mapping in model organisms} uses a genetic reference population with unknown pedigree to conduct a study similar to a human GWAS in a model organism.
 	This study design combines the strengths of model organism experiments (the tight control of environmental exposures and the ability to make invasive measurements) with the ability to observe replicates from each genome \citep{Payseur2007a,Kang2008,Kirby2010a}.
 	One important strength of a study design that allows multiple observations of the same genotype is that it allows for very precise measurement of the average phenotype that results from a given genotype because that genotype can be observed arbitrarily-many times.
 	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals \citep{Falconer1965,Lynch1998}.
 
-	% Unlike LD mapping in a multi-parental genetic reference population, however, the analysis is based only on the measured SNPs and phenotypes, not on any additional information about the relatedness of the organisms.
-	% This approach has been applied productively , but somewhat subsumed by multi-parental genetic reference population LD mapping.
-
-	% capitalizes on the replicability of inbred organisms in the same way as LD mapping in genetic reference populationsanother possibility that is unavailable in human association mapping --- that of a diverse panel of genetically-replicable individuals.
-	% 
-	% Inbred strain association mapping has been applied productively in model organisms of human physiology and disease .
-	% \WV{}{No. ISAM is GWAS (ie, SNP-based) using inbred strains. The CC, DSPR, and other MPP mapping panels typically (though not exclusively) use LD mapping. In this list, you are confusing distinctions between types of populations with types of methods}
 \end{enumerate}
+% Similarly, association mapping can be divided into two categories:
+% \begin{enumerate}
+% 	\item \textbf{GWAS (Human association mapping)} is based on a large population of not-closely-related individuals.
+	
+% 	% \item \textbf{Outbred model organism association mapping} is, from a genetics perspective, the same \WV{process as human association mapping.}{Not quite. There are at least two approaches: LD mapping, whereby we reconstruct haplotypes and use those for the association (see earlier comment); and GWAS, where, as with human GWAS we used observed genotypes. This distinction used to more often be described as between mapping using identity by descent (IBD) and using identity by state (IBS); in the case of mapping in HS or DO, note that IBS information is converted to IBD information via an HMM. A third method used is actual linkage mapping, which is a type of IBD based more explicitly on the pedigree --- Marco Bink's FlexQTL does this, for example.}
+% 	% Its advantage over human association mapping is that environmental exposures can be tightly controlled and more invasive measurements can be made \citep{Falconer1965,Lynch1998}.
+% 	\item \textbf{Inbred strain association mapping} 
+
+% 	% Unlike LD mapping in a multi-parental genetic reference population, however, the analysis is based only on the measured SNPs and phenotypes, not on any additional information about the relatedness of the organisms.
+% 	% This approach has been applied productively , but somewhat subsumed by multi-parental genetic reference population LD mapping.
+
+% 	% capitalizes on the replicability of inbred organisms in the same way as LD mapping in genetic reference populationsanother possibility that is unavailable in human association mapping --- that of a diverse panel of genetically-replicable individuals.
+% 	% 
+% 	% Inbred strain association mapping has been applied productively in model organisms of human physiology and disease .
+% \end{enumerate}
 
 Across all these approaches to genetic mapping, the goal remains the same --- to identify genetic loci where allelic variation correlates with phenotype variation.
 

@@ -5,9 +5,12 @@
 % This approach is heuristic, correcting for the large-scale relationships captured in the first handful of principle components, but not [finer] ones.
 % Previous chapters dealt with differential relatedness obliquely, either assuming its absence or using a heuristic to correct for it, this chapter addresses it directly.
 
-This chapter deals with the linear mixed model (LMM), a more elaborate statistical model for QTL mapping.
-By estimating so called ``random effects'' with arbitrary covariance structure, the LMM can accommodate any pattern of differential relatedness in the mapping population.
-The additional complexity of the LMM relative to the LM presents a computational challenge in applying it in large scale analyses, \eg on a dense set of genome wide markers.
+This chapter deals with the linear mixed model (LMM).
+This statistical model can be applied in association mapping and LD mapping in situations where all individuals in the populaiton are not equally-related.
+In such populations, population structure and cryptic relatedness invalidate QTL mapping approaches that use the standard linear model (SLM).
+
+By estimating so called ``random effects'' with arbitrary covariance structure, the LMM can accommodate differential relatedness in the mapping population.
+The additional complexity of the LMM relative to the SLM presents a computational challenge in applying it in large scale analyses, \eg on a dense set of genome wide markers.
 
 This chapter proceeds as follows.
 In section 1, we describe a verbose form of the LMM that emphasizes the meaning of each term in the model and describe how this model can be used to conduct a GWAS.
@@ -101,10 +104,10 @@ The covariance matrices is compacted by use the re-parametrization,
 and ``hiding'' the $h^2$ parameter inside the definition of $\bV$, which will be mathematically useful.
 After defining 
 \begin{align}
-\bV &= \bK h^2 + \bD(1-h^2)
+\bV &= \bK h^2 + \bD(1-h^2)  \label{eq:lmm_covar}
 \shortintertext{we have}
 \bK \tau^2 + \bD \sigma^2 &= \left(\bK h^2 + \bD(1-h^2)\right) \lambda\\
-                            &= \bV \lambda \label{eq:lmm_covar}
+                            &= \bV \lambda
 \end{align}
 % This parametrization implicitly uses the well-known narrow-sense heritability.
 % The compaction of the variance-covariance term was accomplished by the reparametrization,
@@ -200,8 +203,8 @@ The last step can be verified by:
   \bV \inv \bV \bV \inv     &= \bV \inv\\
   \bV \inv                  &= \bV \inv
 \end{align}
-
-Because $\by_r$ has identity covariance, it can be modeled with a linear model of the form:
+Because $\by_r$ has identity covariance, it can be modeled with a simple linear model (SLM).
+In particular, we choose to model it as:
 \begin{align}
     \by_r &\sim \N(\bX_r \bbeta_r, \, \bI \lambda_r) \label{eq:ols}
 \end{align}
@@ -212,9 +215,7 @@ The well-known ML estimates of $\bbeta_r$ and $\lambda_r$ are
     \widehat{\bbeta_r}    &= (\bX_r \T \bX_r) \inv \bX_r \T \by_r\\
     \widehat{\lambda_r}   &= \norm{(\bX_r \widehat{\bbeta_r} - \by_r)\T(\bX_r \widehat{\bbeta_r} - \by_r)}{2}
 \end{align}
-
-It can be shown that $\widehat{\bbeta_r} = \widehat{\bbeta}$ and $\widehat{\lambda_r} = \widehat{\lambda}$.
-
+For completeness, it should be shown that $\widehat{\bbeta_r} = \widehat{\bbeta}$ and $\widehat{\lambda_r} = \widehat{\lambda}$.
 \begin{align}
   \widehat{\bbeta_r}    &= (\bX_r \T \bX_r) \inv \bX_r \T \by_r\\
                         &= ((\bM \bX)\T (\bM \bX)) \inv (\bM \bX)\T \bM \by\\
@@ -222,7 +223,6 @@ It can be shown that $\widehat{\bbeta_r} = \widehat{\bbeta}$ and $\widehat{\lamb
                         &= (\bX\T \bV\inv \bX)\inv \bX\T \bV\inv \by\\
                         &= \widehat{\bbeta}
 \end{align}
-
 The OLS problem (\cref{eq:ols}) has log likelihood:
 \begin{align}
     \ell(\bbeta_r, \lambda_r; \bX_r, \by_r) 
@@ -245,7 +245,6 @@ The OLS problem (\cref{eq:ols}) has log likelihood:
           -\frac{1}{2\lambda_r}
           (\by-\bX\bbeta_r)\T \bV\inv (\by-\bX\bbeta_r)
 \end{align}
-
 Note that the likelihood of the OLS problem (\cref{eq:ols}) differs from that of the GLS problem by only a constant, $\frac{1}{2}\log|\bV|$.
 \begin{align}
   \ell(\bbeta_r, \lambda_r; \bX_r, \by_r) = \ell(\bbeta, \lambda; \bX, \by) -\frac{1}{2}\log|\bV|
@@ -259,7 +258,7 @@ thus, for fixed $h^2$ (and thus fixed $\bV$), these likelihoods reach their maxi
 This identity makes possible a strategy to use the LMM to conduct a GWAS.
 Specifically, by using Brent's method to optimize over $h^2$, and therefore using a fixed $h^2$ at each step, and using $\bM$ to fit the model by OLS rather than GLS at each step, the LMM can be rapidly fit to any $\bX$.
 But this procedure requires the ability to rapidly calculate $\bM$ and $\log \left| \bM \right|$, which we have thus far not addressed.
-In the following sections we address the calculation of $\bM$.
+In the following sections we address these issues.
 
 % This observation makes possible the following procedure for fitting the LMM to many genetic loci:
 % For a grid of values of $h^2$, calculate $\bV$ and $\log|\bV|$.
@@ -276,7 +275,7 @@ In the following sections we address the calculation of $\bM$.
 
 \citet{Kang2008} proposed the strategy for GWAS described above and proposed a value of $\bM$ that is computationally efficient and is valid when $\bD = \bI$.
 This advance was termed ``EMMA'', an acronym for efficient mixed-model analysis.
-Their approach used a slightly different, but mathematically equivalent, parameterization of the variance components, but we convert it into the $h^2, \lambda$ parameterization here for consistency with the rest of this chapter.
+Their approach used a slightly different, but mathematically equivalent, parameterization of the variance components, but we convert it into the $(h^2, \lambda)$ parameterization here for consistency with the rest of this chapter.
 The differences in parameterization do not change the likelihood of the model and do not influence any results.
 % and analytical derivatives of the likelihood with respect to...
 % [but used a slightly different parameterization]
@@ -291,7 +290,6 @@ where $\bLK$ and $\bUK$ are the eigenvalue matrix and eigenvector matrix of $\bK
 \subsection{Validity}
 It can be verified that $\bM_\text{hom} \T \bM_\text{hom} = \bV\inv$.
 First, compute a useful form of $\bV$ and $\bV\inv$.
-
 \begin{align}
   \bV &= h^2\bK + (1-h^2)\bI     \tageq{definition}\\
       &= h^2 \bUK \bLK \bUK\T + (1-h^2)\bI \tageq{eigen decomposition}\\
@@ -300,7 +298,6 @@ First, compute a useful form of $\bV$ and $\bV\inv$.
 \shortintertext{and thus,}
 \bV\inv &= \bUK \left(h^2 \bLK + (1 - h^2) \bI \right)\inv \bUK\T \tageq{inverse by eigen decomposition}
 \end{align}
-
 Then, we can verify the necessary equality.
 \begin{align}
   \bM \T \bM  &= \left(\left(h^2\bLK + (1-h^2)\bI\right)\neghalfpow \bUK \T \right)\T \left(\left(h^2\bLK + (1-h^2)\bI\right)\neghalfpow \bUK \T\right) \tageq{definition} \\
@@ -315,7 +312,6 @@ Then, we can verify the necessary equality.
 As described in \cref{sec:givenM}, $\log \left| \bV \right|$ is necessary to calculate the likelihood of the original model from the likelihood of the rotated model.
 In the case of $\bM_\text{hom}$ it is straightforward to calculate.
 The determinant of any matrix is equal to the product of its eigen values, so the log of the determinant is simply the sum of its eigen values.
-
 \begin{align}
   \log \left| \bV \right| = \sum_{i=1}^n{h^2 \lambda_Ki + (1 - h^2)}
 \end{align}
@@ -334,11 +330,9 @@ Here, I propose a multiplier matrix that yields all the speed up of the above tr
 \begin{align}
 	\bM &= (\bLL + \delta \bI)^{-\frac{1}{2}}\bUL\T \bD^{-\frac{1}{2}}\\
 \shortintertext{where}
-	\bL &= \bD^{-\frac{1}{2}}\bK \bD^{-\frac{1}{2}}\\
-\shortintertext{and}
-	\bL &= \bUL \bLL \bUL^T
+	\bL &= \bD^{-\frac{1}{2}}\bK \bD^{-\frac{1}{2}}
 \end{align}
-is its eigen decomposition
+where $\bLL$ and $\bUL$ are the eigenvalue matrix and eigenvector matrix of $\bL$, respectively.
 
 
 \subsection{Validity}
@@ -347,20 +341,8 @@ To be a valid multiplier matrix, $\bM$ must have the property:
 \begin{equation}
   \bM \T \bM = \bV\inv
 \end{equation}
-	
-
-
-% I verify this by showing that
-% \[
-% 	\bV \bM\T \bM = \bM\T \bM \bV = \bI
-% \]
-
-% I verify by direct calculation:
-
-
-
+To verify this equality, we begin by calculating a useful form of $\bV$ and $\bV\inv$.
 \begin{proof}
-First, derive a useful form of $\bV$.
 \begin{align}
 \bV &= \bK + \delta \bD                                                                                             \tageq{definition}\\
     &= \bD\halfpow \bD\neghalfpow (\bK + \delta \bD)                                                                \tageq{pre-multiply by $\bD\halfpow \bD\neghalfpow = \bI$}\\
@@ -372,14 +354,14 @@ First, derive a useful form of $\bV$.
     &= \bD\halfpow(\bUL \bLL \bUL \T + \delta \bUL \bUL \T)\bD\halfpow                                         			\tageq{property of eigen vectors}\\
     &= \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow                                                			\tageq{distributive property}
 \end{align}
-and invert it
+Given that form of $\bV$, a useful form of $\bV\inv$ is near.
 \begin{align}
 \bV\inv &= \left( \bD\halfpow\bUL (\bLL + \delta \bI) \bUL \T \bD\halfpow \right)\inv                                         \tageq{definition}\\
         &= \left( \bD\halfpow \right)\inv \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \left( \bD\halfpow \right)\inv   \tageq{inverse of product}\\
         &= \bD\neghalfpow \left( \bUL (\bLL + \delta \bI) \bUL\T \right)\inv \bD\neghalfpow                                   \tageq{inverse of diagonal matrix}\\
         &= \bD\neghalfpow \bUL (\bLL + \delta \bI)\inv \bUL\T  \bD\neghalfpow                                                 \tageq{inverse of eigen decomposition}
 \end{align}
-and compare to $\bM\T \bM$
+It is then straightforward to compare $\bV\inv$ with $\bM\T \bM$ to verify their equality.
 \begin{align}
 \bM \T \bM 	&= \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow 	\right)\T   \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow \right) \tageq{definition}\\
 			&= \left(\bD\neghalfpow \bUL (\bLL + \delta \bI)\neghalfpow 	\right)  \left((\bLL + \delta \bI)\neghalfpow \bUL\T \bD\neghalfpow		\right)          \tageq{transpose of product}\\
@@ -393,7 +375,6 @@ and compare to $\bM\T \bM$
 \subsection{Calculation of \texorpdfstring{$\log \left| \bV \right|$}{log(det(V))}}
 
 As with $\bM_\text{hom}$, the calculation of $\log \left| \bV \right|$ comes almost for free after calculating $\bM$.
-
 \begin{align}
   \bV                     &= \bD\halfpow \left( h^2\bL + (1-h^2)\bI \right) \bD\halfpow\\
   \log \left| \bV \right| &= \log \left( \left| \bD\halfpow \left( h^2\bL + (1-h^2)\bI \right) \bD\halfpow \right| \right)\\
@@ -408,7 +389,6 @@ At this point, the problem is reduced to two terms.
 The first is log of the determinant of a diagonal matrix, which is simply the sum of its elements.
 The second is the log of the determinant of a covariance matrix expressed in the same form as was present in the homoskedastic setting, simply with $\bL$ in place of $\bK$ and can be solved in the same way.
 Specifically,
-
 \begin{align}
   \log \left( \left| \bD \right| \right) &= \sum_{i = 1}^n{d_i}
 \shortintertext{and}
@@ -444,12 +424,17 @@ Specifically,
 %     		&= I
 % \end{align}
 
-\newpage
 \section{Simulation Results}
 
-It is expected that, when the weights are known by oracle, the weighted LMM should outperform the unweighted LMM in two ways.
-First, it should accurately control the FPR.
-And second, it should better discriminate between real and spurious signals.
+With the ability to rapidly fit the LMM with heteroskedastic residuals, it is important to test the properties of this testing procedure as compared to the existing procedure.
+It is to be expected that, when the residuals truly are homoskedastic and their variances are known by oracle, the heteroskedastic LMM should outperform the homoskedastic LMM in two ways.
+
+First, I have observed that, when the homoskedastic LMM is applied to data with heteroskedastic residuals, the false positive rate (FPR) is coverly inflated.
+Said another way, while the probability of observing a nominal $p$ value less than $c$ under the null should be $c$, in this scenario it is greater than $c$.
+Anti-conservative statistical behavior of this type can lead to false positive results and is deeply problematic.
+
+Second, by bringing the model into closer accord with the data generating process, more powerful tests should be possible.
+That is to say, in situations where the residuals are heteroskedastic, and the locus truly does influence the phenotype, the heteroskedastic LMM is expected to be more likely to be able to reject the null hypothesis than the homoskedastic LMM.
 
 
 \subsection{FPR Control}
