@@ -286,7 +286,7 @@ With the datasets simulated here, it takes 20 minutes to run 1000 bootstrap resa
     {
         Time taken to run \texttt{scanonevar.perm} on the data from \citet{Kumar2013} which contains 244 individuals and 582 loci, varying the number of permutations desired and the number of computer cores used.
         For a given number of cores, there is a linear relationship between number of permutations conducted and time required.
-        The slope the the line indicates time required per permutation and is dependent on the number of cores, ranging from $\approx$ 6.3 seconds per permutation with 4 cores to $\approx$ 1.2 second per permutation with 32 cores.
+        The slope the line indicates time required per permutation and is dependent on the number of cores, ranging from $\approx$ 6.3 seconds per permutation with 4 cores to $\approx$ 1.2 second per permutation with 32 cores.
     }
     \label{fig:benchmark_kumar}
 \end{figure}
@@ -309,7 +309,7 @@ The original genome scan is much faster, because it involves only a single scan,
 
 For the first benchmark, we ran \texttt{scanonevar.perm} on the data from \citet{Kumar2013} and \CortyReanalysisPaper, which contains 244 individuals and 582 loci, varying the number of permutations desired and the number of computer cores used.
 For a given number of cores, there is a linear relationship between number of permutations conducted and time required \autoref{fig:benchmark_kumar}.
-The slope the the line indicates time required per permutation and is dependent on the number of cores, ranging from $\approx$ 6.3 seconds per permutation with 4 cores to $\approx$ 1.2 second per permutation with 32 cores.
+The slope the line indicates time required per permutation and is dependent on the number of cores, ranging from $\approx$ 6.3 seconds per permutation with 4 cores to $\approx$ 1.2 second per permutation with 32 cores.
 
 For the second benchmark, we ran \texttt{scanonevar.perm} on simulated data, always conducting 1000 permutations and using 32 cores, but varying the number of individuals in the mapping population and the number of markers in the genome.
 For a given population size, there is a slightly supra-linear relationship between number of markers and time required \autoref{fig:benchmark_sim_cross}, which reflects a linear increase in the time taken to conduct the permuted genome scans, plus an increase in the time taken for ``bookkeeping'' tasks like organizing and reshaping genetic data.

@@ -741,7 +741,7 @@ We first used a traditional, linear modeling-based QTL analysis, with  sex and f
 Although sex was found not to be a statistically significant predictor of body weight ($p = 0.093$ by the likelihood ratio test with 1 degree of freedom), it was included in the mapping model because, based on the known importance of sex in determining body weight, any QTL that could only be identified in the absence of modeling sex effects would be highly questionable.
 Father was found to be a significant predictor of body weight in the baseline fitting of the SLM ($p = 9.6 \times 10^{-5}$ by the likelihood ratio test with 8 degrees of freedom) and therefore was included in the mapping model.
 % For each permuted scan, the maximum likelihood ratio was recorded and an extreme value density was fitted to the collection of per-permutaion maxima.
-% Likelihood ratios observed on the non-permuted data were adjusted to control family-wise error rate by mapping them through the the cumulative distribution function of the fitted extreme value density \citep{Dudbridge2004}[CompanionB].
+% Likelihood ratios observed on the non-permuted data were adjusted to control family-wise error rate by mapping them through the cumulative distribution function of the fitted extreme value density \citep{Dudbridge2004}[CompanionB].
 
 No associations rose above the threshold that controls family-wise error rate to 5\% (\autoref{fig:genome_scan_dglm}, green line).
 One region on the distal part of chromosome 11 could be considered ``suggestive'' with FWER-adjusted $p \approx 0.17$.
@@ -912,7 +912,7 @@ The weights therefore affect how much, relatively speaking, each data point cont
 In the DGLM, weights are informed by experimental covariates and the QTL genotype itself, as $w_i=e^{-v_i}$.
 In the SLM, unless weights are specified externally, there is no such mechanism for phenotype precision to be incorporated and so all weights equal 1. The improvement of the DGLM over the SLM and \Caom, therefore stems entirely from its greater ability to provide this additional information, and thereby give more credence to phenotype values that are expected to be more precise.
 
-This reweighting can be thought of has having two benefits in the the QTL mapping endeavor.
+This reweighting can be thought of has having two benefits in the QTL mapping endeavor.
 Geneticists are often rightly concerned about high leverage observations, which can cause to false positives.
 Less often acknowledged is that high leverage observations may also induce false negatives, disrupting an otherwise good statistical model fit.
 By bringing the data weights into alignment with their estimated residual variance, the DGLM addresses both of these concerns: by downweighting outliers from systematically noisy subgroups, it reduces the potential for false positives;
