@@ -448,40 +448,152 @@ That is to say, in situations where the residuals are heteroskedastic, and the l
 
 \subsection{Simulation Setup}
 
+I ran 10,000 null simulations, where no SNP directly influences the phenotype and 10,000 alternative simulations, where one genetic factor directly influence the phenotype.
+I will first describe the null simulations, with parameters that varied across simulations enclosed in curly brackets.
 
+Each simulation consisted of a population of size \{50, 100, 200\}.
+Genomes were simulated by forward simulation, starting with one haploid individual with 100 binary genetic factors.
+At each time $t$ a randomly chosen individual from the population asexually produced four offspring that were identical to the parent except for a random 15\% of the genome was mutated.
+This process continued until the desired population size was reached.
 
-\subsection{FPR Control}
+For each simulation, a phenotype was simulated to have narrow-sense heritability of \{0.1, 0.3, 0.5, 0.7, 0.9\}.
+The genetic contribution was simulated from a multivariate normal with covariance equal to the Manhattan distance between genomes.
+For homoskedastic simulations, the environmental contribution was simulated from a multivariate normal with identity covariance.
+For heteroskedastic simulations, the covariance was a diagonal matrix, where one fifth of the values were each of (0.25, 0.5, 1, 2, 4).
 
-wISAM has better FPR control.  Explain the example in detail and then refer to some of the panels in the megafigs.
+A genome scan was conducted on each simulated set of genomes and phenotypes using the linear model (LM), the gold-standard implementation of EMMA \citep{Kang2008}, which uses $\bM_\text{hom}$, my implementation of the EMMA algorithm, also using $\bM_\text{hom}$ (ISAM), and my implementation, using $\bM_\text{het}$ (wISAM).
 
-\begin{figure}
+The alternative simulations were identical to the null simulations except for the fact that individuals who have a 1 at the first genetic factor have 0.25 added to their phenotype value.
+
+\subsection{False positive rate (FPR) Control}
+
+I evaluated the FPR control of each test with quantile-quantile (QQ) plots that plot the sorted $p$ values against the quantiles of the uniform distribution.
+The ideal behavior of all tests under the null would result in a straight line, starting at the origin and having slope of 1.
+For an anti-conservative test, the realized $p$ values are ``too low'', and therefore the line on the QQ plot will be underneath the ideal line.
+For a conservative test, the realized $p$ values are ``too high'', and therefore the line on the QQ plot will be underneath the ideal line.
+
+\begin{figure}%{L}{0.5\textwidth}
   \centering
   \includegraphics[width = 0.5\textwidth]{images/exampleQQ.pdf}
-  \caption{explain this}
+  \caption[
+    Example quantile-quantile (QQ) plot.
+  ]
+  {
+    This quantile-quantile (QQ) plot of the $p$ values from all four tests shows that they all are anti-conservative and that the weighted ISAM, the only method to use $\bM_\text{het}$ is the least anti-conservative.
+  }
   \label{fig:exampleQQ}
 \end{figure}
 
+For example, the simulation with 100 organisms and $h^2 = 0.5$ showed that all four tests are anti-conservative and that the weighted ISAM, the only method to use $\bM_\text{het}$ is the least anti-conservative (\autoref{fig:exampleQQ}).
+The QQ plot shown in \autoref{fig:exampleQQ} is zoomed to the range [0, 0.01] in both the theoretical (horizontal) and realized (vertical) axis.
+I show the rest of the QQ plots with increasing zoom from the range [0, 1] to the range [0, 0.001] to show both the global behavior and the behavior in the zone that really matters for large scale analysis, the very small $p$ values.
+Given the large number of hypotheses that are tested in a GWAS and the multiple hypothesis testing corrections that must be made to account for the large number of hypotheses, the most relevant $p$-value cutoffs to evaluate are the very small ones.
+
+\autoref{fig:qqmegaplot1}, \autoref{fig:qqmegaplot2}, and \autoref{fig:qqmegaplot3} show the behavior of all four tests across all simulation scenarios.
+Some consistent patterns emerge.
+
+First, the higher the heritability and the larger the strain panel, the more anti-conservative is the LM.
+In the most extreme case (\autoref{fig:qqmegaplot3}, row 4, column 5), the observed $p$-values rise less than a hundredth of distance they are expected to over the interval [0, 0.001].
+Practically speaking, this observation implies that there is one $p$ value less than 0.001 out of every 10 tests, though should only be one out of every 1,000 tests.
+This pattern is present to varying degrees in traits with $h^2 \in {0.7, 0.9}$ for all panel sizes.
+
+Second, there is never any meaningful difference between EMMA and my unweighted ISAM implementation.
+This is consistent with a correct implementation, as these tests are theoretically identical.
+
+Third, the EMMA and ISAM tests are overly-conservative when applied to traits with low heritability, especially when few strains are used.
+The most extreme observation of this behavior can be seen in \autoref{fig:qqmegaplot1}, row 4, column 1.
+The observed $p$ values reach the top of the plot about half way across, indicating that there is one $p$ value less than 0.001 every approximately every 20,000 tests, though there should be one every 10,000 tests.
+This pattern is present to varying degrees for traits with $h^2 \in {0.1, 0.3}$ in a panel with 50 or 100 strains and for a trait with $h^2 = 0.1$ in a panel of 200 organisms.
+
+Finally, the EMMA and ISAM tests are anti-conservative when applied to traits with high heritability when few strains are used.
+In the most extreme case (\autoref{fig:qqmegaplot1}, row 4, column 5), the observed $p$-values rise about half the distance they are expected to over the interval [0, 0.001].
+This pattern indicates that there are two $p$-values less than 0.001 out of every 1,000 tests, while there should be only one.
+Said another way, there is one $p$-value less than 0.001 for every 5,00 tests, while there should be one every 1,000 tests.
+The weighted ISAM, the only test that uses $\bM_\text{het}$ rather than $\bM_\text{hom}$ rises to about three quarters of its expected height, indicating that there are about 1.5 $p$-values less than 0.001 out of every 1,000 tests, while there should be only one.
+This behavior is still not ideal, as there should be only 1 $p$-value less than 0.001 out of every 1,000 tests, but it is closer to ideal than the EMMA and ISAM tests, which use $\bM_\text{hom}$.
+
 \begin{sidewaysfigure}
-  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=50_nsnps=100_nsims=10000.pdf}
+  \centering
+  \includegraphics[width = 0.9\textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=50_nsnps=100_nsims=10000.pdf}
+  \caption[
+    QQ plots for simulations with 50 organisms in the mapping panel.
+  ]{
+    QQ plots for simulations with 50 organisms (or strains) in the mapping panel.
+    Heritability increases from left to right and zoom increases from top to bottom.
+    For traits with low and very low heritability (0.1 and 0.3), wISAM is uniquely resistant to overly conservative behavior.
+    For traits with high and very high heritability (0.7 and 0.9), wISAM is uniquely resistant to anti-conservative behavior.
+    For traits with heritability of 0.5, all tests have nearly-accurate FPR control.
+  }
+  \label{fig:qqmegaplot1}
 \end{sidewaysfigure}
 
 \begin{sidewaysfigure}
-  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=100_nsnps=100_nsims=10000.pdf}
+  \centering
+  \includegraphics[width = 0.9\textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=100_nsnps=100_nsims=10000.pdf}
+  \caption[
+    QQ plots for simulations with 100 organisms in the mapping panel.
+  ]{
+    QQ plots for simulations with 100 organisms (or strains) in the mapping panel.
+    Heritability increases from left to right and zoom increases from top to bottom.
+    For traits with low and very low heritability (0.1 and 0.3), wISAM is uniquely resistant to overly conservative behavior.
+    For traits with moderate and high heritability (0.5 and 0.7), wISAM is uniquely resistant to anti-conservative behavior.
+    For traits with heritability of 0.9, all LMM-based tests have nearly-accurate FPR control.
+  }
+  \label{fig:qqmegaplot2}
 \end{sidewaysfigure}
 
 \begin{sidewaysfigure}
-  \includegraphics[width = \textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=200_nsnps=100_nsims=10000.pdf}
+  \centering
+  \includegraphics[width = 0.9\textwidth]{images/2018-05-19alt_heterosked_sims_nstrain=200_nsnps=100_nsims=10000.pdf}
+  \caption[
+    QQ plots for simulations with 200 organisms in the mapping panel.
+  ]{
+    QQ plots for simulations with 200 organisms (or strains) in the mapping panel.
+    Heritability increases from left to right and zoom increases from top to bottom.
+    For traits with heritability of 0.1, wISAM is uniquely resistant to overly conservative behavior.
+    For traits with heritability of 0.3, all tests have nearly-accurate FPR control.
+    For traits with moderate to high heritability (0.5 to 0.7), wISAM is uniquely resistant to anti-conservative behavior.
+    For traits with heritability of 0.9, all LM-based tests have nearly-accurate FPR control.
+  }
+  \label{fig:qqmegaplot3}
 \end{sidewaysfigure}
 
 
 \subsection{Discrimination between real and spurious signals}
 
+Another important way to evaluate the behavior of the tests to compare their ability to discriminate real from spurious signals.
+Where FPR control under the null used only null simulations, this evaluation combines information from null and alternative simulations.
+To compare the discrimination of weighted and unweighted LMM-based tests, I compared their receiver operating characteristic (ROC) curves.
+
+This method of evaluation involves collecting test statistics from both null and alternative data and calculating, for each possible cutoff, the true positive rate and the false positive rate.
+For a cutoff, $c$, the true positive rate is the fraction of alternative that have a test statistic greater than the cutoff.
+Similarly, the false positive rate is the fraction of null simulations that have a test statistic greater than the cutoff.
+
+Two points are guaranteed to be in every ROC plot.
+If $\inf$ is used as the cutoff, no tests will be called positive, so both the true positive rate and the false positive rate will be 0 and thus (0, 0) is on every ROC curve.
+If $-\inf$ is used as the cutoff all tests will be called positive, so both the true positive rate and the false positive rate will be 1 and thus (1, 1) is on every ROC curve.
+For a test with no ability to discriminate between null and alternative simulations, the ROC curve progresses from (0, 0) to (1, 1) along a straight line with slope 1.
+For a test that perfectly discriminates between null and alternative simulations, the ROC curve progresses directly up from (0, 0) to (0, 1) and then directly to the right to (1, 1).
+Most tests have intermediate discrimination ability, between random guessing and perfect, so their ROC curve progresses through the upper left portion of the plot.
+The closer the ROC curve is to that of a perfect test, the better the test.
+
+ROC analysis exploring the entire parameter space describe for the FPR control under the null has not yet been completed.
+Here, I show the ROC curve that resulted for a study with $h^2 = 0.5$ and 100 organisms, the middle-of-the-road parameter set \autoref{fig:exampleROC}.
 \begin{figure}
   \centering
   \includegraphics[width = 0.5\textwidth]{images/roc_hetsked_100snps_1ksims_05h2_100strains.pdf}
-  \caption{explain this}
+  \caption[
+    Receiver operating characteristics (ROC) curve for a GWAS with 100 organisms on a trait with $h^2 = 0.05$.
+  ]
+  {
+    Receiver operating characteristics (ROC) curve for a GWAS with 100 organisms on a trait with $h^2 = 0.05$.
+    The ROC curve for the weighted ISAM is superior to that of the other LMM-based methods and the LM.
+  }
   \label{fig:exampleROC}
 \end{figure}
 
 
 \section{Software}
+
+I implemented a linear mixed model fitter that can handle heteroskedastic residual variance using the method described in this chapter.
+This software is freely available on github at \url{https://github.com/rcorty/wISAM} and on CRAN at \url{CRANURL}.
