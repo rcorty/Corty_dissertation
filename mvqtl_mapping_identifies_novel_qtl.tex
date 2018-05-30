@@ -1,6 +1,10 @@
 \chapter{Mean-Variance QTL Mapping Identifies Novel QTL for Circadian Activity and Exploratory Behavior in Mice}
 \label{chap:mvqtl_reanalyses}
 
+\section{Introduction}
+
+Here we demonstrate, with two real data examples available from the Mouse Phenome Database \citep{Bogue2015}, that QTL mapping using the DGLM, which we term ``mean-variance QTL mapping'' largely replicates the results of standard QTL mapping and detects additional QTL that the traditional analysis does not.
+
 \section{Statistical Methods}
 
 \subsection{Traditional QTL mapping based on the standard linear model (SLM)}
@@ -39,7 +43,7 @@
 
     The evidence for a QTL association is now defined through three distinct model comparisons, corresponding to testing for an mQTL, a vQTL, or an mvQTL.
     In each case, the fit of the ``full'' model in \autoref{eq:dglm_full} is compared with that of a different fitted null: for the mQTL test, the null model omits the QTL effects on the mean (\ie, $\beta_a=\beta_d=0$); for the vQTL test, the null model omits the QTL effects on the variance (\ie, $\gamma_a=\gamma_d=0$); and for the mvQTL test, the null model omits QTL effects on both mean and variance (\ie, $\beta_a=\beta_d=\gamma_a=\gamma_d=0$).
-    These tests are detailed in \CortyMethodsPaper.
+    These tests are detailed in \autoref{chap:bvh}.
 
 
 \subsection{Genomewide significance and FWER-adjusted p-values}
@@ -49,7 +53,7 @@ These LR statistics are converted to $p$-values that are adjusted for the family
 This adjustment is performed separately for each test by calculating an empirical distribution for the LR statistic under permutation, much in the spirit of \citet{Churchill1994} but with some modifications, namely that different tests have differently structured permutations.
 Briefly, let $G_i$ be the full set of genetic information for individual $i$, that is, the genotypes or genotype probabilities across all loci.
 For the SLM and mvQTL tests, we define a permutation as randomly shuffling the $G_i$'s across individuals; for the mQTL test, the permutations apply this shuffle only to the genotype information in the full model's mean component; for the vQTL test, the permutations apply the shuffle only to the genotype information in the full model's variance component.
-For a given test, for each permutation we calculate LR statistics across the genome and record the maximum; the maxima of over all permutations is fitted to a generalized extreme value distribution, and the upper tail probabilities of this fitted distribution are used to calculated the FWER-adjusted $p$-values for the LR statistics in the unpermuted data [see \citealt{Dudbridge2004}, and, \eg, \citealt{Valdar06cc}; more details in \CortyMethodsPaper].
+For a given test, for each permutation we calculate LR statistics across the genome and record the maximum; the maxima of over all permutations is fitted to a generalized extreme value distribution, and the upper tail probabilities of this fitted distribution are used to calculated the FWER-adjusted $p$-values for the LR statistics in the unpermuted data [see \citealt{Dudbridge2004}, and, \eg, \citealt{Valdar06cc}; more details in \autoref{chap:bvh}].
 An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the probability of observing an association statistic this large or larger in a genome scan of a phenotype with no true associations.
 
 \subsection{Data Availability}
@@ -359,13 +363,13 @@ An FWER-adjusted $p$-value can be interpreted straightforwardly: it is the proba
 
     In summary, we advocate for the use of mean-variance QTL mapping not as an additional flourish to consider after conducting an SLM-based QTL mapping effort, but rather as a drop-in replacement.
     This approach should not be too alien --- when variance heterogeneity is absent, it simplifies to the well-known SLM-based approach.
-    Full-featured software that implements this approach is described in a companion article (\CortyRPaper).
+    Full-featured software that implements this approach is described in \autoref{chap:package_vqtl}.
 
     Lastly, we note an additional benefit conferred by mean-variance QTL mapping not discussed in depth here.
     Variance heterogeneity can also derive from factors acting in the ``background'', that is, arising from experimental or biological variables that are outside the main focus of testing but that nonetheless predict phenotypic variability and thereby inform the relative precision of one individual's phenotype over another.
     In the case studies presented here, the only background factor considered was sex.
     But, more generally, any factor that a researcher considers as a potentially important covariate that should be modeled can be included not only as a mean covariate (as with the SLM) but also as a variance covariate.
-    In a companion article, we describe how accommodating such background factors can deliver additional power to detect mQTL, vQTL, and mvQTL (\CortyMethodsPaper).
+    In \autoref{chap:bvh}, we describe how accommodating such background factors can deliver additional power to detect mQTL, vQTL, and mvQTL.
 
 
 \FloatBarrier

@@ -52,14 +52,14 @@ Specifically, they are modeled hierarchically as
 where $\bK$ is a known, positive semi-definite genomic similarity matrix, and $\bD$ is a known, diagonal residual variance matrix.
 The scale parameters, $\tau^2$ and $\sigma^2$, are constrained only to be non-negative.
 
-To conduct a GWAS, the LMM is fit to each polymorphic genetic variant, using $\bG$ to encode the locus design matrix and testing whether $\balpha = \bm{0}$.
-If $\balpha \neq \bm{0}$, the locus is a QTL.
-Here, we use the likelihood ratio test (LRT) to test how likely the observed difference between $\widehat{\balpha}$ and $\bm{0}$ is, due to chance alone.
+To conduct a GWAS, the LMM is fit to each polymorphic genetic variant, using $\bG$ to encode the locus design matrix and testing whether $\balpha = \boldmath{0}$.
+If $\balpha \neq \boldmath{0}$, the locus is a QTL.
+Here, we use the likelihood ratio test (LRT) to test how likely the observed difference between $\widehat{\balpha}$ and $\boldmath{0}$ is, due to chance alone.
 
 In this context, the LRT requires ``fitting'' both a null and alternative version of the LMM, where the term ``fitting'' is shorthand for calculating the maximum likelihood value of all parameters and calculating the likelihood of the model at those parameter estimates.
 The relevant alternative model is written in \cref{eq:lmm} and the relevant null model is identical except it excludes the term $\bG\balpha$.
 
-% Two statistical tests used to determine whether $\balpha = \bm{0}$, the $t$ test and the likelihood ratio test (LRT), require computation of the values of the parameters that maximize the likelihood of the data.
+% Two statistical tests used to determine whether $\balpha = \boldmath{0}$, the $t$ test and the likelihood ratio test (LRT), require computation of the values of the parameters that maximize the likelihood of the data.
 \citet{Henderson1984} described a suite of procedures for fitting the LMM in a variety of situations, but Henderson's methods are of limited use in QTL mapping because they are computationally slow.
 His focus was on estimation of breeding values ($\ba$ in \cref{eq:lmm}), which is useful for livestock improvement breeding programs, so the model only needed to be fit once, to one design matrix, and speed was not a primary concern.
 % Therefore, Henderson's methods are not of great use in the context of QTL mapping, where each putative QTL demands its own maximum likelihood model fit.
@@ -553,7 +553,7 @@ This behavior is still not ideal, as there should be only 1 $p$-value less than 
     For traits with heritability of 0.1, wISAM is uniquely resistant to overly conservative behavior.
     For traits with heritability of 0.3, all tests have nearly-accurate FPR control.
     For traits with moderate to high heritability (0.5 to 0.7), wISAM is uniquely resistant to anti-conservative behavior.
-    For traits with heritability of 0.9, all LM-based tests have nearly-accurate FPR control.
+    For traits with heritability of 0.9, all LLM-based tests have nearly-accurate FPR control.
   }
   \label{fig:qqmegaplot3}
 \end{sidewaysfigure}
@@ -595,5 +595,6 @@ Here, I show the ROC curve that resulted for a study with $h^2 = 0.5$ and 100 or
 
 \section{Software}
 
-I implemented a linear mixed model fitter that can handle heteroskedastic residual variance using the method described in this chapter.
-This software is freely available on github at \url{https://github.com/rcorty/wISAM} and on CRAN at \url{CRANURL}.
+I implemented a linear mixed model fitter that can handle heteroskedastic residual variance using the method described in this chapter in \texttt{R} package \texttt{wISAM}.
+This package is tailored to conduct GWAS using the heteroskedastic LMM.
+It is freely available on github at \url{https://github.com/rcorty/wISAM} and on CRAN at \url{ https://CRAN.R-project.org/package=wISAM}.

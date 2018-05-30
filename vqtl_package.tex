@@ -1,6 +1,16 @@
 \chapter{\texttt{vqtl}: An \texttt{R} package for Mean-Variance QTL Mapping}
 \label{chap:package_vqtl}
 
+\section{Introduction}
+
+Here, we provide a practical guide to using the \texttt{R} package \texttt{vqtl}, which implements mean-variance QTL mapping.
+First, to generate illustrative data, we simulate an F2 intercross and four phenotypes: one phenotype determined entirely by random noise, and one with each of the three kinds of QTL.
+On each phenotype we then conduct a genome scan using standard approximations to interval mapping \citep{Lander1989a,Martinez1992}, and mean-variance QTL mapping, which includes a test for mQTL, a test for vQTL, and a test for mvQTL.
+The association statistics of all four tests are then initially plotted in LOD score units, with drawbacks of this plotting unit discussed.
+Permutation scans are used to determine empirically adjusted $p$-values, and plotting in these units is shown to to make the results of the four tests more comparable.
+Last, we describe plots to communicate the effects that led to the detection of a QTL, and use the bootstrap to estimate its confidence interval.
+
+
 \section{Example data: Simulated F2 Intercross}
 
 To illustrate the use of the \texttt{vqtl} package, we first simulated an example F2 intercross using the popular \texttt{R/qtl} package \citep{Broman2003}, on which \texttt{vqtl} is based.
@@ -79,12 +89,12 @@ The $p$-value, which is comparable between different types of tests, transforms 
 % With this example dataset, it takes five seconds to run one genome scan on a Intel Core i5.
 
 The $p$-values described above, however, are nominal: they do not take into account multiple testing across the genome.
-\RC{
+% \RC{
     They also rely on asymptotic theory that assumes the underlying phenotype being residually normal; this may not always be the case and when violated will lead to inflated significance.
-}{
-    Could change this to read ``They also rely on the alternative model being exactly true; severe model misspecification is severe this can lead to inflated statistics.''
-    Would be more accurate, but I don't know the rules with regards to things the reviewer didn't mention.
-}
+% }{
+%     Could change this to read ``They also rely on the alternative model being exactly true; severe model misspecification is severe this can lead to inflated statistics.''
+%     Would be more accurate, but I don't know the rules with regards to things the reviewer didn't mention.
+% }
 
 More robust $p$-values that are corrected for genomewide significance via control of the family-wise error rate (FWER) can be obtained empirically, through a permutation procedure described below.
 
@@ -118,7 +128,7 @@ More robust $p$-values that are corrected for genomewide significance via contro
     \label{fig:empir_p_scans}
 \end{figure}
 
-To calculate the empirical, FWER-controlled $p$-value of each test at each locus we advocate use of a permutation procedure [\CortyMethodsPaper].
+To calculate the empirical, FWER-controlled $p$-value of each test at each locus we advocate use of a permutation procedure (\autoref{chap:bvh}).
 Like previous work on permutation-based thresholds for genetic mapping \citep{Churchill1994,Carlborg2002}, this procedure sidesteps the need to explicitly estimate the effective number of tests.
 
 In brief, this approach involves conducting many genomes scans on pseudo-null data generated through permutation to maintain as much of the character of the data as possible, while breaking the tested phenotype-genotype association.
@@ -307,7 +317,7 @@ With the datasets simulated here, it takes 20 minutes to run 1000 bootstrap resa
 By far, the most computationally-intensive step in the mean-variance QTL mapping process is the assessment of genome-wide statistical significance by permutation.
 The original genome scan is much faster, because it involves only a single scan, and the bootstrap is much faster because it involves only a single chromosome.
 
-For the first benchmark, we ran \texttt{scanonevar.perm} on the data from \citet{Kumar2013} and \CortyReanalysisPaper, which contains 244 individuals and 582 loci, varying the number of permutations desired and the number of computer cores used.
+For the first benchmark, we ran \texttt{scanonevar.perm} on the data from \citet{Kumar2013} and \autoref{chap:mvqtl_reanalyses}, which contains 244 individuals and 582 loci, varying the number of permutations desired and the number of computer cores used.
 For a given number of cores, there is a linear relationship between number of permutations conducted and time required \autoref{fig:benchmark_kumar}.
 The slope the line indicates time required per permutation and is dependent on the number of cores, ranging from $\approx$ 6.3 seconds per permutation with 4 cores to $\approx$ 1.2 second per permutation with 32 cores.
 
@@ -362,8 +372,8 @@ Computationally, the software could be changed to run on a computer cluster, rat
 
 We have demonstrated typical usage of the \texttt{R} package \texttt{vqtl} for mean-variance QTL mapping in an F2 intercross.
 This package is appropriate for crosses and phenotypes where genetic factors or covariates or are known or suspected to influence phenotype variance.
-In the case of genetic factors, they can be mapped, as illustrated in one companion article (\CortyReanalysisPaper).
-In the case of covariates, they can be accommodated, which can increase power and improve false positive rate control, as illustrated in another companion article (\CortyMethodsPaper).
+In the case of genetic factors, they can be mapped, as illustrated in \autoref{chap:mvqtl_reanalyses}.
+In the case of covariates, they can be accommodated, which can increase power and improve false positive rate control, as illustrated in \autoref{chap:bvh}.
 
 \section{Resources}
 The scripts used to simulate genotypes and phenotypes, conduct the genome scans, and plot the results are available as a public, static Zenodo repository at \url{DOI: 10.5281/zenodo.1173799}.

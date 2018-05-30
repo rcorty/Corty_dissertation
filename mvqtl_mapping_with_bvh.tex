@@ -3,7 +3,16 @@
 
 \section{Introduction}
 
-
+Here we examine the effect of modeled and unmodeled BVH on power and false positive rate when mapping QTL affecting the mean, the variance or both.
+In doing so we:
+\begin{enumerate}
+\item Develop a robust, straightforward procedure and software based on the DGLM that can be used for routine mQTL and vQTL analysis;
+\item Compare alternative proposed methods for mQTL and vQTL analysis;
+\item Show how incorporating BVH can improve power for detecting mQTL and vQTL;
+\item Show how sensitivity to model assumptions can be rescued by variable transformation and/or permutation. 
+\item Illustrate the effect of modeling BVH in existing dataset, an F2 cross from Leamy et al, and discover a new QTL for bodyweight.
+\end{enumerate}
+% In two companion papers, we describe an R package \texttt{vqtl} implementing our procedure (\CortyRPaper), and in \CortyReanalysisPaper apply it to two published QTL mapping experiments detecting a novel mQTL in one and a novel vQTL in the other.
 
 \section{Statistical Methods}
 
@@ -1035,10 +1044,10 @@ Nonetheless, where normality approximately holds, whether as given or after a si
     All observations have standard deviation 1.
 
     \paragraph{vQTL in the absence of BVH:}
-    The genotype-wise standard deviations implied by the additive effect of 0.17 on the log standard deviation are approimately: [0.84, 1.00, 1.19].
+    The genotype-wise standard deviations implied by the additive effect of 0.17 on the log standard deviation are approximately: [0.84, 1.00, 1.19].
 
     \paragraph{mvQTL in the absence of BVH:}
-    The genotype-wise standard deviations implied by the additive effect of 0.14 on the log standard deviation are approimately: [0.87, 1.00, 1.15].
+    The genotype-wise standard deviations implied by the additive effect of 0.14 on the log standard deviation are approximately: [0.87, 1.00, 1.15].
 
     \paragraph{null locus and mQTL in the presence of BVH:}
     The covariate-wise standard deviations implied by the effects of [-0.4, -0.2, 0, 0.2, 0.4] on the log standard deviation are approximately:  [0.67, 0.82, 1.00, 1.22, 1.49].
@@ -1122,7 +1131,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
           \centering
           \includegraphics[height = 4.5cm]{images/rocs_vqtl_all_facet_by_test.pdf}
           \caption{
-          Levene's test accurately conrols FPR in all scenarios.\Caov and \DGLMv have inflated FPR in the presence of BVH of uknnown source.
+          Levene's test accurately controls FPR in all scenarios.\Caov and \DGLMv have inflated FPR in the presence of BVH of unknown source.
           \DGLMv's RINT and residperm versions are anti-conservative in the presence of BVH of known source.}
       \vspace*{1cm}
       \end{subfigure}
@@ -1131,7 +1140,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
           \includegraphics[height = 4.5cm]{images/rocs_vqtl_all_facet_by_bvh.pdf}
           \caption{
           In the absence of BVH, \Lev is less powerful than \Caov and \DGLMv.
-          In the face of BVH of uknown source, all tests suffer decreased power, except \DGLMv's standard version, which fails to accurately control FPR.
+          In the face of BVH of unknown source, all tests suffer decreased power, except \DGLMv's standard version, which fails to accurately control FPR.
           In the scenario with BVH of known source, \DGLMv recovers most of the power lost with introduction of BVH, but its RINT and residperm versions are anti-conservative.
           }
       \vspace*{1cm}
@@ -1141,7 +1150,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
           \includegraphics[height = 4.5cm]{images/rocs_vqtl_all_facet_by_eval.pdf}
           \caption{
           The only version of \DGLMv that accurately controls FPR across all BVH scenarios is locusperm.
-          Its standard version is anticonservative in the presence of BVH of unknown source and its RINT and residperm versions are conservative in the presence of BVH of known source.
+          Its standard version is anti-conservative in the presence of BVH of unknown source and its RINT and residperm versions are conservative in the presence of BVH of known source.
           }
       \end{subfigure}
       \caption[
@@ -1160,7 +1169,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
           \centering
           \includegraphics[height = 4.5cm]{images/rocs_mvqtl_all_facet_by_test.pdf}
           \caption{
-          \Caomv and \DGLMmv both suffer a decrease in discrimiation (down and right shift of ROC curve) in the presence of BVH of unknown (or unmodeled) source.
+          \Caomv and \DGLMmv both suffer a decrease in discrimination (down and right shift of ROC curve) in the presence of BVH of unknown (or unmodeled) source.
           Only \DGLMmv can accommodate the source when it is known and therefore can achieve superior discrimination in that case.
           The standard and locusperm versions of \DGLMmv accurately control FPR.
           }
@@ -1171,7 +1180,7 @@ Nonetheless, where normality approximately holds, whether as given or after a si
           \includegraphics[height = 4.5cm]{images/rocs_mvqtl_all_facet_by_bvh.pdf}
           \caption{
           In the absence of BVH, both mvQTL tests accurately control FPR and have similar power.
-          In the presence of BVH of uknown source, the standard version of both mvQTL tests is anti-conservative and the other three versions maintain FPR control but suffer a decrease in power compared to the no-BVH scenario.
+          In the presence of BVH of unknown source, the standard version of both mvQTL tests is anti-conservative and the other three versions maintain FPR control but suffer a decrease in power compared to the no-BVH scenario.
           Only \DGLMmv can incorporate information on the BVH-driving covariate.
           It achieves increased power and accurately controls FPR in its standard and locusperm versions and is conservative in its RINT and locusperm versions.
           }
@@ -1450,31 +1459,31 @@ Nonetheless, where normality approximately holds, whether as given or after a si
       \centering
       \includegraphics[width = 0.9\textwidth]{images/scan_dglm_bw12d.pdf}
       \caption{Genome scan for bodyweight at twelve days}
-      \label{fig:bw12d_cao_scan}
+      \label{fig:bw12d_dglm_scan}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
       \centering
       \includegraphics[width = 0.9\textwidth]{images/scan_dglm_bw3wk.pdf}
       \caption{Genome scan for bodyweight at three weeks}
-      \label{fig:bw3wk_cao_scan}
+      \label{fig:bw3wk_dglm_scan}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
       \centering
       \includegraphics[width = 0.9\textwidth]{images/scan_dglm_bw6wk.pdf}
       \caption{Genome scan for bodyweight at six weeks}
-      \label{fig:bw6wk_cao_scan}
+      \label{fig:bw6wk_dglm_scan}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
       \centering
       \includegraphics[width = 0.9\textwidth]{images/scan_dglm_scfat12wk.pdf}
       \caption{Genome scan for subcutaneous fat pad thickness at twelve weeks}
-      \label{fig:scfat12wk_cao_scan}
+      \label{fig:scfat12wk_dglm_scan}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
       \centering
       \includegraphics[width = 0.9\textwidth]{images/scan_dglm_gfat12wk.pdf}
       \caption{Genome scan for gonadal fat pad thickness at twelve wees}
-      \label{fig:gfat12wk_cao_scan}
+      \label{fig:gfat12wk_dglm_scan}
     \end{subfigure}
     \caption{
       Genome scans conducted with the DGLM, accounting for effects of sex and father on variance.
