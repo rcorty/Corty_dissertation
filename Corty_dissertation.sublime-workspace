@@ -317,7 +317,7 @@
 	],
 	"find":
 	{
-		"height": 33.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -842,7 +842,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 33.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -899,7 +899,7 @@
 	"project": "Corty_dissertation.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1150,9 +1150,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "def",
+		"last_filter": "packa",
 		"selected_items":
 		[
+			[
+				"packa",
+				"~/Dropbox (ValdarLab)/Aim1/Package_vqtl_manuscript/package_vqtl.sublime-project"
+			],
 			[
 				"def",
 				"~/Dropbox (ValdarLab)/Corty_defense/Corty_defense.sublime-project"

@@ -8,7 +8,7 @@ They are united in their goal and the general process by which they seek to achi
 
 All approaches to genetic mapping involve the collection of phenotype and genotype information on a population of organisms and a statistical analysis to test for associations between the phenotype and each measured, polymorphic locus of the genome.
 This endeavor is motivated by the belief that the vast majority of the genome, say greater than 99\%, does not have any appreciable effect on the phenotype, so a successful genetic mapping experiment allows researchers interested in the phenotype to focus their efforts on the small section of the genome that does have an effect.
-Thus, a successful genetic mapping effort results in a partition the genome into a large part with no appreciable effect on the trait of interest, and a small part believed with a high degree of certainty to influence the phenotype.
+Thus, a successful genetic mapping effort results in a partition of the genome into a large part with no appreciable effect on the trait of interest, and a small part believed with a high degree of certainty to influence the phenotype.
 
 The three general approaches to genetic mapping are:
 \begin{enumerate*}
@@ -17,32 +17,36 @@ The three general approaches to genetic mapping are:
 	\item association mapping.
 \end{enumerate*}
 I'll briefly review these approaches and some examples of how each has been productively applied.
-\subsection{Linkage Analysis} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Elston1971,Haseman1972}.
-	It is based on a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual and everyone has been genotyped across a sparse panel of markers.
-	Examples of successful applications of linkage analysis are Mendelian disease phenotypes like Duchenne muscular dystrophy, \citep{Brown1985,Murray1982} cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985} and ataxia-telangiectasia \citep{Gatti1988}.
-	In the last decade, as denser marker panels have become available and many of the high-prevalence, near-Mendelian traits have been mapped, linkage analysis has receded in prominence.
+
+
+\paragraph{Linkage Analysis} is most useful for traits where one or a few genetic factors are expected to exert a large effect \citep{Elston1971,Haseman1972}.
+It is based on a large collection of families with a few individuals per family, where each family must have at least one affected and one unaffected individual and everyone has been genotyped across a sparse panel of markers.
+Examples of successful applications of linkage analysis are Mendelian disease phenotypes like Duchenne muscular dystrophy, \citep{Brown1985,Murray1982} cystic fibrosis \citep{Tsui1985,Wainwright1985,White1985} and ataxia-telangiectasia \citep{Gatti1988}.
+In the last decade, as denser marker panels have become available and many of the high-prevalence, near-Mendelian traits have been mapped, linkage analysis has receded in prominence.
 	
 
-\subsection{Linkage disequilibrium mapping} involves an experimental population of model organisms where the pattern of descent from a reference population can be inferred.
-	For that reason, it is only possible in model organisms, livestock, and some crops --- but never in humans.
-	Strengths this approach include the tight control their environmental exposures and the opportunity to deeply and invasively measure phenotypes.
-	Two of the most classic designs, the F2 intercross and backcross, mimic the pedigrees of human linkage mapping, but rather than using many families with a few individuals per family, they create a single family with hundreds of siblings \citep{Lynch1998,Lander1987,Lander1989a}.
-	Because these designs restrict the total genetic variation to only two parental haplotypes, rather than the vast number of haplotypes represented in a collection of human families, they are able to detect smaller effects.
+\paragraph{Linkage disequilibrium mapping} involves an experimental population of organisms where the pattern of descent from a reference population can be inferred.
+For that reason, it is only possible in model organisms, livestock, and some crops --- but never in humans.
+Strengths of this approach include the tight control of environmental exposures and the opportunity to deeply and invasively measure phenotypes.
+Two of the most classic designs, the F2 intercross and backcross, mimic the pedigrees of human linkage mapping, but rather than using many families with a few individuals per family, they create a single family with hundreds of siblings \citep{Lynch1998,Lander1987,Lander1989a}.
+Because these designs restrict the total genetic variation to only two parental haplotypes, rather than the vast number of haplotypes represented in a collection of human families, they are able to detect smaller effects and are not restricted to analyze mono- or oligo-genic traits in the way that linkage analysis is.
 
-	Modern efforts toward model organism LD mapping have made prominent use of more elaborate breeding designs, most prominently multi-parental outbred populations \citep{Ghazalpour2012b,Svenson2012a} and multi-parental genetic reference populations \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
+Modern efforts toward model organism LD mapping have made prominent use of more elaborate breeding designs, most prominently multi-parental outbred populations \citep{Ghazalpour2012b,Svenson2012a} and multi-parental genetic reference populations \citep{TheComplexTraitConsortium2004,MacKay2012,King2012} as well as in commercially-important crops \citep{McMullen2009,Bandillo2013}.
+These designs use a larger number of parental haplotypes and therefore explore a larger space of possible genetic effects than classic designs like F2's and backcrosses.
+In this way, multi-parental populations designed for LD mapping strike a middle ground between classical designs and association analysis, which I discuss below.
 
 
-\subsection{Association mapping (GWAS)} is based on a large population of individuals with no particular genetic relationship.
-	Because no breeding is required, it can be conducted in human populations.
-	It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh} and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
-	Each genetic locus is tested for association with the phenotype after a correction is made for global genetic similarity between individuals \citep{Lippert2011,Zhou2012}.
+\paragraph{Association mapping (GWAS)} is based on a large population of individuals with no particular genetic relationship.
+Because no breeding is required, it can be conducted in human populations.
+It is most appropriate for traits where many genetic factors are thought to exert an effect, like body mass index \citep{Speliotes2010,Locke2015} and height \citep{Allen2010,Wood2014-fh} and psychiatric conditions like schizophrenia \citep{Ripke2014a} and depression \citep{PGC2017}.
+Each genetic locus is tested for association with the phenotype after a correction is made for global genetic similarity between individuals \citep{Lippert2011,Zhou2012}.
 
-	% Because of the complex relationships within a large population of humans, a dense marker map [is required to 
+% Because of the complex relationships within a large population of humans, a dense marker map [is required to 
 
-\subsection{Association mapping in model organisms} uses a panel of inbred organisms with no particular genetic relationship to conduct a study similar to a human GWAS.
-	This study design combines the strengths of model organism experiments (the tight control of environmental exposures and the ability to make invasive measurements) with the ability to observe replicates from each genome \citep{Payseur2007a,Kang2008,Kirby2010a}.
-	One important strength of a study design that allows multiple observations of the same genotype is that it allows for very precise measurement of the average phenotype that results from a given genotype because that genotype can be observed arbitrarily-many times.
-	Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals \citep{Falconer1965,Lynch1998}.
+\paragraph{Association mapping in model organisms} uses a panel of inbred organisms with no particular genetic relationship to conduct a study similar to a human GWAS.
+This study design combines the strengths of model organism experiments (the tight control of environmental exposures and the ability to make invasive measurements) with the ability to observe replicates from each genome \citep{Payseur2007a,Kang2008,Kirby2010a}.
+One important strength of a study design that allows multiple observations of the same genotype is that it allows for very precise measurement of the average phenotype that results from a given genotype because that genotype can be observed arbitrarily-many times.
+Additionally, it allows for direct quantification of environmental variance, which is confounded with genetic variance in any population without genetically-identical individuals \citep{Falconer1965,Lynch1998}.
 
 % \end{enumerate}
 % Similarly, association mapping can be divided into two categories:
@@ -87,7 +91,7 @@ The standard deviation has the property that it is on the same scale as the phen
 
 \section{Sources of Variance}
 
-It is important to recognize all potential sources of variance in a QTL mapping population.
+It is important to recognize all potential sources of variance in a population in which a genetic mapping study will be conducted.
 Understanding genetic parameters such as broad sense and narrow sense heritability, the percentage of variance explained by aggregate additive, dominance, and epistatic effects yields valuable insights into the ``genetic architecture'' of the trait.
 Understanding the effect of sex, bodyweight, and nuisance covariates such as housing, diet, and experimenter can help scientists design more efficient experiments \citep{Nettleton2006,Datta2014}.
 I'll begin by reviewing sources of variance in measurements made on a single organism.
@@ -212,12 +216,12 @@ Here, all the same effects described above could be present, and additionally a 
 In fact, this is the reasoning that underlies the vast majority of QTL mapping efforts.
 Any genetic locus where researchers conclude with high statistical certainty that the proportion of phenotype variance explained by the locus is not zero constitutes a QTL \citep{Broman2009,Broman2010}.
 
-Having considered thoroughly many possible sources of variance, I turn next to concept that not all organisms are influenced by them to equal extent.
+Having considered thoroughly many possible sources of variance, I turn next to the concept that not all organisms are influenced by them to equal extent.
 
 \section{Variance Heterogeneity}
 
 % The fundamental concept of variance heterogeneity is the recognition that not all measurements are influenced by all sources of variance to an equal extent.
-Conceptually, any of the sources of variance described above could contribute more or less to any one measurement and any factor could determines how much a given source of variance contributes.
+Conceptually, any of the sources of variance described above could contribute more or less to any one measurement and any factor could determine how much a given source of variance contributes.
 This situation is termed ``variance heterogeneity''.
 The measurements could all end up with the same variance, and it's simply partitioned differently according to sources.
 Or they could end up with different total variance.
@@ -225,7 +229,7 @@ Or they could end up with different total variance.
 Despite this reality, most genetics studies impose strong assumptions about the nature of phenotype variation.
 They use statistical models that assume that each measurement has an equal quantity of variance from each source.
 To put a concrete example to that statement, the statistical analysis most commonly used in LD mapping of an F2 intercross or backcross assumes that the residual variance is constant across all individuals.
-In this study design, the ``residual variance'' is the sum of all within-individual sources of variance described above, the genomic variance arising from genetic factors other than the focal locus, locus-by-genome interactions, and locus-by-micro-environment interactions.
+In this study design, the ``residual variance'' is the sum of all within-individual sources of variance described above, the genomic variance arising from genetic factors other than the locus currently being tested (which I term the ``focal locus''), locus-by-genome interactions, and locus-by-micro-environment interactions.
 So the assumption is equivalent to the belief that, across all organisms in the mapping population, that sum is equal.
 
 Other study designs that are often analyzed with the assumption of homogeneous variance include pedigree analysis to determine breeding values and heritability, inbred strain association mapping, and human GWAS.
@@ -247,7 +251,7 @@ Family-based designs cannot disentangle these two sources of variance, but they 
 For example, genomic effects on phenotype variance have been documented in cattle \citep{Visscher1992-ka,Mulder2008-pr,Fasoula2012-ji}, dairy cow \citep{clay1979heterogeneity}, pigs \citep{Ibanez-Escriche2008}, chickens \citep{Rowe2006}, snails \citep{Ros2004}.
 
 Other studies have documented a heterogeneity of phenotype variance across inbred strains, which can only be caused by differences in micro-environmental variation.
-Theses studies have documented this phenomenon in \textit{Drosophila melanogaster} \citep{Mackay2005,Mackay2005}, \textit{Arabidopsis thaliana} \citep{Hall2007}, and crops \citep{Walsh2017-vx}.
+Theses studies have documented this phenomenon in \textit{Drosophila melanogaster} \citep{Mackay2005,Mackay2014-vi}, \textit{Arabidopsis thaliana} \citep{Hall2007}, and crops \citep{Walsh2017-vx}.
 
 
 Early theoretical work focused on the notion that organisms with one allele at a locus might all have a similar phenotype, while organisms with the other allele might have very different phenotypes, despite tremendous variation in the rest of the genome in both groups and termed this phenomenon ``canalization'' \citep{Waddington1942,Waddington1959}.
@@ -313,7 +317,7 @@ In the past decade, a number of studies and proposed methods have broadened the 
 These studies and their findings have raised interesting questions and possibilities about underlying biology, evolutionary trajectory, and potential utility in agriculture \citep{Wagner1997,Dworkin2005,Mulder2015}.
 Nonetheless, consideration of variance effects --- whether as the target of inference or as a feature of the data to be accommodated ---
 has thus far remained outside of routine genetic analysis.
-This may be in part because QTL effects on the variance are sometimes considered of esoteric secondary interest, intrinsically controversial in their interpretation \citep{Sun2013a,Shen2013}, or a priori too hard to detect \citep{Visscher2010a}.
+This may be in part because QTL effects on the variance are sometimes considered of esoteric secondary interest, intrinsically controversial in their interpretation due to considerations of data scale \citep{Sun2013a,Shen2013}, or a priori too hard to detect \citep{Visscher2010a}.
 But it is also likely to be in part because familiar software and procedures are currently lacking, and because the advantages of modeling heterogeneous variance, even when targeting QTL effects on the phenotypic mean, remain under-appreciated and largely undemonstrated.
 
 The predominant approach to QTL mapping in model organisms, the focus here, considers each genetic locus in turn, using a standard linear model (SLM) to regress the phenotypes of the mapping population on their genotypes or their inferred genotype probabilities \citep{Lander1989a,Haley1992}.
@@ -325,7 +329,7 @@ Indeed, SLM-based interval mapping has yielded important insights on commerciall
 %Indeed, SLM-based interval mapping has yielded important insights on commerically- and medically-important traits across many organisms for many years \citep{Brem2002,Thornsberry2001,Huang2010}.
 
 The goal of QTL mapping, however, is much broader --- to identify genetic factors that influence the phenotype in any way.
-For example, a genetic factor that influences the sensitivity of the phenotype to micro-environmental variation through a collection of what might be called a locus-by-E interactions is of interest, but unless it also affects the mean it is undetectable by the SLM.
+For example, a genetic factor that influences the sensitivity of the phenotype to micro-environmental variation through a collection of what might be called a locus-by-E interactions is of interest whether the identity of the micro-environmental factors is known or not, but unless it also affects the mean it is undetectable by the SLM.
 Similarly, a genetic factor that influences the phenotype through many epistatic interactions (a collection of locus-by-G effects), but has an average effect near zero is unlikely to be detected by the SLM.
 Neither of these important goals, however, was the original motivation for seeking to detect genetic loci that influence phenotype variance.
 The original motivation was to lower the dimensionality of the search space for large locus-by-locus interactions \citep{Pare2010}, by searching first for variants that influence the variance and then searching for interaction effects between those loci and the rest of the genome.
@@ -353,7 +357,7 @@ In particular, if a genetic (or other) factor influences phenotype variance then
 The presence of this ``background variance heterogeneity'' (BVH) when testing for a (foreground) effect simultaneously presents analytic challenges and opportunities, not only for mapping vQTL but also the validity of studies detecting mQTL. 
 
 The impact of BVH on mapping mQTL can be thought of as a disruption of the natural observation weights: The SLM assumes the phenotype of every individual is subject to equal noise variance and therefore equal weight; but if it is known that some individuals' phenotypes are inherently less noisy --- due to BVH induced by either a vQTL or other factors such as sex, housing, strain or experimenter --- then those data should be upweighted, and this would lead to a more powerful test for mQTL detection.
-Conversely, giving equal weight to subgroups of the data that are inherently noisier than average has the potential to leave outliers with overmuch much influence on the regression, increasing the potential for false positive mQTL detections
+Conversely, giving equal weight to subgroups of the data that are inherently noisier than average has the potential to leave outliers with overmuch influence on the regression, increasing the potential for false positive mQTL detections
 A case in point is when an mQTL also has variance effects: here the effects on the variance are a type of proximal BVH, and modeling them explicitly improves ability to detect effects on the mean, as in \autoref{chap:mvqtl_reanalyses}.
 Knowledge and appropriate modeling of variance heterogeneity therefore has important implications for making mean-controlling QTL studies sensitive, robust and reproducible.
 
@@ -361,7 +365,7 @@ The impact of BVH on detection of foreground vQTL is more subtle. Parametric met
 However, under BVH the null model is not homoskedastic --- it is a scale mixture --- and this risks the null being rejected too readily.
 BVH could therefore lead to an inflated vQTL false positive rate.
 
-If BVH is disruptive to QTL mapping generally, it makes sense to incorporate it into the QTL mapping model when its source is known, and to use robustifying techniques to protect against it when its source is unknown.
+If BVH is disruptive to QTL mapping generally, it is potentially valuable to incorporate it into the QTL mapping model when its source is known, and to use robustifying techniques to protect against it when its source is unknown.
 Accommodating BVH of known source is most naturally achieved through modeling covariate effects on the variance, something that is straightforward with the DGLM of \cite{Ronnegard2011a} but not currently with other proposed methods. 
 Protecting BVH when its source is unknown is less obvious, but since the threat manifests through sensitivity to distributional assumptions, natural contenders include side-stepping such assumptions via non-parametric approaches, \eg, permutation testing, or reshaping the distribution prior to analysis through variable transformation.
 Both have been considered in the vQTL context, with permutation used in \cite{Hulse2013} and \cite{Yang2012} and transformation in \cite{Ronnegard2011a}, \cite{Yang2012}, \cite{Sun2013a}, and \cite{Shen2013a}, but not specifically for controlling vQTL false positives in the presence of BVH.

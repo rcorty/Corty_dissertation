@@ -757,6 +757,7 @@ One region on the distal part of chromosome 11 could be considered ``suggestive'
 
 To test the sensitivity of the results to the inclusion/exclusion of covariates, the analysis was repeated without sex as a covariate, without father as a covariate, and with no covariates.
 No QTL were identified in any of these sensitivity analyses.
+This result is consistent with the fact that none of the publications on this mapping population reported any QTL for body weight at any age.
 
 \subsubsection{Analysis with Cao's tests Identifies no QTL}
 The same phenotype was analyzed with Cao's tests, again including sex and father as mean covariates, and using the genome permutation procedures described in \textbf{Methods} were used to control FWER.
@@ -968,7 +969,7 @@ Thus, it is logical that the RINT, which reshapes away excess kurtosis without r
 
 In the case where there is no known driver of BVH, a scenario represented by the simulations examining \Caov, the RINT procedure acts like an insurance policy: if there truly is no BVH, the test suffers a modest decrease in power; but if there truly is BVH from an unknown source, it averts the drastic FPR inflation under the standard (\ie, non-empirical) p-value procedure.
 
-In the case where BVH drivers are known, represented by the \DGLMv simulations, the RINT procedure is unnecessary, costing power with its conservatism in the absence of BVH and paradoxically creating even more conservative behavior in the presence of BVH.
+In the case where the major BVH drivers are known, represented by the \DGLMv simulations, the RINT procedure is unnecessary, costing power with its conservatism in the absence of BVH and paradoxically creating even more conservative behavior in the presence of BVH.
 
 The above disadvantages of RINT assume the phenotype data has an underlying normal distribution, either as given or after a simple (\eg, power) transformation.
 When this is not so, that is, in cases of highly non-normal data, valid inference would be possible by both the RINT and the locusperm procedure, and perhaps the most robust approach would be to use the two in combination. 
