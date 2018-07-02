@@ -7,7 +7,9 @@
 \doublespacing
 
 % Center chapter titles, omit page numbers.
-\titleformat{\chapter}[display]{\fillast\bfseries}{\Large\MakeUppercase{\chaptertitlename} \thechapter}{-11pt}{\huge\singlespacing}[\thispagestyle{empty}]
+% \titleformat{\chapter}[display]{\fillast\bfseries}{\Large\MakeUppercase{\chaptertitlename} \thechapter}{-11pt}{\huge\singlespacing}[\thispagestyle{empty}]
+% Center chapter titles, omit page numbers.
+\titleformat{\chapter}[display]{\fillast\bfseries}{\MakeUppercase{\chaptertitlename} \thechapter}{-11pt}{\singlespacing}
 
 % Extend to 2in top margins
 % Leave 22pts = 2x font size after heading
@@ -35,3 +37,11 @@
 
 % Prevent awkward hyphenations.
 \hyphenation{Raj-kumar}
+
+
+% set size of sections to be normal
+\titleformat*{\section}{\normalfont\bfseries}
+\titleformat*{\subsection}{\normalfont\bfseries}
+\titleformat*{\subsubsection}{\normalfont\bfseries}
+\titleformat*{\paragraph}{\normalfont\bfseries}
+\titleformat*{\subparagraph}{\normalfont\bfseries}
